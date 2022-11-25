@@ -6,11 +6,11 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/25 00:15:36 by alfux            ###   ########.fr       */
+/*   Updated: 2022/11/25 02:25:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
 # define MINIRT_H
-#include <stdio.h>
+# include <stdio.h>
 
 #endif
