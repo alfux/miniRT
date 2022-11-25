@@ -6,7 +6,7 @@
 #    By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2022/11/25 02:09:47 by alfux            ###   ########.fr        #
+#    Updated: 2022/11/25 22:29:39 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	main.c
+SSRC		=	main.c ft_init_win.c ft_exit.c ft_keyhook.c
 
 SRC			=	$(SSRC:%=$(SDIR)%)
 
@@ -29,6 +29,8 @@ OBJ			=	$(SSRC:%.c=$(ODIR)%.o)
 MDIR		=	lib/minilibx/
 
 MLX			=	$(MDIR)libmlx.a
+
+FW			=	-framework OpenGL -framework AppKit
 
 LDIR		=	lib/libft/
 
@@ -53,7 +55,7 @@ GREY		=	\033[90m
 WHITE		=	\033[0m
 
 $(NAME)		:	$(MLX) $(LFT) $(ODIR) $(OBJ)
-				@($(CC) $(CFLAGS) $(OBJ) $(MLX) $(LFT) -o $@)
+				@($(CC) $(CFLAGS) $(OBJ) $(LFT) $(MLX) $(FW) -o $@)
 				@(echo "$(GREEN)$@ linked$(WHITE)")
 
 $(ODIR)%.o	:	$(SDIR)%.c $(HDR)
