@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_setsph.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 20:34:18 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/27 22:21:43 by alfux            ###   ########.fr       */
+/*   Created: 2022/11/28 12:46:58 by alfux             #+#    #+#             */
+/*   Updated: 2022/11/28 13:00:29 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-int	ft_exit_failure(t_win *win)
+t_sph	ft_setsph(float dia, t_vec pos, t_rgb col)
 {
-	return (ft_exit(win, 1));
-}
+	t_sph	set;
 
-int	ft_exit_success(t_win *win)
-{
-	return (ft_exit(win, 0));
-}
-
-int	ft_exit(t_win *win, int status)
-{
-	if (!win)
-	{
-		errno = EINVAL;
-		perror("error: ");
-		return (1);
-	}
-	(void)mlx_destroy_image(win->cid, win->scr->iid);
-	(void)mlx_destroy_window(win->cid, win->wid);
-	exit(status);
-	return (status);
+	set.dia = dia;
+	set.pos = pos;
+	set.col = col;
+	return (set);
 }

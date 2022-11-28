@@ -6,19 +6,21 @@
 #    By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2022/11/25 22:29:39 by alfux            ###   ########.fr        #
+#    Updated: 2022/11/28 13:07:24 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HDIR		=	hdr/
 
-HHDR		=	miniRT.h
+HHDR		=	miniRT.h dataRT.h
 
 HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	main.c ft_init_win.c ft_exit.c ft_keyhook.c
+SSRC		=	main.c ft_setwin.c ft_exit.c ft_keyhook.c ft_setvec.c		\
+				ft_setrgb.c ft_setamb.c ft_setcam.c ft_setlig.c ft_setsph.c	\
+				ft_setpla.c ft_setcyl.c ft_setlin.c							\
 
 SRC			=	$(SSRC:%=$(SDIR)%)
 
