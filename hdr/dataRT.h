@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/28 13:06:22 by alfux            ###   ########.fr       */
+/*   Updated: 2022/11/30 18:24:03 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef DATART_H
@@ -14,26 +14,6 @@
 
 //Keycodes
 # define K_ESCAPE 53
-
-//Image data structure
-struct					s_img
-{
-	void	*iid;
-	char	*iad;
-	int		bpp;
-	int		opl;
-	int		end;
-};
-typedef struct s_img	t_img;
-
-//MLX session structure
-struct					s_win
-{
-	void	*cid;
-	void	*wid;
-	t_img	*scr;
-};
-typedef struct s_win	t_win;
 
 //Vetcor data structure
 struct					s_vec
@@ -115,5 +95,47 @@ struct					s_lin
 	t_vec	n;
 };
 typedef struct s_lin	t_lin;
+
+//Any object container
+struct					s_obj
+{
+	char			type;
+	void			*content;
+	struct s_obj	*next;
+};
+typedef struct s_obj	t_obj;
+
+//Scene data structure
+struct					s_scn
+{
+	t_cam	cam;
+	t_amb	amb;
+	t_obj	*lig;
+	t_obj	*obj;
+};
+typedef struct s_scn	t_scn;
+
+//Image data structure
+struct					s_img
+{
+	void	*iid;
+	char	*iad;
+	int		bpp;
+	int		opl;
+	int		end;
+};
+typedef struct s_img	t_img;
+
+//MLX miniRT session structure
+struct					s_win
+{
+	void			*cid;
+	void			*wid;
+	t_img			scr;
+	uint32_t		w;
+	uint32_t		h;
+	t_scn			scn;
+};
+typedef struct s_win	t_win;
 
 #endif

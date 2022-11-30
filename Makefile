@@ -6,7 +6,7 @@
 #    By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2022/11/28 13:07:24 by alfux            ###   ########.fr        #
+#    Updated: 2022/11/30 18:58:53 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	main.c ft_setwin.c ft_exit.c ft_keyhook.c ft_setvec.c		\
-				ft_setrgb.c ft_setamb.c ft_setcam.c ft_setlig.c ft_setsph.c	\
-				ft_setpla.c ft_setcyl.c ft_setlin.c							\
+SSRC		=	ft_exit.c ft_free.c ft_setwin.c ft_keyhook.c	\
+				ft_setvec.c ft_setrgb.c ft_setamb.c ft_setcam.c ft_newlig.c	\
+				ft_newsph.c ft_newpla.c ft_newcyl.c ft_setlin.c ft_scalar.c	\
+				ft_objdelone.c ft_objclear.c ft_objnew.c ft_objadd.c main.c	\
 
 SRC			=	$(SSRC:%=$(SDIR)%)
 

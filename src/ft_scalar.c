@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setsph.c                                        :+:      :+:    :+:   */
+/*   ft_scalar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:46:58 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/28 13:00:29 by alfux            ###   ########.fr       */
+/*   Created: 2022/11/29 21:32:39 by alfux             #+#    #+#             */
+/*   Updated: 2022/11/29 21:34:58 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_sph	ft_setsph(float dia, t_vec pos, t_rgb col)
+float	ft_scalar(t_vec u, t_vec v)
 {
-	t_sph	set;
-
-	set.dia = dia;
-	set.pos = pos;
-	set.col = col;
-	return (set);
+	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setpla.c                                        :+:      :+:    :+:   */
+/*   ft_newsph.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:48:19 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/28 12:51:13 by alfux            ###   ########.fr       */
+/*   Created: 2022/11/28 12:46:58 by alfux             #+#    #+#             */
+/*   Updated: 2022/11/30 17:22:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_pla	ft_setpla(t_vec pos, t_vec n, t_rgb col)
+t_sph	*ft_newsph(float dia, t_vec pos, t_rgb col)
 {
-	t_pla	set;
+	t_sph	*new;
 
-	set.pos = pos;
-	set.n = n;
-	set.col = col;
-	return (set);
+	new = (t_sph *)ft_calloc(1, sizeof (t_sph));
+	if (!new)
+		return (new);
+	new->dia = dia;
+	new->pos = pos;
+	new->col = col;
+	return (new);
 }

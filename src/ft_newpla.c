@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setcyl.c                                        :+:      :+:    :+:   */
+/*   ft_newpla.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:51:26 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/28 12:53:33 by alfux            ###   ########.fr       */
+/*   Created: 2022/11/28 12:48:19 by alfux             #+#    #+#             */
+/*   Updated: 2022/11/30 17:23:56 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_cyl	ft_setcyl(t_vec pos, t_vec n, float dia, float hgt)
+t_pla	*ft_newpla(t_vec pos, t_vec n, t_rgb col)
 {
-	t_cyl	set;
+	t_pla	*new;
 
-	set.pos = pos;
-	set.n = n;
-	set.dia = dia;
-	set.hgt = hgt;
-	set.col = ft_setrgb(255, 255, 255);
-	return (set);
+	new = (t_pla *)ft_calloc(1, sizeof (t_pla));
+	if (!new)
+		return (new);
+	new->pos = pos;
+	new->n = n;
+	new->col = col;
+	return (new);
 }
