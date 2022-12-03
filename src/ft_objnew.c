@@ -6,12 +6,12 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:10:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/30 14:13:52 by alfux            ###   ########.fr       */
+/*   Updated: 2022/11/30 21:20:01 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_obj	*ft_objnew(char type, void *content)
+t_obj	*ft_objnew(char type, void *obj)
 {
 	t_obj	*new;
 
@@ -19,6 +19,6 @@ t_obj	*ft_objnew(char type, void *content)
 	if (!new)
 		return (new);
 	new->type = type;
-	new->content = content;
+	new->obj = obj;
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/30 18:24:03 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/03 16:07:40 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef DATART_H
@@ -23,6 +23,15 @@ struct					s_vec
 	float	z;
 };
 typedef struct s_vec	t_vec;
+
+//Matrix 3x3 structure
+struct					s_3x3
+{
+	t_vec	top;
+	t_vec	mid;
+	t_vec	bot;
+};
+typedef struct s_3x3	t_3x3;
 
 //Color data structure
 struct					s_rgb
@@ -45,7 +54,9 @@ typedef struct s_amb	t_amb;
 struct					s_cam
 {
 	t_vec			pov;
-	t_vec			n;
+	t_vec			dir;
+	t_vec			ver;
+	t_vec			hor;
 	unsigned char	fov;
 };
 typedef struct s_cam	t_cam;
@@ -72,7 +83,7 @@ typedef struct s_sph	t_sph;
 struct					s_pla
 {
 	t_vec	pos;
-	t_vec	n;
+	t_vec	dir;
 	t_rgb	col;
 };
 typedef struct s_pla	t_pla;
@@ -81,7 +92,7 @@ typedef struct s_pla	t_pla;
 struct					s_cyl
 {
 	t_vec	pos;
-	t_vec	n;
+	t_vec	dir;
 	float	dia;
 	float	hgt;
 	t_rgb	col;
@@ -92,7 +103,7 @@ typedef struct s_cyl	t_cyl;
 struct					s_lin
 {
 	t_vec	pos;
-	t_vec	n;
+	t_vec	dir;
 };
 typedef struct s_lin	t_lin;
 
@@ -100,7 +111,7 @@ typedef struct s_lin	t_lin;
 struct					s_obj
 {
 	char			type;
-	void			*content;
+	void			*obj;
 	struct s_obj	*next;
 };
 typedef struct s_obj	t_obj;

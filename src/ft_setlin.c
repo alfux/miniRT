@@ -6,16 +6,16 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 13:06:31 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/28 13:07:12 by alfux            ###   ########.fr       */
+/*   Updated: 2022/11/30 21:01:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_lin	ft_setlin(t_vec pos, t_vec n)
+t_lin	ft_setlin(t_vec pos, t_vec dir)
 {
 	t_lin	set;
 
 	set.pos = pos;
-	set.n = n;
+	set.dir = dir;
 	return (set);
 }

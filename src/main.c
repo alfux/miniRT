@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/30 18:54:30 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/03 18:45:23 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -17,7 +17,7 @@ int	main(void)
 	void	*buf;
 
 	window = ft_setwin(600, 590, "miniRT");
-	window.scn.cam = ft_setcam(ft_setvec(2, 2, 2), ft_setvec(-1, -1, -1), 90);
+	window.scn.cam = ft_setcam(ft_setvec(0, 0, 0), ft_setvec(0, -13, 0), 90);
 	window.scn.amb = ft_setamb(0.1f, ft_setrgb(255, 255, 255));
 	buf = ft_newlig(ft_setvec(1, 1, 0), 0.5f, ft_setrgb(255, 255, 255));
 	if (!buf)
@@ -31,9 +31,9 @@ int	main(void)
 	window.scn.obj = ft_objnew('S', buf);
 	if (!window.scn.obj && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
-	mlx_hook(window.wid, 17, 0L, &ft_exit_success, &window);
-	mlx_hook(window.wid, 2, 0L, &ft_keyhook, &window);
-	mlx_put_image_to_window(window.cid, window.wid, window.scr.iid, 0, 0);
-	mlx_loop(window.cid);
+	(void)mlx_hook(window.wid, 17, 0L, &ft_exit_success, &window);
+	(void)mlx_hook(window.wid, 2, 0L, &ft_keyhook, &window);
+	ft_render(window);
+	(void)mlx_loop(window.cid);
 	return (0);
 }
