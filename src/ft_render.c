@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/05 09:17:10 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/05 09:21:51 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -18,8 +18,8 @@ static t_vec	ft_getdir(t_win win, uint32_t i, uint32_t j)
 	t_vec	dir;
 
 	theta = (j + 1) * (win.scn.cam.fov / win.w) + (M_PI - win.scn.cam.fov) / 2 ;
-	phi = (i + 1) * ((win.scn.cam.fov * 9) / (win.h * 16)) +
-		(M_PI - ((win.scn.cam.fov * 9) / 16)) / 2;
+	phi = (i + 1) * ((win.scn.cam.fov * 9) / (win.h * 16))
+		+ (M_PI - ((win.scn.cam.fov * 9) / 16)) / 2;
 	dir.x = cos(phi) * win.scn.cam.ver.x;
 	dir.y = cos(phi) * win.scn.cam.ver.y;
 	dir.z = cos(phi) * win.scn.cam.ver.z;
