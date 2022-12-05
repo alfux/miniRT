@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_raytra.c                                        :+:      :+:    :+:   */
+/*   ft_multiv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/05 09:43:04 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/05 09:24:27 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/05 09:27:30 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-uint32_t	ft_raytra(t_win win, t_vec ray)
+t_vec	ft_multiv(float l, t_vec v)
 {
-	(void)win;
-	(void)ray;
-	return ((0 << 0) + (0 << 8) + (255 << 16));
+	t_vec	lv;
+
+	lv.x = l * v.x;
+	lv.y = l * v.y;
+	lv.z = l * v.z;
+	return (lv);
 }

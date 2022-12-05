@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_raytra.c                                        :+:      :+:    :+:   */
+/*   ft_sum_uv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/05 09:43:04 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/05 09:30:37 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/05 09:31:46 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-uint32_t	ft_raytra(t_win win, t_vec ray)
+t_vec	ft_sum_uv(t_vec u, t_vec v)
 {
-	(void)win;
-	(void)ray;
-	return ((0 << 0) + (0 << 8) + (255 << 16));
+	t_vec	sum;
+
+	sum.x = u.x + v.x;
+	sum.y = u.y + v.y;
+	sum.z = u.z + v.z;
+	return (sum);
 }
