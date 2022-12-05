@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/03 18:45:23 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:49:44 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -16,8 +16,8 @@ int	main(void)
 	t_win	window;
 	void	*buf;
 
-	window = ft_setwin(600, 590, "miniRT");
-	window.scn.cam = ft_setcam(ft_setvec(0, 0, 0), ft_setvec(0, -13, 0), 90);
+	window = ft_setwin(1024, (1024 * 9) / 16, "miniRT");
+	window.scn.cam = ft_setcam(ft_setvec(0, 0, 0), ft_setvec(0, 0, 1), 90);
 	window.scn.amb = ft_setamb(0.1f, ft_setrgb(255, 255, 255));
 	buf = ft_newlig(ft_setvec(1, 1, 0), 0.5f, ft_setrgb(255, 255, 255));
 	if (!buf)

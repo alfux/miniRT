@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/03 16:07:40 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:04:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef DATART_H
@@ -53,11 +53,11 @@ typedef struct s_amb	t_amb;
 //Camera data structure
 struct					s_cam
 {
-	t_vec			pov;
-	t_vec			dir;
-	t_vec			ver;
-	t_vec			hor;
-	unsigned char	fov;
+	t_vec	pov;
+	t_vec	dir;
+	t_vec	ver;
+	t_vec	hor;
+	float	fov;
 };
 typedef struct s_cam	t_cam;
 

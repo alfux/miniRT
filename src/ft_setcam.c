@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:42:47 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/03 18:30:02 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:03:55 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -42,6 +42,6 @@ t_cam	ft_setcam(t_vec pov, t_vec dir, unsigned char fov)
 	else
 		ft_bzero(&set, sizeof (t_cam));
 	set.pov = pov;
-	set.fov = fov;
+	set.fov = (fov * 2 * M_PI) / 360;
 	return (set);
 }

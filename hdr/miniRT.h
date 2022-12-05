@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/03 16:14:48 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:29:25 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -45,6 +45,7 @@ float		ft_norm(t_vec u);
 //Other tools
 int			ft_free(void *ptr);
 void		ft_print_scene(t_scn scn);
+void		ft_print_vect(t_vec v);
 
 //Memory free exits
 int			ft_exit_success(t_win *win);
