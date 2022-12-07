@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/05 09:42:47 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/07 10:38:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -25,6 +25,8 @@ t_rgb		ft_setrgb(unsigned char r, unsigned char g, unsigned char b);
 t_amb		ft_setamb(float rat, t_rgb col);
 t_cam		ft_setcam(t_vec pov, t_vec dir, unsigned char fov);
 t_lin		ft_setlin(t_vec pos, t_vec dir);
+t_3x3		ft_set3x3(t_vec top, t_vec mid, t_vec bot);
+t_2x3		ft_set2x3(t_vec top, t_vec bot);
 
 //Object allocation
 t_lig		*ft_newlig(t_vec pos, float rat, t_rgb col);
@@ -43,6 +45,8 @@ float		ft_scalar(t_vec u, t_vec v);
 float		ft_norm(t_vec u);
 t_vec		ft_multiv(float l, t_vec v);
 t_vec		ft_sum_uv(t_vec u, t_vec v);
+t_vec		ft_polyd2(t_vec coef);
+t_2x3		ft_sysres(t_vec dir, t_vec pov, t_obj *obj);
 
 //Other tools
 int			ft_free(void *ptr);
@@ -59,6 +63,6 @@ int			ft_keyhook(int kid, t_win *win);
 
 //Rendering
 void		ft_render(t_win win);
-uint32_t	ft_raytra(t_win win, t_vec ray);
+uint32_t	ft_raytra(t_win win, t_vec ray, t_obj *obj);
 
 #endif

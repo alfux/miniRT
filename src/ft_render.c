@@ -6,10 +6,17 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/05 09:46:24 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/07 12:22:55 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
+
+void	ft_print_pixdir(t_vec dir, uint32_t i, uint32_t j)
+{
+	printf("dir(%i, %i) = ", j, i);
+	ft_print_vect(dir);
+	printf("\n");
+}
 
 static t_vec	ft_getdir(t_win win, uint32_t i, uint32_t j)
 {
@@ -23,9 +30,6 @@ static t_vec	ft_getdir(t_win win, uint32_t i, uint32_t j)
 	dir = ft_sum_uv(ft_sum_uv(ft_multiv(cos(phi), win.scn.cam.ver),
 				ft_multiv(sin(phi) * cos(theta), win.scn.cam.hor)),
 			ft_multiv(sin(phi) * sin(theta), win.scn.cam.dir));
-//	printf("dir(%i, %i) = ", j, i);
-//	ft_print_vect(dir);
-//	printf("\n");
 	return (dir);
 }
 
@@ -41,7 +45,7 @@ void	ft_render(t_win win)
 		j = -1;
 		while (++j < win.w)
 			*(uint32_t *)(win.scr.iad + i * win.scr.opl + j * (win.scr.bpp / 8))
-				= ft_raytra(win, ft_getdir(win, i, j));
+				= ft_raytra(win, ft_getdir(win, i, j), win.scn.obj);
 	}
 	mlx_put_image_to_window(win.cid, win.wid, win.scr.iid, 0, 0);
 }

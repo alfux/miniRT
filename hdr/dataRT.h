@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/04 14:04:47 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/07 12:10:01 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef DATART_H
@@ -14,6 +14,9 @@
 
 //Keycodes
 # define K_ESCAPE 53
+
+//Constants
+# define EPSILON 0.001f
 
 //Vetcor data structure
 struct					s_vec
@@ -24,7 +27,7 @@ struct					s_vec
 };
 typedef struct s_vec	t_vec;
 
-//Matrix 3x3 structure
+//3x3 matrix structure
 struct					s_3x3
 {
 	t_vec	top;
@@ -32,6 +35,14 @@ struct					s_3x3
 	t_vec	bot;
 };
 typedef struct s_3x3	t_3x3;
+
+//2x3 matrix structure
+struct					s_2x3
+{
+	t_vec	top;
+	t_vec	bot;
+};
+typedef struct s_2x3	t_2x3;
 
 //Color data structure
 struct					s_rgb
