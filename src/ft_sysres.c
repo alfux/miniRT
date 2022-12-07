@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/07 12:26:02 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/07 18:00:43 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -19,7 +19,7 @@ static t_2x3	ft_sysequ_sph(t_vec dir, t_vec pov, t_sph sph)
 
 	efg.x = dir.z * pov.y - dir.y * pov.z;
 	efg.y = dir.x * pov.z - dir.z * pov.x;
-	efg.z = (pow(sph.dia, 2) / 4) - ft_norm(sph.pos);
+	efg.z = (pow(sph.dia, 2) / 4) - ft_scalar(sph.pos, sph.pos);
 	sol = ft_polyd2(ft_setvec(1, 2 * (efg.x * dir.y - efg.y * dir.x
 					- dir.z * ft_scalar(dir, sph.pos)), (2 * dir.z
 					* (sph.pos.x * efg.y - efg.x * sph.pos.y) + pow(efg.x, 2)

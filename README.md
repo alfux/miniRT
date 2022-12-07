@@ -4,3 +4,4 @@ Friday November 25th 02:22: Project initialization
 <br />Saturday December 3rd 18:47: Implemented camera data and settings
 <br />Monday December 5th 09:53: Implemented screen ray processing
 <br />Wednesday December 7th 12:53: First appearing image :3
+<br />Wednesday December 7th 21:01: Sphere equations working, sphere overlaping ok

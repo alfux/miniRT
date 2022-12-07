@@ -6,7 +6,7 @@
 #    By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2022/12/07 10:27:16 by alfux            ###   ########.fr        #
+#    Updated: 2022/12/07 18:27:33 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	ft_sysres.c	\
+SSRC		=	ft_distce.c ft_sysres.c	\
 				ft_set2x3.c ft_set3x3.c ft_polyd2.c ft_sum_uv.c ft_multiv.c	\
 				ft_print_vect.c ft_norm.c ft_raytra.c ft_print_scene.c		\
 				ft_render.c ft_exit.c ft_free.c ft_setwin.c ft_keyhook.c	\

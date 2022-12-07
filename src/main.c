@@ -6,10 +6,12 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/07 17:10:57 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/07 20:42:29 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
+#define RADIUS 0.5f
+#define COORD 0.f
 
 int	main(void)
 {
@@ -26,21 +28,21 @@ int	main(void)
 	window.scn.lig = ft_objnew('L', buf);
 	if (!window.scn.lig && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
-	buf = ft_newsph(1.f, ft_setvec(0, 0, 0.1f), ft_setrgb(255, 0, 0));
+	buf = ft_newsph(RADIUS, ft_setvec(0.f, 0.f, COORD), ft_setrgb(255, 0, 0));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newsph(1.f, ft_setvec(0, 1, 0), ft_setrgb(0, 255, 0));
+	buf = ft_newsph(RADIUS, ft_setvec(0.5f, COORD, 0.f), ft_setrgb(0, 255, 0));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: sphere");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newsph(1.f, ft_setvec(1.f, 0, 0), ft_setrgb(0, 0, 255));
+	buf = ft_newsph(RADIUS, ft_setvec(1.f, 0.f, 0.f), ft_setrgb(0, 0, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);

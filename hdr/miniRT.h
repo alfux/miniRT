@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/07 10:38:31 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/07 18:28:24 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -43,6 +43,7 @@ void		ft_objclear(t_obj **obj, void (*del)(void *));
 //Math tools
 float		ft_scalar(t_vec u, t_vec v);
 float		ft_norm(t_vec u);
+float		ft_distce(t_vec a, t_vec b);
 t_vec		ft_multiv(float l, t_vec v);
 t_vec		ft_sum_uv(t_vec u, t_vec v);
 t_vec		ft_polyd2(t_vec coef);
