@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/07 18:00:43 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/08 20:21:15 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -24,7 +24,7 @@ static t_2x3	ft_sysequ_sph(t_vec dir, t_vec pov, t_sph sph)
 					- dir.z * ft_scalar(dir, sph.pos)), (2 * dir.z
 					* (sph.pos.x * efg.y - efg.x * sph.pos.y) + pow(efg.x, 2)
 					+ pow(efg.y, 2) - efg.z * pow(dir.z, 2))));
-	if (sol.z < 0)
+	if (sol.z < EPSILON)
 		return (ft_set2x3(sol, sol));
 	res.top.z = sol.x;
 	res.bot.z = sol.y;

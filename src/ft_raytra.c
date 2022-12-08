@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/08 12:12:31 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/08 16:39:39 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -73,5 +73,5 @@ uint32_t	ft_raytra(t_win win, t_vec ray, t_obj *obj)
 		}
 		obj = obj->next;
 	}
-	return (ft_rgbtoi(ft_shades(sav, vec, win.scn.lig, rgb)));
+	return (ft_rgbtoi(ft_shades(win, sav, vec, rgb)));
 }

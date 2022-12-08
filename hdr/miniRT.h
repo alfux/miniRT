@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/08 12:11:54 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/08 20:20:51 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -42,10 +42,12 @@ void		ft_objclear(t_obj **obj, void (*del)(void *));
 
 //Math tools
 float		ft_scalar(t_vec u, t_vec v);
-float		ft_norm(t_vec u);
 float		ft_distce(t_vec a, t_vec b);
+float		ft_norm(t_vec u);
+t_vec		ft_nrmlze(t_vec v);
 t_vec		ft_multiv(float l, t_vec v);
 t_vec		ft_sum_uv(t_vec u, t_vec v);
+t_vec		ft_dif_uv(t_vec u, t_vec v);
 t_vec		ft_polyd2(t_vec coef);
 t_2x3		ft_sysres(t_vec dir, t_vec pov, t_obj *obj);
 
@@ -67,6 +69,6 @@ int			ft_keyhook(int kid, t_win *win);
 //Rendering
 void		ft_render(t_win win);
 uint32_t	ft_raytra(t_win win, t_vec ray, t_obj *obj);
-t_rgb		ft_shades(t_obj *obj, t_vec vec, t_obj *lig, t_rgb rgb);
+t_rgb		ft_shades(t_win win, t_obj *obj, t_vec vec, t_rgb rgb);
 
 #endif
