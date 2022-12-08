@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/07 18:28:24 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/08 12:11:54 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -51,8 +51,10 @@ t_2x3		ft_sysres(t_vec dir, t_vec pov, t_obj *obj);
 
 //Other tools
 int			ft_free(void *ptr);
+uint32_t	ft_rgbtoi(t_rgb rgb);
 void		ft_print_scene(t_scn scn);
 void		ft_print_vect(t_vec v);
+void		ft_print_inter_sph(t_vec ray, t_sph *sph, t_2x3 inter);
 
 //Memory free exits
 int			ft_exit_success(t_win *win);
@@ -65,5 +67,6 @@ int			ft_keyhook(int kid, t_win *win);
 //Rendering
 void		ft_render(t_win win);
 uint32_t	ft_raytra(t_win win, t_vec ray, t_obj *obj);
+t_rgb		ft_shades(t_obj *obj, t_vec vec, t_obj *lig, t_rgb rgb);
 
 #endif
