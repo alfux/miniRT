@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/09 18:19:12 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/09 18:38:50 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef DATART_H
@@ -16,7 +16,7 @@
 # define K_ESCAPE 53
 
 //Constants
-# define EPSILON 0.000001f
+# define EPSILON 0.001f
 
 //Vetcor data structure
 struct					s_vec
