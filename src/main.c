@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/09 13:00:08 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/09 18:20:40 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -29,14 +29,14 @@ int	main(void)
 	window.scn.lig = ft_objnew('L', buf);
 	if (!window.scn.lig && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
-	buf = ft_newsph(DIAM, ft_setvec(0.f, 0.f, 0.f), ft_setrgb(255, 0, 0));
+	buf = ft_newsph(DIAM, ft_setvec(0.f, 0.f, 0.f), ft_setrgb(255, 255, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newsph(DIAM, ft_setvec(0.f, 0.f, 0.5f), ft_setrgb(0, 255, 0));
+	buf = ft_newsph(DIAM, ft_setvec(0.f, 0.f, 0.5f), ft_setrgb(0, 0, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);
@@ -50,14 +50,14 @@ int	main(void)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newsph(DIAM, ft_setvec(0.5f, 0.f, 0.f), ft_setrgb(0, 255, 0));
+	buf = ft_newsph(DIAM, ft_setvec(0.5f, 0.f, 0.f), ft_setrgb(255, 0, 0));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newsph(DIAM, ft_setvec(1.f, 0.f, 0.f), ft_setrgb(0, 0, 255));
+	buf = ft_newsph(DIAM, ft_setvec(1.f, 0.f, 0.f), ft_setrgb(255, 0, 0));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);
@@ -71,14 +71,14 @@ int	main(void)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newsph(DIAM, ft_setvec(0.f, 1.f, 0.f), ft_setrgb(0, 0, 255));
+	buf = ft_newsph(DIAM, ft_setvec(0.f, 1.f, 0.f), ft_setrgb(0, 255, 0));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
 	tmp = ft_objnew('S', buf);
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newpla(ft_setvec(0, 0, 0), ft_setvec(0.f, 1.f, 0.f),
+	buf = ft_newpla(ft_setvec(0, 0, 0), ft_setvec(0.f, -1.f, 0.f),
 			ft_setrgb(255, 0, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: plane");

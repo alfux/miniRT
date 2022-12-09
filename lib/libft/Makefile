@@ -6,7 +6,7 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 14:07:34 by afuchs            #+#    #+#              #
-#    Updated: 2022/11/25 01:27:12 by alfux            ###   ########.fr        #
+#    Updated: 2022/12/09 17:45:48 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,15 +41,15 @@ WHITE	=	\033[0m
 
 $(NAME) 	:	$(OBJ)
 				@(ar -rc $(NAME) $(OBJ))
-				@(echo "$(GREY)$@ archive created$(WHITE)")
+				@(echo "\r\033[K$(GREY)$@ archive created$(WHITE)")
 
 %.o			:	%.c
 				@($(CC) $(FLAGS) -c $< -o $@)
-				@(echo "$(GREY)$@ compiled$(WHITE)")
+				@(printf "\r\033[K$(GREY)$@ compiled$(WHITE)")
 
 %_bonus.o	:	%_bonus.c
 				@($(CC) $(FLAGS) -c $< -o $@)
-				@(echo "$(GREY)$@ compiled$(WHITE)")
+				@(printf "\r\033[K$(GREY)$@ compiled$(WHITE)")
 
 all			:	$(NAME)
 
@@ -64,6 +64,6 @@ re			:	fclean all
 
 bonus		:	$(OBNS) $(NAME)
 				@(ar -r $(NAME) $(OBNS))
-				@(echo "$(GREY)bonus added$(WHITE)")
+				@(printf "\r\033[K$(GREY)libft.a: bonus added\n$(WHITE)")
 
 .PHONY		:	all clean fclean re

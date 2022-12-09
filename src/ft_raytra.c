@@ -6,16 +6,16 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/09 11:49:45 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/09 18:17:22 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-static t_vec	ft_closer_to_pov(t_2x3 comp, t_vec pov)
+static t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
 {
-	if (ft_distce(comp.top, pov) < ft_distce(comp.bot, pov))
-		return (comp.top);
-	return (comp.bot);
+	if (ft_distce(cmp->top, *pov) < ft_distce(cmp->bot, *pov))
+		return (cmp->top);
+	return (cmp->bot);
 }
 
 static int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
@@ -47,9 +47,28 @@ static t_rgb	ft_objrgb(t_obj const *obj)
 		return (ft_setrgb(0, 0, 0));
 }
 
+static int	ft_face_cam(t_2x3 *inter, t_win const *win)
+{
+	float	tscl;
+	float	bscl;
+
+	tscl = ft_scalar(win->scn.cam.dir, ft_dif_uv(inter->top, win->scn.cam.pov));
+	bscl = ft_scalar(win->scn.cam.dir, ft_dif_uv(inter->bot, win->scn.cam.pov));
+	if (tscl < EPSILON)
+	{
+		inter->top = inter->bot;
+		if (bscl < EPSILON)
+			return (0);
+		return (1);
+	}
+	if (bscl < EPSILON)
+		inter->bot = inter->top;
+	return (1);
+}
+
 uint32_t	ft_raytra(t_win const *win, t_vec const ray, t_obj const *obj)
 {
-	t_2x3		inter;
+	t_2x3		intr;
 	t_vec		tmp;
 	t_vec		vec;
 	t_rgb		rgb;
@@ -60,10 +79,10 @@ uint32_t	ft_raytra(t_win const *win, t_vec const ray, t_obj const *obj)
 	sav = (t_obj *)0;
 	while (obj)
 	{
-		inter = ft_sysres(&ray, &win->scn.cam.pov, obj);
-		if (!isnan(inter.top.x) && !isnan(inter.bot.x))
+		intr = ft_sysres(&ray, &win->scn.cam.pov, obj);
+		if (!isnan(intr.top.x) && !isnan(intr.bot.x) && ft_face_cam(&intr, win))
 		{
-			tmp = ft_closer_to_pov(inter, win->scn.cam.pov);
+			tmp = ft_closer_to_pov(&intr, &win->scn.cam.pov);
 			if (ft_iscloser(&vec, &tmp, &win->scn.cam.pov))
 			{
 				vec = tmp;

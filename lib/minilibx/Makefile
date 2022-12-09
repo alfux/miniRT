@@ -26,20 +26,20 @@ all		:	$(NOM)
 $(NOM)	:	$(OBJ)
 			@(ar -cr $(NOM) $(OBJ))
 			@(ranlib $(NOM))
-			@(echo "$(GREY)$@ archive created$(WHITE)")
+			@(printf "\r\033[K$(GREY)$@ archive created$(WHITE)\n")
 
 %.o		:	%.c
 			@($(CC) $(CFLAGS) -c $< -o $@)
-			@(echo "$(GREY)$@ comiled$(WHITE)")
+			@(printf "\r\033[K$(GREY)$@ comiled$(WHITE)")
 
 %.o		:	%.m
 			@($(CC) $(CFLAGS) -c $< -o $@)
-			@(echo "$(GREY)$@ comiled$(WHITE)")
+			@(printf "\r\033[K$(GREY)$@ comiled$(WHITE)")
 
 clean	:
 			@(rm -f $(NOM) $(OBJ) *~)
 			@(rm -f mlx_app)
-			@(echo "$(GREY)minilibx cleaned$(WHITE)")
+			@(echo "$(GREY)minilibx removed$(WHITE)")
 
 re		:	clean all
 

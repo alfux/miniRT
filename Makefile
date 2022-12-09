@@ -6,7 +6,7 @@
 #    By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2022/12/09 10:01:48 by alfux            ###   ########.fr        #
+#    Updated: 2022/12/09 18:22:58 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,11 +64,11 @@ WHITE		=	\033[0m
 
 $(NAME)		:	$(MLX) $(LFT) $(ODIR) $(OBJ)
 				@($(CC) $(CFLAGS) $(OBJ) $(LFT) $(MLX) $(FW) -o $@)
-				@(echo "$(GREEN)$@ linked$(WHITE)")
+				@(echo "\r\033[K$(GREEN)$@ linked$(WHITE)")
 
 $(ODIR)%.o	:	$(SDIR)%.c $(HDR)
 				@($(CC) $(CFLAGS) $(INC) -c $< -o $@)
-				@(echo "$(GREY)$@ compiled$(WHITE)")
+				@(printf "\r\033[K$(GREY)$@ compiled$(WHITE)")
 
 $(ODIR)		:
 				@(mkdir $(ODIR))
@@ -85,11 +85,11 @@ clean		:
 				@(cd $(MDIR) && $(MAKE) $(SIL) clean)
 				@(cd $(LDIR) && $(MAKE) $(SIL) fclean)
 				@(rm -rf $(ODIR))
-				@(echo "$(GREY)objects removed$(WHITE)")
+				@(printf "$(GREY)objects removed\n$(WHITE)")
 
 fclean		:	clean
 				@(rm -rf $(NAME))
-				@(echo "$(RED)$(NAME) removed$(WHITE)")
+				@(printf "$(RED)$(NAME) removed\n$(WHITE)")
 
 re			:	fclean all
 
