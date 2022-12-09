@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_distce.c                                        :+:      :+:    :+:   */
+/*   ft_multlv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 18:24:03 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/09 11:37:31 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/05 09:24:27 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/09 09:55:54 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-float	ft_distce(t_vec a, t_vec b)
+t_vec	ft_multlv(float l, t_vec v)
 {
-	return (ft_norm(ft_sum_uv(a, ft_multlv(-1, b))));
+	t_vec	lv;
+
+	lv.x = l * v.x;
+	lv.y = l * v.y;
+	lv.z = l * v.z;
+	return (lv);
 }

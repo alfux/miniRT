@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_multiv.c                                        :+:      :+:    :+:   */
+/*   ft_multmv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 09:24:27 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/05 09:27:30 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/09 09:49:56 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/09 09:52:53 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_vec	ft_multiv(float l, t_vec v)
+t_vec	ft_multmv(t_3x3 m, t_vec v)
 {
-	t_vec	lv;
-
-	lv.x = l * v.x;
-	lv.y = l * v.y;
-	lv.z = l * v.z;
-	return (lv);
+	return (ft_setvec(
+			ft_scalar(m.top, v), ft_scalar(m.mid, v), ft_scalar(m.bot, v)));
 }
