@@ -7,3 +7,4 @@ Friday November 25th 02:22: Project initialization
 <br />Wednesday December 7th 21:01: Sphere equations working, overlaping implemented
 <br />Friday December 9th 13:04: Shades implemented, plane equations working
 <br />Friday December 9th 18:24: Fixed superposition issues and wrong render with objects behind pov
+<br />Saturday December 10th 12:24: Added shadow casting
