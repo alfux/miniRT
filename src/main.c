@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 01:35:33 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/13 01:45:17 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -78,7 +78,7 @@ int	main(void)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
-	buf = ft_newpla(ft_setvec(0, -0.25f, 0.f), ft_setvec(0.f, 1.0f, 0.f),
+	buf = ft_newpla(ft_setvec(0, -0.25f, 0.f), ft_setvec(0.f, 1.f, 0.f),
 			ft_setrgb(255, 0, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: plane");
