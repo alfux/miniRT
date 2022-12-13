@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 17:19:05 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/13 18:12:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -32,17 +32,17 @@ static void	ft_rota_z(t_cam *cam, float theta)
 static void	ft_movcam(int kid, t_win *win)
 {
 	if (kid == K_LEFT)
-		win->scn.cam.pov.x += 0.1;
+		win->scn.cam.pov.x += 0.2;
 	else if (kid == K_RIGHT)
-		win->scn.cam.pov.x -= 0.1;
+		win->scn.cam.pov.x -= 0.2;
 	else if (kid == K_UP)
-		win->scn.cam.pov.y += 0.1;
+		win->scn.cam.pov.y += 0.2;
 	else if (kid == K_DOWN)
-		win->scn.cam.pov.y -= 0.1;
+		win->scn.cam.pov.y -= 0.2;
 	else if (kid == K_P)
-		win->scn.cam.pov.z += 0.1;
+		win->scn.cam.pov.z += 0.2;
 	else if (kid == K_M)
-		win->scn.cam.pov.z -= 0.1;
+		win->scn.cam.pov.z -= 0.2;
 	else if (kid == K_Z)
 		ft_rota_x(&win->scn.cam, -0.1);
 	else if (kid == K_S)
