@@ -10,3 +10,5 @@ Friday November 25th 02:22: Project initialization
 <br />Saturday December 10th 12:24: Added shadow casting
 <br />Tuesday December 13th 01:38: Fixed artefacts due to floating point precision limits
 <br />Tuesday December 13th 01:39: Added kind of ambiant light
+## State of render
+![Alt text](shot.png?raw=true "Render")
