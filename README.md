@@ -8,3 +8,5 @@ Friday November 25th 02:22: Project initialization
 <br />Friday December 9th 13:04: Shades implemented, plane equations working
 <br />Friday December 9th 18:24: Fixed superposition issues and wrong render with objects behind pov
 <br />Saturday December 10th 12:24: Added shadow casting
+<br />Tuesday December 13th 01:38: Fixed artefacts due to floating point precision limits
+<br />Tuesday December 13th 01:39: Added kind of ambiant light

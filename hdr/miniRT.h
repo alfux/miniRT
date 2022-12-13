@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/10 10:04:45 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:06:16 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -55,6 +55,7 @@ t_vec		ft_dif_uv(t_vec u, t_vec v);
 t_vec		ft_polyd2(t_vec coef);
 t_2x3		ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj);
 t_2x3		ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph);
+t_2x3		ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
 
 //Other tools
 int			ft_free(void *ptr);

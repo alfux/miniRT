@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/10 12:17:45 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/12 17:19:01 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -28,7 +28,7 @@ static int	ft_shadow(t_win const *win, t_obj const *obj, t_vec const *vec,
 		if (lst != obj)
 		{
 			obs = ft_sysres(&ndir, vec, lst);
-			if (!isnan(obs.top.x)
+			if (!isnan(obs.top.x) && !isnan(obs.bot.x)
 				&& ((ft_scalar(ft_dif_uv(obs.top, *vec), ndir) > EPSILON
 						&& ft_distce(obs.top, *vec) < norm)
 					|| (ft_scalar(ft_dif_uv(obs.bot, *vec), ndir) > EPSILON
@@ -44,20 +44,21 @@ t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 	t_rgb const *rgb)
 {
 	t_vec	dir;
-	float	ind;
+	float	i;
 
 	if (!obj)
 		return (*rgb);
 	dir = ft_dif_uv(((t_lig *)win->scn.lig->obj)->pos, *vec);
 	if (obj->type == 'S')
-		ind = ft_scalar(ft_nrmlze(dir), ft_nrmlze(ft_dif_uv(*vec,
+		i = ft_scalar(ft_nrmlze(dir), ft_nrmlze(ft_dif_uv(*vec,
 						((t_sph *)obj->obj)->pos)));
 	else if (obj->type == 'P')
-		ind = fabs(ft_scalar(ft_nrmlze(dir),
+		i = fabs(ft_scalar(ft_nrmlze(dir),
 					ft_nrmlze(((t_pla *)obj->obj)->dir)));
 	else
-		ind = 0;
-	if (ind < EPSILON || ft_shadow(win, obj, vec, &dir))
-		return (ft_setrgb(0, 0, 0));
-	return (ft_setrgb(rgb->r * ind, rgb->g * ind, rgb->b * ind));
+		i = 0;
+	if (i < EPSILON || ft_shadow(win, obj, vec, &dir))
+		i = 0;
+	i = ((t_lig *)win->scn.lig->obj)->rat * i + win->scn.amb.rat * (1 - i);
+	return (ft_setrgb(rgb->r * i, rgb->g * i, rgb->b * i));
 }
