@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 01:49:39 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/13 14:23:05 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef DATART_H
@@ -14,6 +14,18 @@
 
 //Keycodes
 # define K_ESCAPE 53
+# define K_LEFT 123
+# define K_UP 126
+# define K_RIGHT 124
+# define K_DOWN 125
+# define K_P 35
+# define K_M 41
+# define K_Z 13
+# define K_Q 0
+# define K_S 1
+# define K_D 2
+# define K_R 15
+# define K_T 17
 
 //Constants
 # define EPSILON 0.01f
