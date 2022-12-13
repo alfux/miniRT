@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 13:40:29 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/14 00:41:01 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -89,6 +89,7 @@ int	main(void)
 	(void)mlx_hook(window.wid, 17, 0L, &ft_exit_success, &window);
 	(void)mlx_hook(window.wid, 2, 0L, &ft_keyhook, &window);
 	window = ft_tobase_cam(window);
+	ft_print_scene(window.scn);
 	ft_render(&window);
 	(void)mlx_loop(window.cid);
 	return (0);

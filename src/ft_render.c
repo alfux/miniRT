@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 17:21:17 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/14 00:40:36 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -38,7 +38,6 @@ void	ft_render(t_win const *win)
 	uint32_t	i;
 	uint32_t	j;
 
-	ft_print_scene(win->scn);
 	i = -1;
 	while (++i < win->h)
 	{
