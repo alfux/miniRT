@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 01:50:20 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/13 13:40:29 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -21,9 +21,9 @@ int	main(void)
 	void	*tmp;
 
 	window = ft_setwin(RESOLUTION, (RESOLUTION * 9) / 16, "miniRT");
-	window.scn.cam = ft_setcam(ft_setvec(2, 1, 2), ft_setvec(-1, -0.5, -1), 90);
+	window.scn.cam = ft_setcam(ft_setvec(2, 2, 2), ft_setvec(-1, -1, -1), 90);
 	window.scn.amb = ft_setamb(0.1f, ft_setrgb(255, 255, 255));
-	buf = ft_newlig(ft_setvec(0.3f, 1.5f, 0.3f), 1.f, ft_setrgb(255, 255, 255));
+	buf = ft_newlig(ft_setvec(1.f, 1.f, 0.f), 1.f, ft_setrgb(255, 255, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: light");
 	window.scn.lig = ft_objnew('L', buf);

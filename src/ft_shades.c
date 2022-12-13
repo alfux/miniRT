@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/12 17:19:01 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/13 13:32:28 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -29,9 +29,9 @@ static int	ft_shadow(t_win const *win, t_obj const *obj, t_vec const *vec,
 		{
 			obs = ft_sysres(&ndir, vec, lst);
 			if (!isnan(obs.top.x) && !isnan(obs.bot.x)
-				&& ((ft_scalar(ft_dif_uv(obs.top, *vec), ndir) > EPSILON
+				&& ((ft_scalar(ft_dif_uv(obs.top, *vec), ndir) > 0
 						&& ft_distce(obs.top, *vec) < norm)
-					|| (ft_scalar(ft_dif_uv(obs.bot, *vec), ndir) > EPSILON
+					|| (ft_scalar(ft_dif_uv(obs.bot, *vec), ndir) > 0
 						&& ft_distce(obs.bot, *vec) < norm)))
 				return (1);
 		}
@@ -57,7 +57,7 @@ t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 					ft_nrmlze(((t_pla *)obj->obj)->dir)));
 	else
 		i = 0;
-	if (i < EPSILON || ft_shadow(win, obj, vec, &dir))
+	if (i < 0 || ft_shadow(win, obj, vec, &dir))
 		i = 0;
 	i = ((t_lig *)win->scn.lig->obj)->rat * i + win->scn.amb.rat * (1 - i);
 	return (ft_setrgb(rgb->r * i, rgb->g * i, rgb->b * i));
