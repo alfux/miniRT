@@ -11,5 +11,9 @@
 <br /> ☛ Tuesday December 13th 01:38: Fixed artefacts due to floating point precision limits
 <br /> ☛ Tuesday December 13th 01:39: Added kind of ambiant light
 <br /> ☛ Tuesday December 13th 17:30: Added heavy camera movements
+## Personal bonus ideas
+☛ Anti-aliasing ?
+<br />☛ Use of GPU to have a moving camera ?
+<br />☛ Light diffraction for "glass" effect with transparency ?
 ## State of render
 ![Alt text](shot.png?raw=true "Render")
