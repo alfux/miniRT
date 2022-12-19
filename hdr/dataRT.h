@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   dataRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 14:23:05 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/19 18:40:38 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef DATART_H
 # define DATART_H
 
@@ -76,11 +77,13 @@ typedef struct s_amb	t_amb;
 //Camera data structure
 struct					s_cam
 {
-	t_vec	pov;
-	t_vec	dir;
-	t_vec	ver;
-	t_vec	hor;
-	float	fov;
+	t_vec			pov;
+	t_vec			dir;
+	t_vec			ver;
+	t_vec			hor;
+	struct s_cam	*prev;
+	struct s_cam	*next;
+	float			fov;
 };
 typedef struct s_cam	t_cam;
 
@@ -142,7 +145,7 @@ typedef struct s_obj	t_obj;
 //Scene data structure
 struct					s_scn
 {
-	t_cam	cam;
+	t_cam	*cam;
 	t_amb	amb;
 	t_obj	*lig;
 	t_obj	*obj;
