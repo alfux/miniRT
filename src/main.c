@@ -6,13 +6,13 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/15 23:11:57 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/19 17:50:10 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 #define DIAM 0.5f
 #define COORD 0.0f
-#define RESOLUTION 1280
+#define RESOLUTION 300
 
 int	main(void)
 {
