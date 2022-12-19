@@ -16,4 +16,4 @@
 <br />☛ Use of GPU to have a moving camera ?
 <br />☛ Light diffraction for "glass" effect with transparency ?
 ## State of render
-![Alt text](shot.png?raw=true "Render")
+![Alt text](render.png?raw=true "Render")

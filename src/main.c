@@ -6,14 +6,14 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/19 18:40:50 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/19 20:23:01 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <miniRT.h>
 #define DIAM 0.5f
 #define COORD 0.0f
-#define RESOLUTION 1280
-#include <miniRT.h>
+#define RESOLUTION 300
 
 int	main(int argc, char **argv)
 {
