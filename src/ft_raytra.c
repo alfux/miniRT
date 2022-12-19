@@ -6,13 +6,17 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 17:21:40 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/19 19:45:21 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
 static t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
 {
+	if (isnan(cmp->top.x) || isnan(cmp->top.y) || isnan(cmp->top.z))
+		return (cmp->bot);
+	if (isnan(cmp->bot.x) || isnan(cmp->bot.y) || isnan(cmp->bot.z))
+		return (cmp->top);
 	if (ft_distce(cmp->top, *pov) < ft_distce(cmp->bot, *pov))
 		return (cmp->top);
 	return (cmp->bot);
@@ -20,6 +24,8 @@ static t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
 
 static int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
 {
+	if (isnan(tmp->x) || isnan(tmp->y) || isnan(tmp->z))
+		return (0);
 	if ((isnan(vec->x) && isnan(vec->y) && isnan(vec->z))
 		|| ft_distce(*tmp, *pov) < ft_distce(*vec, *pov))
 		return (1);

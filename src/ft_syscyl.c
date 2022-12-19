@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:11:03 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/19 15:23:03 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/19 19:23:45 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -38,6 +38,10 @@ static t_2x3	ft_syscylx(t_vec const *dir, t_vec const *pov, t_cyl const *cyl)
 	res.bot.x = sol.y;
 	res.bot.y = (f + dir->y * sol.y) / dir->x;
 	res.bot.z = (e + dir->z * sol.y) / dir->x;
+	if (ft_distce(cyl->pos, res.top) > cyl->hgt / 2)
+		res.top = ft_setvec(NAN, NAN, NAN);
+	if (ft_distce(cyl->pos, res.bot) > cyl->hgt / 2)
+		res.bot = ft_setvec(NAN, NAN, NAN);
 	return (res);
 }
 
@@ -68,6 +72,10 @@ static t_2x3	ft_syscyly(t_vec const *dir, t_vec const *pov, t_cyl const *cyl)
 	res.bot.y = sol.y;
 	res.bot.x = (e + dir->x * sol.y) / dir->y;
 	res.bot.z = (f + dir->z * sol.y) / dir->y;
+	if (ft_distce(cyl->pos, res.top) > cyl->hgt / 2)
+		res.top = ft_setvec(NAN, NAN, NAN);
+	if (ft_distce(cyl->pos, res.bot) > cyl->hgt / 2)
+		res.bot = ft_setvec(NAN, NAN, NAN);
 	return (res);
 }
 
@@ -98,6 +106,10 @@ static t_2x3	ft_syscylz(t_vec const *dir, t_vec const *pov, t_cyl const *cyl)
 	res.bot.z = sol.y;
 	res.bot.y = (f + dir->y * sol.y) / dir->z;
 	res.bot.x = (e + dir->x * sol.y) / dir->z;
+	if (ft_distce(cyl->pos, res.top) > cyl->hgt / 2)
+		res.top = ft_setvec(NAN, NAN, NAN);
+	if (ft_distce(cyl->pos, res.bot) > cyl->hgt / 2)
+		res.bot = ft_setvec(NAN, NAN, NAN);
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 21:08:43 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/19 19:13:52 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -55,6 +55,8 @@ t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 	else if (obj->type == 'P')
 		i = fabs(ft_scalar(ft_nrmlze(dir),
 					ft_nrmlze(((t_pla *)obj->obj)->dir)));
+	else if (obj->type == 'C')
+		i = 1;
 	else
 		i = 0;
 	if (i < 0 || ft_shadow(win, obj, vec, &dir))
