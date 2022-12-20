@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 09:32:12 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/09 11:14:30 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:58:08 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -37,11 +37,12 @@ t_win	ft_tobase_cam(t_win win)
 {
 	t_3x3	m;
 
-	m = ft_invmat(ft_set3x3(win.scn.cam.hor, win.scn.cam.ver, win.scn.cam.dir));
-	win.scn.cam.pov = ft_multmv(m, win.scn.cam.pov);
-	win.scn.cam.dir = ft_multmv(m, win.scn.cam.dir);
-	win.scn.cam.ver = ft_multmv(m, win.scn.cam.ver);
-	win.scn.cam.hor = ft_multmv(m, win.scn.cam.hor);
+	m = ft_invmat(ft_set3x3(win.scn.cam->hor, win.scn.cam->ver,
+				win.scn.cam->dir));
+	win.scn.cam->pov = ft_multmv(m, win.scn.cam->pov);
+	win.scn.cam->dir = ft_multmv(m, win.scn.cam->dir);
+	win.scn.cam->ver = ft_multmv(m, win.scn.cam->ver);
+	win.scn.cam->hor = ft_multmv(m, win.scn.cam->hor);
 	ft_objlst_tobase(&m, win.scn.lig);
 	ft_objlst_tobase(&m, win.scn.obj);
 	return (win);

@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/20 16:01:25 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:50:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -85,11 +85,11 @@ uint32_t	ft_raytra(t_win const *win, t_vec const ray, t_obj const *obj)
 	sav = (t_obj *)0;
 	while (obj)
 	{
-		intr = ft_sysres(&ray, &win->scn.cam.pov, obj);
-		if (ft_is_sol(&intr) && ft_face_cam(&intr, &win->scn.cam.pov, &ray))
+		intr = ft_sysres(&ray, &win->scn.cam->pov, obj);
+		if (ft_is_sol(&intr) && ft_face_cam(&intr, &win->scn.cam->pov, &ray))
 		{
-			tmp = ft_closer_to_pov(&intr, &win->scn.cam.pov);
-			if (ft_iscloser(&vec, &tmp, &win->scn.cam.pov))
+			tmp = ft_closer_to_pov(&intr, &win->scn.cam->pov);
+			if (ft_iscloser(&vec, &tmp, &win->scn.cam->pov))
 			{
 				vec = tmp;
 				rgb = ft_objrgb(obj);
