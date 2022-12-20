@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/19 19:33:58 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:31:20 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -21,8 +21,8 @@ int	main(void)
 	void	*tmp;
 
 	window = ft_setwin(RESOLUTION, (RESOLUTION * 9) / 16, "miniRT");
-	window.scn.cam = ft_setcam(ft_setvec(3, 0.25, 0.5),
-			ft_setvec(-1, 0.1, 0), 90);
+	window.scn.cam = ft_setcam(ft_setvec(3, 0.25, 3),
+			ft_setvec(-3, 0.25, -2), 90);
 	window.scn.amb = ft_setamb(0.1f, ft_setrgb(255, 255, 255));
 	buf = ft_newlig(ft_setvec(1.f, 1.f, 0.f), 1.f, ft_setrgb(255, 255, 255));
 	if (!buf)
@@ -105,6 +105,14 @@ int	main(void)
 	ft_objadd(&window.scn.obj, tmp);
 	buf = ft_newcyl(ft_setvec(0.0f, 0.f, 1.f), ft_setvec(0.f, 1.f, 0.f),
 			ft_setvec(0.5f, 1.f, 0), ft_setrgb(0, 255, 0));
+	if (!buf)
+		ft_exit_failure(&window, "error: plane");
+	tmp = ft_objnew('C', buf);
+	if (!tmp && !ft_free(buf))
+		ft_exit_failure(&window, "error: object list");
+	ft_objadd(&window.scn.obj, tmp);
+	buf = ft_newcyl(ft_setvec(0.0f, 0.f, 1.f), ft_setvec(1.f, 0.f, 0.f),
+			ft_setvec(0.5f, 1.f, 0), ft_setrgb(255, 0, 0));
 	if (!buf)
 		ft_exit_failure(&window, "error: plane");
 	tmp = ft_objnew('C', buf);

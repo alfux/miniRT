@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/19 19:45:21 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:01:25 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -53,13 +53,13 @@ static t_rgb	ft_objrgb(t_obj const *obj)
 		return (ft_setrgb(0, 0, 0));
 }
 
-static int	ft_face_cam(t_2x3 *inter, t_win const *win)
+static int	ft_face_cam(t_2x3 *inter, t_vec const *pov, t_vec const *ray)
 {
 	float	tscl;
 	float	bscl;
 
-	tscl = ft_scalar(win->scn.cam.dir, ft_dif_uv(inter->top, win->scn.cam.pov));
-	bscl = ft_scalar(win->scn.cam.dir, ft_dif_uv(inter->bot, win->scn.cam.pov));
+	tscl = ft_scalar(*ray, ft_dif_uv(inter->top, *pov));
+	bscl = ft_scalar(*ray, ft_dif_uv(inter->bot, *pov));
 	if (tscl < 0)
 	{
 		inter->top = inter->bot;
@@ -86,7 +86,7 @@ uint32_t	ft_raytra(t_win const *win, t_vec const ray, t_obj const *obj)
 	while (obj)
 	{
 		intr = ft_sysres(&ray, &win->scn.cam.pov, obj);
-		if (!isnan(intr.top.x) && !isnan(intr.bot.x) && ft_face_cam(&intr, win))
+		if (ft_is_sol(&intr) && ft_face_cam(&intr, &win->scn.cam.pov, &ray))
 		{
 			tmp = ft_closer_to_pov(&intr, &win->scn.cam.pov);
 			if (ft_iscloser(&vec, &tmp, &win->scn.cam.pov))
