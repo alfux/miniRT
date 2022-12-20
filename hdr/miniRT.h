@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/20 15:00:14 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:44:44 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 # include <stdio.h>
@@ -17,6 +18,7 @@
 # include <libft.h>
 # include <dataRT.h>
 # include <math.h>
+# include <fcntl.h>
 
 //Structure filling
 t_win		ft_setwin(int width, int height, char *title);
