@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/19 19:13:52 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/21 12:30:00 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -59,7 +59,7 @@ t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 		i = 1;
 	else
 		i = 0;
-	if (i < 0 || ft_shadow(win, obj, vec, &dir))
+	if (i < 0.f || ft_shadow(win, obj, vec, &dir))
 		i = 0;
 	i = ((t_lig *)win->scn.lig->obj)->rat * i + win->scn.amb.rat * (1 - i);
 	return (ft_setrgb(rgb->r * i, rgb->g * i, rgb->b * i));

@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 20:52:46 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 13:25:10 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/21 12:29:02 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -19,7 +19,7 @@ t_3x3	ft_invmat(t_3x3 m)
 	det = ft_det3x3(m);
 	inv.top = ft_setvec(NAN, NAN, NAN);
 	inv = ft_set3x3(inv.top, inv.top, inv.top);
-	if (det == 0)
+	if (det == 0.f)
 		return (inv);
 	inv.top.x = (m.mid.y * m.bot.z - m.bot.y * m.mid.z) / det;
 	inv.top.y = (-1) * (m.top.y * m.bot.z - m.bot.y * m.top.z) / det;

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/20 16:44:44 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/21 15:54:38 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			ft_keyhook(int kid, t_win *win);
 
 //Rendering
 void		ft_render(t_win const *win);
-uint32_t	ft_raytra(t_win const *win, t_vec const ray, t_obj const *obj);
+uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 t_rgb		ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 				t_rgb const *rgb);
 

@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/20 16:50:57 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/21 21:04:43 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -58,21 +58,14 @@ static int	ft_face_cam(t_2x3 *inter, t_vec const *pov, t_vec const *ray)
 	float	tscl;
 	float	bscl;
 
-	tscl = ft_scalar(*ray, ft_dif_uv(inter->top, *pov));
-	bscl = ft_scalar(*ray, ft_dif_uv(inter->bot, *pov));
-	if (tscl < 0)
-	{
-		inter->top = inter->bot;
-		if (bscl < 0)
-			return (0);
-		return (1);
-	}
-	if (bscl < 0)
-		inter->bot = inter->top;
+	tscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(inter->top, *pov)));
+	bscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(inter->bot, *pov)));
+	if (tscl < 0.f && bscl < 0.f)
+		return (0);
 	return (1);
 }
 
-uint32_t	ft_raytra(t_win const *win, t_vec const ray, t_obj const *obj)
+uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj)
 {
 	t_2x3		intr;
 	t_vec		tmp;
@@ -85,8 +78,8 @@ uint32_t	ft_raytra(t_win const *win, t_vec const ray, t_obj const *obj)
 	sav = (t_obj *)0;
 	while (obj)
 	{
-		intr = ft_sysres(&ray, &win->scn.cam->pov, obj);
-		if (ft_is_sol(&intr) && ft_face_cam(&intr, &win->scn.cam->pov, &ray))
+		intr = ft_sysres(ray, &win->scn.cam->pov, obj);
+		if (ft_is_sol(&intr) && ft_face_cam(&intr, &win->scn.cam->pov, ray))
 		{
 			tmp = ft_closer_to_pov(&intr, &win->scn.cam->pov);
 			if (ft_iscloser(&vec, &tmp, &win->scn.cam->pov))
