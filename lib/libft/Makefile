@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
+#    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 14:07:34 by afuchs            #+#    #+#              #
-#    Updated: 2022/12/09 17:45:48 by alfux            ###   ########.fr        #
+#    Updated: 2022/12/22 17:33:45 by efunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC		=	ft_strdup.c ft_atoi.c ft_striteri.c ft_bzero.c ft_strjoin.c		\
 			ft_putchar_l.c ft_putstr_l.c ft_putnbr_l.c ft_putnbru_l.c		\
 			ft_putnbrh_l.c ft_putnbrad_l.c ft_putnchar_l.c ft_putnbrx_lo.c	\
 			ft_putnbrux_lo.c ft_putnbr_lo.c ft_putnbru_lo.c ft_minmax.c		\
-			ft_printf.c get_next_line.c get_next_line_utils.c				\
+			ft_printf.c get_next_line.c get_next_line_utils.c ft_atof.c 	\
 
 OBJ 	=	$(SRC:%.c=%.o)
 

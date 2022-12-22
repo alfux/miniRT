@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:39:11 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/31 11:31:57 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/12/22 18:03:37 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stddef.h>
@@ -107,5 +108,7 @@ size_t	ft_minof(size_t a, size_t b);
 char	*get_next_line(int fd);
 int		is_eol_in(char *str);
 void	*return_and_free(void *ret, void *ptr);
+int		ft_atof(const char *str);
+int		ft_isspace(char c);
 
 #endif
