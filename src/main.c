@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 18:49:35 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 19:04:27 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	window.scn.lig = ft_objnew('L', buf);
 	if (!window.scn.lig && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
+//------------------SPHERES-----------------------------------------------------
 	buf = ft_newsph(DIAM, ft_setvec(1.f, 1.f, 1.f), ft_setrgb(255, 255, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
@@ -83,6 +84,7 @@ int	main(int argc, char **argv)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
+//------------------PLANES------------------------------------------------------
 	buf = ft_newpla(ft_setvec(0, -0.5f, 0.f), ft_setvec(0.f, 1.f, 0.f),
 			ft_setrgb(255, 0, 255));
 	if (!buf)
@@ -107,6 +109,7 @@ int	main(int argc, char **argv)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
+//------------------CYLINDERS---------------------------------------------------
 	buf = ft_newcyl(ft_setvec(0.f, 0.f, 1.f), ft_setvec(0.f, 0.f, 1.f),
 			ft_setvec(0.5f, 1.f, 0), ft_setrgb(0, 0, 255));
 	if (!buf)
@@ -131,6 +134,7 @@ int	main(int argc, char **argv)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
+//------------------------------------------------------------------------------
 	(void)mlx_hook(window.wid, 17, 0L, &ft_exit_success, &window);
 	(void)mlx_hook(window.wid, 2, 0L, &ft_keyhook, &window);
 	ft_print_scene(window.scn);
