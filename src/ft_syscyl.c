@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:11:03 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/21 23:40:04 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 17:44:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -82,20 +82,24 @@ static t_2x3	ft_syscylz(t_vec const *d, t_vec const *p, t_cyl const *c)
 
 t_2x3	ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl)
 {
-	float	x;
-	float	y;
-	float	z;
 	float	choose;
+	t_2x3	res;
 
-	x = fabs(dir->x);
-	y = fabs(dir->y);
-	z = fabs(dir->z);
-	choose = fmax(fmax(x, y), z);
-	if (choose == x)
-		return (ft_syscylx(dir, pov, cyl));
-	if (choose == y)
-		return (ft_syscyly(dir, pov, cyl));
-	if (choose == z)
-		return (ft_syscylz(dir, pov, cyl));
-	return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
+	choose = fmax(fmax(fabs(dir->x), fabs(dir->y)), fabs(dir->z));
+	res = ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN));
+	if (choose == fabs(dir->x))
+		res = ft_syscylx(dir, pov, cyl);
+	if (choose == fabs(dir->y))
+		res = ft_syscyly(dir, pov, cyl);
+	if (choose == fabs(dir->z))
+		res = ft_syscylz(dir, pov, cyl);
+	if (ft_distce(res.top, cyl->pos) > cyl->hgt / 2)
+	{
+		if (ft_distce(res.bot, cyl->pos) > cyl->hgt / 2)
+			res.bot = ft_setvec(NAN, NAN, NAN);
+		res.top = res.bot;
+	}
+	else if (ft_distce(res.bot, cyl->pos) > cyl->hgt / 2)
+		res.bot = res.top;
+	return (res);
 }

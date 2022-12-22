@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/21 12:30:00 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 13:18:33 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -40,6 +40,15 @@ static int	ft_shadow(t_win const *win, t_obj const *obj, t_vec const *vec,
 	return (0);
 }
 
+float	ft_shdcyl(t_vec const *d, t_vec const *v, t_cyl const *c)
+{
+	t_vec	p;
+
+	p = ft_dif_uv(*v, c->pos);
+	return (ft_scalar(ft_nrmlze(*d), ft_nrmlze(ft_dif_uv(p,
+					ft_multlv(ft_scalar(p, c->dir), c->dir)))));
+}
+
 t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 	t_rgb const *rgb)
 {
@@ -56,7 +65,7 @@ t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 		i = fabs(ft_scalar(ft_nrmlze(dir),
 					ft_nrmlze(((t_pla *)obj->obj)->dir)));
 	else if (obj->type == 'C')
-		i = 1;
+		i = ft_shdcyl(&dir, vec, (t_cyl *)obj->obj);
 	else
 		i = 0;
 	if (i < 0.f || ft_shadow(win, obj, vec, &dir))
