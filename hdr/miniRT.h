@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/21 15:54:38 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 20:25:47 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ t_win		ft_tobase_cam(t_win win);
 t_vec		ft_setvec(float x, float y, float z);
 t_rgb		ft_setrgb(unsigned char r, unsigned char g, unsigned char b);
 t_amb		ft_setamb(float rat, t_rgb col);
+int			ft_pars_amb(t_amb *amb, char **str);
 t_cam		ft_setcam(t_vec pov, t_vec dir, unsigned char fov);
+int			ft_pars_cam(t_cam **cam, char **str);
 t_lin		ft_setlin(t_vec pos, t_vec dir);
 t_3x3		ft_set3x3(t_vec lft, t_vec mid, t_vec rgt);
 t_2x3		ft_set2x3(t_vec top, t_vec bot);

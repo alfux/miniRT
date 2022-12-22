@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 17:39:53 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 20:23:40 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	window = ft_setwin(RESOLUTION, (RESOLUTION * 9) / 16, "miniRT");
+	//if (ft_pars(&windows, argv[1])//
+		// return (1); // destroy_img // destroy_windows // free memory struct win
+		// OU
+			// ft_bzero(&win, sizeof(t_win));
+			// ft_pars
+			// ft_setwin // sans bzero
 	cam = ft_setcam(ft_setvec(4, 0, 1.2), ft_setvec(-1, 0.08, -0.2), 60);
 	window.scn.cam = &cam;
 	window.scn.amb = ft_setamb(0.1f, ft_setrgb(255, 255, 255));

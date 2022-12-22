@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/22 18:29:43 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/22 20:12:34 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_coord(t_vec *vec, char **str)
 	while (**str && ft_isspace(**str))
 		(*str)++;
 	if (ft_coord_format(*str))
-		return (1);
+		return (4);
 	vec->x = ft_atof(*str);
 	while (**str && (ft_isdigit(**str) || **str == '.'))
 		(*str)++;
@@ -90,7 +90,7 @@ int	ft_rgb(t_rgb *rgb, char **str)
 	while (**str && ft_isspace(**str))
 		(*str)++;
 	if (ft_rgb_format(*str))
-		return (1);
+		return (5);
 	rgb->r = ft_atoi(*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
