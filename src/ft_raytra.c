@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/21 21:04:43 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 11:19:44 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -60,8 +60,15 @@ static int	ft_face_cam(t_2x3 *inter, t_vec const *pov, t_vec const *ray)
 
 	tscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(inter->top, *pov)));
 	bscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(inter->bot, *pov)));
-	if (tscl < 0.f && bscl < 0.f)
-		return (0);
+	if (tscl < 0.f)
+	{
+		inter->top = inter->bot;
+		if (bscl < 0.f)
+			return (0);
+		return (1);
+	}
+	if (bscl < 0.f)
+		inter->bot = inter->top;
 	return (1);
 }
 

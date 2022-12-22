@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 01:12:56 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 12:13:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -85,11 +85,20 @@ static t_2x3	ft_syssphz(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 
 t_2x3	ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 {
-	if (dir->z > EPSILON || dir->z < (-1) * EPSILON)
+	float	a;
+	float	b;
+	float	c;
+	float	choose;
+
+	a = fabs(dir->x);
+	b = fabs(dir->y);
+	c = fabs(dir->z);
+	choose = fmax(fmax(a, b), c);
+	if (choose == c)
 		return (ft_syssphz(dir, pov, sph));
-	if (dir->y > EPSILON || dir->y < (-1) * EPSILON)
+	if (choose == b)
 		return (ft_syssphy(dir, pov, sph));
-	if (dir->x > EPSILON || dir->x < (-1) * EPSILON)
+	if (choose == a)
 		return (ft_syssphx(dir, pov, sph));
 	return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
 }

@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/20 18:48:44 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 13:13:12 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -73,6 +73,10 @@ int	ft_keyhook(int kid, t_win *win)
 		return (ft_exit(win, 0));
 	if (kid == K_SPACE)
 		ft_print_scene(win->scn);
+	else if (kid == K_O)
+		win->scn.cam->fov += (2 * M_PI) / 360;
+	else if (kid == K_L)
+		win->scn.cam->fov -= (2 * M_PI) / 360;
 	ft_movcam(kid, win->scn.cam);
 	ft_render(win);
 	return (0);
