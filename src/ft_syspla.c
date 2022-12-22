@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/13 01:33:25 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 18:31:33 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -56,19 +56,19 @@ t_2x3	ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla)
 	m.mid = ft_setvec(dir->z, 0, (-1) * dir->x);
 	m.bot = ft_setvec(0, dir->z, (-1) * dir->y);
 	det = ft_det3x3(m);
-	if (det > EPSILON || det < (-1) * EPSILON)
+	if (det != 0.f)
 		return (ft_sysplaz(dir, pov, pla, &m));
 	m.top = pla->dir;
 	m.mid = ft_setvec(dir->y, (-1) * dir->x, 0);
 	m.bot = ft_setvec(0, dir->z, (-1) * dir->y);
 	det = ft_det3x3(m);
-	if (det > EPSILON || det < (-1) * EPSILON)
+	if (det != 0.f)
 		return (ft_sysplay(dir, pov, pla, &m));
 	m.top = pla->dir;
 	m.mid = ft_setvec(dir->z, 0, (-1) * dir->x);
 	m.bot = ft_setvec(dir->y, (-1) * dir->x, 0);
 	det = ft_det3x3(m);
-	if (det > EPSILON || det < (-1) * EPSILON)
+	if (det != 0.f)
 		return (ft_sysplax(dir, pov, pla, &m));
 	return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
 }

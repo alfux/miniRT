@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 17:38:46 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 18:39:45 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define K_SPACE 49
 
 //Constants
-# define EPSILON 0.f
+# define EPSILON 0.01f
 
 //Vetcor data structure
 struct					s_vec

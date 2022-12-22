@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 13:13:12 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 20:27:35 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -53,17 +53,17 @@ static void	ft_movcam(int kid, t_cam *cam)
 	else if (kid == K_M)
 		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->dir));
 	else if (kid == K_Z)
-		ft_rota_x(cam, -0.1);
+		ft_rota_x(cam, -6 * M_PI / 360);
 	else if (kid == K_S)
-		ft_rota_x(cam, 0.1);
+		ft_rota_x(cam, 6 * M_PI / 360);
 	else if (kid == K_Q)
-		ft_rota_y(cam, -0.1);
+		ft_rota_y(cam, -6 * M_PI / 360);
 	else if (kid == K_D)
-		ft_rota_y(cam, 0.1);
+		ft_rota_y(cam, 6 * M_PI / 360);
 	else if (kid == K_R)
-		ft_rota_z(cam, -0.1);
+		ft_rota_z(cam, -6 * M_PI / 360);
 	else if (kid == K_T)
-		ft_rota_z(cam, 0.1);
+		ft_rota_z(cam, 6 * M_PI / 360);
 }
 
 int	ft_keyhook(int kid, t_win *win)

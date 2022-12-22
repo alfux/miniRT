@@ -6,12 +6,12 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 20:23:40 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/22 20:33:23 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
-#define DIAM 0.5f
+#define DIAM 0.3//0.02f
 #define COORD 0.0f
 #define RESOLUTION 1280
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 			// ft_bzero(&win, sizeof(t_win));
 			// ft_pars
 			// ft_setwin // sans bzero
-	cam = ft_setcam(ft_setvec(4, 0, 1.2), ft_setvec(-1, 0.08, -0.2), 60);
+	cam = ft_setcam(ft_setvec(4, -0.25, 1.2), ft_setvec(-1, 0.15, -0.2), 60);
 	window.scn.cam = &cam;
 	window.scn.amb = ft_setamb(0.1f, ft_setrgb(255, 255, 255));
 	buf = ft_newlig(ft_setvec(1.f, 1.f, 0.f), 1.f, ft_setrgb(255, 255, 255));
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 	window.scn.lig = ft_objnew('L', buf);
 	if (!window.scn.lig && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
+//------------------SPHERES-----------------------------------------------------
 	buf = ft_newsph(DIAM, ft_setvec(1.f, 1.f, 1.f), ft_setrgb(255, 255, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: sphere");
@@ -89,13 +90,14 @@ int	main(int argc, char **argv)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
+//------------------PLANES------------------------------------------------------
 	buf = ft_newpla(ft_setvec(0, -0.5f, 0.f), ft_setvec(0.f, 1.f, 0.f),
-  		ft_setrgb(255, 0, 255));
+			ft_setrgb(255, 0, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: plane");
 	tmp = ft_objnew('P', buf);
 	if (!tmp && !ft_free(buf))
-  		ft_exit_failure(&window, "error: object list");
+		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
 	buf = ft_newpla(ft_setvec(0, 0.f, -0.5f), ft_setvec(0.f, 0.f, 1.f),
 			ft_setrgb(255, 255, 0));
@@ -113,6 +115,7 @@ int	main(int argc, char **argv)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
+//------------------CYLINDERS---------------------------------------------------
 	buf = ft_newcyl(ft_setvec(0.f, 0.f, 1.f), ft_setvec(0.f, 0.f, 1.f),
 			ft_setvec(0.5f, 1.f, 0), ft_setrgb(0, 0, 255));
 	if (!buf)
@@ -137,6 +140,7 @@ int	main(int argc, char **argv)
 	if (!tmp && !ft_free(buf))
 		ft_exit_failure(&window, "error: object list");
 	ft_objadd(&window.scn.obj, tmp);
+//------------------------------------------------------------------------------
 	(void)mlx_hook(window.wid, 17, 0L, &ft_exit_success, &window);
 	(void)mlx_hook(window.wid, 2, 0L, &ft_keyhook, &window);
 	ft_print_scene(window.scn);

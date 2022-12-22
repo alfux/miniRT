@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 11:19:44 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 18:41:13 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -53,22 +53,30 @@ static t_rgb	ft_objrgb(t_obj const *obj)
 		return (ft_setrgb(0, 0, 0));
 }
 
-static int	ft_face_cam(t_2x3 *inter, t_vec const *pov, t_vec const *ray)
+static int	ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray)
 {
 	float	tscl;
 	float	bscl;
 
-	tscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(inter->top, *pov)));
-	bscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(inter->bot, *pov)));
+	if (ft_distce(intr->top, *pov) <= EPSILON)
+	{
+		if (ft_distce(intr->bot, *pov) <= EPSILON)
+			return (0);
+		intr->top = intr->bot;
+	}
+	else if (ft_distce(intr->bot, *pov) <= EPSILON)
+		intr->bot = intr->top;
+	tscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(intr->top, *pov)));
+	bscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(intr->bot, *pov)));
 	if (tscl < 0.f)
 	{
-		inter->top = inter->bot;
+		intr->top = intr->bot;
 		if (bscl < 0.f)
 			return (0);
 		return (1);
 	}
 	if (bscl < 0.f)
-		inter->bot = inter->top;
+		intr->bot = intr->top;
 	return (1);
 }
 

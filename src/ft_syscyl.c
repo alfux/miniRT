@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:11:03 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 17:44:47 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/22 19:02:37 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -80,6 +80,14 @@ static t_2x3	ft_syscylz(t_vec const *d, t_vec const *p, t_cyl const *c)
 					(d->y * sol.y + f) / d->z, sol.y), c->pos)));
 }
 
+float	ft_height(t_vec const *p, t_cyl const *c)
+{
+	t_vec	q;
+
+	q = ft_dif_uv(*p, c->pos);
+	return (ft_norm(ft_multlv(ft_scalar(q, c->dir), c->dir)));
+}
+
 t_2x3	ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl)
 {
 	float	choose;
@@ -93,13 +101,13 @@ t_2x3	ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl)
 		res = ft_syscyly(dir, pov, cyl);
 	if (choose == fabs(dir->z))
 		res = ft_syscylz(dir, pov, cyl);
-	if (ft_distce(res.top, cyl->pos) > cyl->hgt / 2)
+	if (ft_height(&res.top, cyl) > cyl->hgt / 2)
 	{
-		if (ft_distce(res.bot, cyl->pos) > cyl->hgt / 2)
+		if (ft_height(&res.bot, cyl) > cyl->hgt / 2)
 			res.bot = ft_setvec(NAN, NAN, NAN);
 		res.top = res.bot;
 	}
-	else if (ft_distce(res.bot, cyl->pos) > cyl->hgt / 2)
+	else if (ft_height(&res.bot, cyl) > cyl->hgt / 2)
 		res.bot = res.top;
 	return (res);
 }
