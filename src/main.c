@@ -6,14 +6,14 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 20:33:23 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 11:32:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 #define DIAM 0.3//0.02f
 #define COORD 0.0f
-#define RESOLUTION 1280
+#define RESOLUTION 300
 
 int	main(int argc, char **argv)
 {
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	cam = ft_setcam(ft_setvec(4, -0.25, 1.2), ft_setvec(-1, 0.15, -0.2), 60);
 	window.scn.cam = &cam;
 	window.scn.amb = ft_setamb(0.1f, ft_setrgb(255, 255, 255));
-	buf = ft_newlig(ft_setvec(1.f, 1.f, 0.f), 1.f, ft_setrgb(255, 255, 255));
+	buf = ft_newlig(ft_setvec(.25f, .5f, 0.f), 1.f, ft_setrgb(255, 255, 255));
 	if (!buf)
 		ft_exit_failure(&window, "error: light");
 	window.scn.lig = ft_objnew('L', buf);

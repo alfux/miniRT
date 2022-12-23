@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 20:25:47 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 11:58:07 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ t_win		ft_tobase_cam(t_win win);
 t_vec		ft_setvec(float x, float y, float z);
 t_rgb		ft_setrgb(unsigned char r, unsigned char g, unsigned char b);
 t_amb		ft_setamb(float rat, t_rgb col);
-int			ft_pars_amb(t_amb *amb, char **str);
 t_cam		ft_setcam(t_vec pov, t_vec dir, unsigned char fov);
-int			ft_pars_cam(t_cam **cam, char **str);
 t_lin		ft_setlin(t_vec pos, t_vec dir);
 t_3x3		ft_set3x3(t_vec lft, t_vec mid, t_vec rgt);
 t_2x3		ft_set2x3(t_vec top, t_vec bot);
@@ -81,7 +79,13 @@ int			ft_keyhook(int kid, t_win *win);
 //Rendering
 void		ft_render(t_win const *win);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
+int			ft_deadzn(t_2x3 *i, t_vec const *p, float dz);
+float		ft_shdsph(t_win const *win, t_sph const *s, t_vec const *p);
+float		ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p);
+float		ft_shdpla(t_win const *win, t_pla const *pl, t_vec const *p);
 t_rgb		ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 				t_rgb const *rgb);
+int			ft_clside(t_vec const *i, t_vec const *p, t_vec const *n,
+				t_vec const *l);
 
 #endif

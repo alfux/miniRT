@@ -6,13 +6,24 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 13:18:33 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/23 12:02:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
+static int	ft_is_obstacle(t_2x3 const *i, t_vec const *vec, t_vec const *ndir,
+				float norm)
+{
+	if (ft_is_sol(i) && ((ft_scalar(ft_dif_uv(i->top, *vec), *ndir) > 0
+				&& ft_distce(i->top, *vec) < norm)
+			|| (ft_scalar(ft_dif_uv(i->bot, *vec), *ndir) > 0
+				&& ft_distce(i->bot, *vec) < norm)))
+		return (1);
+	return (0);
+}
+
 static int	ft_shadow(t_win const *win, t_obj const *obj, t_vec const *vec,
-				t_vec const *dir)
+				t_vec const *lpos)
 {
 	t_obj	*lst;
 	t_vec	ndir;
@@ -20,55 +31,43 @@ static int	ft_shadow(t_win const *win, t_obj const *obj, t_vec const *vec,
 	t_2x3	obs;
 
 	lst = win->scn.obj;
-	ndir = ft_nrmlze(*dir);
-	norm = ft_norm(*dir);
-	obs = ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN));
+	ndir = ft_nrmlze(ft_dif_uv(*lpos, *vec));
+	norm = ft_distce(*lpos, *vec);
 	while (lst)
 	{
 		if (lst != obj)
 		{
 			obs = ft_sysres(&ndir, vec, lst);
-			if (!isnan(obs.top.x) && !isnan(obs.bot.x)
-				&& ((ft_scalar(ft_dif_uv(obs.top, *vec), ndir) > 0
-						&& ft_distce(obs.top, *vec) < norm)
-					|| (ft_scalar(ft_dif_uv(obs.bot, *vec), ndir) > 0
-						&& ft_distce(obs.bot, *vec) < norm)))
+			lst = lst->next;
+			if (ft_deadzn(&obs, lpos, EPSILON))
+				continue ;
+			else if (ft_distce(obs.bot, *lpos) <= EPSILON)
+				obs.bot = obs.top;
+			if (ft_is_obstacle(&obs, vec, &ndir, norm))
 				return (1);
 		}
-		lst = lst->next;
+		else
+			lst = lst->next;
 	}
 	return (0);
-}
-
-float	ft_shdcyl(t_vec const *d, t_vec const *v, t_cyl const *c)
-{
-	t_vec	p;
-
-	p = ft_dif_uv(*v, c->pos);
-	return (ft_scalar(ft_nrmlze(*d), ft_nrmlze(ft_dif_uv(p,
-					ft_multlv(ft_scalar(p, c->dir), c->dir)))));
 }
 
 t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 	t_rgb const *rgb)
 {
-	t_vec	dir;
 	float	i;
 
 	if (!obj)
 		return (*rgb);
-	dir = ft_dif_uv(((t_lig *)win->scn.lig->obj)->pos, *vec);
 	if (obj->type == 'S')
-		i = ft_scalar(ft_nrmlze(dir), ft_nrmlze(ft_dif_uv(*vec,
-						((t_sph *)obj->obj)->pos)));
+		i = ft_shdsph(win, (t_sph *)obj->obj, vec);
 	else if (obj->type == 'P')
-		i = fabs(ft_scalar(ft_nrmlze(dir),
-					ft_nrmlze(((t_pla *)obj->obj)->dir)));
+		i = ft_shdpla(win, (t_pla *)obj->obj, vec);
 	else if (obj->type == 'C')
-		i = ft_shdcyl(&dir, vec, (t_cyl *)obj->obj);
+		i = ft_shdcyl(win, (t_cyl *)obj->obj, vec);
 	else
 		i = 0;
-	if (i < 0.f || ft_shadow(win, obj, vec, &dir))
+	if (i < 0.f || ft_shadow(win, obj, vec, &((t_lig *)win->scn.lig->obj)->pos))
 		i = 0;
 	i = ((t_lig *)win->scn.lig->obj)->rat * i + win->scn.amb.rat * (1 - i);
 	return (ft_setrgb(rgb->r * i, rgb->g * i, rgb->b * i));
