@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:41:33 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:59:50 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 16:47:43 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	ft_pars_amb(t_amb *amb, char *str)
 	if (!digit || !(str)[i] || !ft_isspace((str)[i]) || amb->rat > 1)
 		return (7);
 	str += i;
+	while (*str && ft_isspace(*str))
+		str++;
 	if (ft_rgb(&amb->col, &str))
 		return (5);
 	if (*str)
