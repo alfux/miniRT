@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:48:19 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:40:13 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:47:20 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_pla	*ft_newpla(t_vec pos, t_vec dir, t_rgb col)
 	return (new);
 }
 
-static int	ft_pars_pla2(char **str, t_obj **obj, t_obj *new)
+static int	ft_pars2_pla(char **str, t_obj **obj, t_obj *new)
 {
 	if (**str)
 		return (14);
@@ -57,5 +57,5 @@ int	ft_pars_pla(t_obj **obj, char **str)
 	((t_pla *)(new->obj))->dir = ft_nrmlze(((t_pla *)(new->obj))->dir);
 	if (ft_rgb(&((t_pla *)(new->obj))->col, str))
 		return (5);
-	return (ft_pars_cyl2(str, obj, new));
+	return (ft_pars2_pla(str, obj, new));
 }

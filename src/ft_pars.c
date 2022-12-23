@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 15:42:29 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:50:14 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ static int	ft_error_manager(int err, char *line)
 	else if (err == 8)
 		ft_putstr_fd("Invalid Camera FOV. FOV must be an integer between 0 and 180\n", 2);
 	else if (err == 9)
-		ft_putchar_fd("invalid Camera argument\n", 2);
+		ft_putstr_fd("invalid Camera argument\n", 2);
 	else if (err == 10)
-		ft_putchar_fd("invalid Ambiant Light argument\n", 2);
+		ft_putstr_fd("invalid Ambiant Light argument\n", 2);
 	else if (err == 11)
-		ft_putchar_fd("invalid Light argument\n", 2);
+		ft_putstr_fd("invalid Light argument\n", 2);
 	else if (err == 12)
-		ft_putchar_fd("invalid diameter\n", 2);
+		ft_putstr_fd("invalid diameter\n", 2);
 	else if (err == 13)
-		ft_putchar_fd("invalid hight\n", 2);
+		ft_putstr_fd("invalid hight\n", 2);
 	else if (err == 14)
-		ft_putchar_fd("invalid cylinder argument\n", 2);
+		ft_putstr_fd("invalid cylinder argument\n", 2);
 	else if (err == 15)
-		ft_putchar_fd("invalid plan argument\n", 2);
+		ft_putstr_fd("invalid plan argument\n", 2);
 	return (1);
 }
 
@@ -69,18 +69,18 @@ static int	ft_new_elem(t_scn *scn, char *str)
 		return (ft_pars_light(&(scn->lig, &(str + 1))));// L = lumiere
 	else if (*str && str[1] && str[2] && ft_isspace(str[2]))
 	{
-		if (*str == 'c' && str[1] && str[1] == 'o')
-			return ();// co = cone
+		// if (*str == 'c' && str[1] && str[1] == 'o')
+		// 	return ();// co = cone
 		else if (*str == 'c' && str[1] && str[1] == 'y')
 			return (ft_pars_cyl(&(scn->obj), &(str + 2)));// cy = cylindre
-		else if (*str == 'h' && str[1] && str[1] == 'y')
-			return ();// hy = Hyperboloïde
-		else if (*str == 'p' && str[1] && str[1] == 'a')
-			return ();// pa = Paraboloïde
+		// else if (*str == 'h' && str[1] && str[1] == 'y')
+		// 	return ();// hy = Hyperboloïde
+		// else if (*str == 'p' && str[1] && str[1] == 'a')
+		// 	return ();// pa = Paraboloïde
 		else if (*str == 'p' && str[1] && str[1] == 'l')
 			return (int	ft_pars_pla(&(scn->obj), &(str + 2)));// pl = plan
-		else if (*str == 's' && str[1] && str[1] == 'p')
-			return ();// sp = sphere
+		// else if (*str == 's' && str[1] && str[1] == 'p')
+		// 	return ();// sp = sphere
 	}
 	return (1);
 }
@@ -124,6 +124,6 @@ int	ft_pars(t_win *win, char *arg)
 		line = get_next_line(fd);
 	}
 	if (!win->scn.cam)
-		return (ft_error_manager(3)); // No cam found // free memoire // close fd
+		return (ft_error_manager(3, NULL)); // No cam found // free memoire // close fd
 	return (0);
 }

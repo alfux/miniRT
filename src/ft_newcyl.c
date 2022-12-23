@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:51:26 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:40:23 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:46:34 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cyl	*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col)
 	return (new);
 }
 
-static int	ft_pars_cyl2(char **str, t_obj **obj, t_obj *new)
+static int	ft_pars2_cyl(char **str, t_obj **obj, t_obj *new)
 {
 	if (**str)
 		return (14);
@@ -63,5 +63,5 @@ int	ft_pars_cyl(t_obj **obj, char **str)
 		return (13);
 	if (ft_rgb(&((t_cyl *)(new->obj))->col, str))
 		return (5);
-	return (ft_pars_cyl2(str, obj, new));
+	return (ft_pars2_cyl(str, obj, new));
 }

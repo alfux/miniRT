@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 14:26:11 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:48:48 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	ft_rgb_format(char *str)
 		if (nb != 3 && (!ft_isdigit(*str) || !digit))
 			return (1);
 	}
-	while (*str && ft_ispace(*str))
+	while (*str && ft_isspace(*str))
 		str++;
 	if (nb != 3 || *str)
 		return (1);

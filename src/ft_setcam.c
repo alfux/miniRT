@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:42:47 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:25:46 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:44:58 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static int	ft_valid_cam(t_cam *new, char **str)
 	size_t	i;
 
 	i = 0;
-	if (ft_coord(new->pov, str))
+	if (ft_coord(&new->pov, str))
 		return (4);
-	if (ft_coord(new->dir, str))
+	if (ft_coord(&new->dir, str))
 		return (4);
 	if (new->dir.x < -1 || new->dir.x > 1 || new->dir.y < -1 || new->dir.y > 1
 		|| new->dir.z < -1 || new->dir.z > 1)
