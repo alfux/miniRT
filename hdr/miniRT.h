@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 16:36:32 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 18:43:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 //Structure filling
 int			ft_pars(t_win *win, char *arg);
 t_win		ft_setwin(int width, int height, char *title);
-t_win		ft_tobase_cam(t_win win);
+void		ft_setcam(t_cam *cam);
+t_win		ft_tobase_cam(t_win win);//Deprecated atm
 t_vec		ft_setvec(float x, float y, float z);
 t_rgb		ft_setrgb(unsigned char r, unsigned char g, unsigned char b);
 t_amb		ft_setamb(float rat, t_rgb col);
 int			ft_pars_amb(t_amb *amb, char *str);
-t_cam		ft_setcam(t_vec pov, t_vec dir, unsigned char fov);
 int			ft_pars_cam(t_cam **cam, char *str);
 t_lin		ft_setlin(t_vec pos, t_vec dir);
 t_3x3		ft_set3x3(t_vec lft, t_vec mid, t_vec rgt);

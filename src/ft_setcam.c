@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:42:47 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 16:26:00 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 18:43:43 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,27 @@ static int	ft_sign(float x)
 		return (-1);
 }
 
-t_cam	ft_setcam(t_vec pov, t_vec dir, unsigned char fov)
+void	ft_setcam(t_cam *cam)
 {
-	t_cam	set;
 	float	norm;
 
-	if (dir.x != 0 || dir.z != 0)
+	if (cam->dir.x != 0 || cam->dir.z != 0)
 	{
-		norm = ft_norm(dir);
-		set.dir = ft_setvec(dir.x / norm, dir.y / norm, dir.z / norm);
-		norm = sqrt(set.dir.x * set.dir.x + set.dir.z * set.dir.z);
-		set.hor = ft_setvec(set.dir.z / norm, 0, ((-1) * set.dir.x) / norm);
-		set.ver = ft_setvec(((-1) * set.dir.x * set.dir.y) / norm, norm,
-				((-1) * set.dir.y * set.dir.z) / norm);
+		cam->dir = ft_nrmlze(cam->dir);
+		norm = sqrt(cam->dir.x * cam->dir.x + cam->dir.z * cam->dir.z);
+		cam->hor = ft_setvec(cam->dir.z / norm, 0, ((-1) * cam->dir.x) / norm);
+		cam->ver = ft_setvec(((-1) * cam->dir.x * cam->dir.y) / norm, norm,
+				((-1) * cam->dir.y * cam->dir.z) / norm);
 	}
-	else if (dir.y != 0)
+	else if (cam->dir.y != 0)
 	{
-		set.dir = ft_setvec(0, ft_sign(dir.y), 0);
-		set.ver = ft_setvec(0, 0, 1);
-		set.hor = ft_setvec(ft_sign((-1) * dir.y), 0, 0);
+		cam->dir = ft_setvec(0, ft_sign(cam->dir.y), 0);
+		cam->ver = ft_setvec(0, 0, 1);
+		cam->hor = ft_setvec(ft_sign((-1) * cam->dir.y), 0, 0);
 	}
 	else
-		ft_bzero(&set, sizeof (t_cam));
-	set.pov = pov;
-	set.fov = (fov * 2 * M_PI) / 360;
-	return (set);
+		ft_bzero(&cam->dir, sizeof (t_cam));
+	cam->fov = (cam->fov * 2 * M_PI) / 360;
 }
 
 static int	ft_valid_cam(t_cam *new, char **str)
