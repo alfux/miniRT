@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/22 20:31:59 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:08:13 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /* Si vous rencontrez un quelconque problème de configuration dans le fichier,
 votre programme doit se fermer correctement et renvoyer "Error\n" suivi
 d’un message explicite de votre choix. */
-int	ft_error_manager(int err, char *line)
+
+static int	ft_error_manager(int err, char *line)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (line)
@@ -42,20 +43,22 @@ int	ft_error_manager(int err, char *line)
 		ft_putchar_fd("invalid Camera argument\n", 2);
 	else if (err == 10)
 		ft_putchar_fd("invalid Ambiant Light argument\n", 2);
+	else if (err == 11)
+		ft_putchar_fd("invalid Light argument\n", 2);
 	return (1);
 }
 
-int	ft_new_elem(t_scn *scn, char *str)
+static int	ft_new_elem(t_scn *scn, char *str)
 {
 	int	err;
 
 	err = /* value */; // error 'Bad objet's define'
 	if (*str == 'A' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_amb(&(scn->amb), &str)); // A = lumiere ambiante
+		return (ft_pars_amb(&(scn->amb), &(str + 1))); // A = lumiere ambiante
 	else if (*str == 'C' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_cam(&(scn->cam), &str));// C = camera
+		return (ft_pars_cam(&(scn->cam), &(str + 1)));// C = camera
 	else if (*str == 'L' && str[1] && ft_isspace(str[1]))
-		return ();// L = lumiere
+		return (ft_pars_light(&(scn->lig, &(str + 1))));// L = lumiere
 	else if (*str && str[1] && str[2] && ft_isspace(str[2]))
 	{
 		if (*str == 'c' && str[1] && str[1] == 'o')
@@ -74,7 +77,7 @@ int	ft_new_elem(t_scn *scn, char *str)
 	return (1);
 }
 
-int	ft_valid_extension_name(char *str)
+static int	ft_valid_extension_name(char *str)
 {
 	size_t	i;
 
