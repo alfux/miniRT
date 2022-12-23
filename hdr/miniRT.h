@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:08:14 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:42:50 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ t_2x3		ft_set2x3(t_vec top, t_vec bot);
 
 //Object allocation
 t_lig		*ft_newlig(t_vec pos, float rat, t_rgb col);
-int			ft_light_pars(t_obj **lig, char **str);
+int			ft_pars_light(t_obj **lig, char **str);
 t_sph		*ft_newsph(float dia, t_vec pos, t_rgb col);
 t_pla		*ft_newpla(t_vec pos, t_vec dir, t_rgb col);
+int			ft_pars_pla(t_obj **obj, char **str);
 t_cyl		*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col);
+int			ft_pars_cyl(t_obj **lig, char **str);
 
 //Object list manipulation
 t_obj		*ft_objnew(char type, void *obj);

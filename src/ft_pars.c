@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 15:08:13 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:42:29 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ static int	ft_error_manager(int err, char *line)
 		ft_putchar_fd("invalid Ambiant Light argument\n", 2);
 	else if (err == 11)
 		ft_putchar_fd("invalid Light argument\n", 2);
+	else if (err == 12)
+		ft_putchar_fd("invalid diameter\n", 2);
+	else if (err == 13)
+		ft_putchar_fd("invalid hight\n", 2);
+	else if (err == 14)
+		ft_putchar_fd("invalid cylinder argument\n", 2);
+	else if (err == 15)
+		ft_putchar_fd("invalid plan argument\n", 2);
 	return (1);
 }
 
@@ -64,13 +72,13 @@ static int	ft_new_elem(t_scn *scn, char *str)
 		if (*str == 'c' && str[1] && str[1] == 'o')
 			return ();// co = cone
 		else if (*str == 'c' && str[1] && str[1] == 'y')
-			return ();// cy = cylindre
+			return (ft_pars_cyl(&(scn->obj), &(str + 2)));// cy = cylindre
 		else if (*str == 'h' && str[1] && str[1] == 'y')
 			return ();// hy = Hyperboloïde
 		else if (*str == 'p' && str[1] && str[1] == 'a')
 			return ();// pa = Paraboloïde
 		else if (*str == 'p' && str[1] && str[1] == 'l')
-			return ();// pl = plan
+			return (int	ft_pars_pla(&(scn->obj), &(str + 2)));// pl = plan
 		else if (*str == 's' && str[1] && str[1] == 'p')
 			return ();// sp = sphere
 	}
