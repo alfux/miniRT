@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pars_cood_rgb.c                                 :+:      :+:    :+:   */
+/*   ft_pars_coord_rgb.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/22 20:12:34 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 14:26:11 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,32 @@ int	ft_rgb(t_rgb *rgb, char **str)
 	rgb->b = ft_atoi(*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
+	while (**str && ft_isspace(**str))
+		(*str)++;
+	return (0);
+}
+
+int	ft_pars_float(float *shr, char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (**str && ft_isspace(**str))
+		(*str)++;
+	while ((*str)[i] && ft_isdigit((*str)[i]))
+		i++;
+	if ((*str)[i] && (*str)[i] == '.')
+	{
+		if (!(*str)[i + 1] || !ft_isdigit((*str)[i + 1]))
+			return (1);
+		i++;
+	}
+	while ((*str)[i] && ft_isdigit((*str)[i]))
+		i++;
+	if (!i || ((*str)[i] && !ft_isspace((*str)[i])))
+		return (1);
+	*shr = ft_atof(*str);
+	*str += i;
 	while (**str && ft_isspace(**str))
 		(*str)++;
 	return (0);

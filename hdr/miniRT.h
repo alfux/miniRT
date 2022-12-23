@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 11:58:07 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/23 15:08:14 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@
 # include <fcntl.h>
 
 //Structure filling
+int			ft_pars(t_win *win, char *arg);
 t_win		ft_setwin(int width, int height, char *title);
 t_win		ft_tobase_cam(t_win win);
 t_vec		ft_setvec(float x, float y, float z);
 t_rgb		ft_setrgb(unsigned char r, unsigned char g, unsigned char b);
 t_amb		ft_setamb(float rat, t_rgb col);
+int			ft_pars_amb(t_amb *amb, char **str);
 t_cam		ft_setcam(t_vec pov, t_vec dir, unsigned char fov);
+int			ft_pars_cam(t_cam **cam, char **str);
 t_lin		ft_setlin(t_vec pos, t_vec dir);
 t_3x3		ft_set3x3(t_vec lft, t_vec mid, t_vec rgt);
 t_2x3		ft_set2x3(t_vec top, t_vec bot);
 
 //Object allocation
 t_lig		*ft_newlig(t_vec pos, float rat, t_rgb col);
+int			ft_light_pars(t_obj **lig, char **str);
 t_sph		*ft_newsph(float dia, t_vec pos, t_rgb col);
 t_pla		*ft_newpla(t_vec pos, t_vec dir, t_rgb col);
 t_cyl		*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col);
@@ -67,6 +71,9 @@ uint32_t	ft_rgbtoi(t_rgb rgb);
 void		ft_print_scene(t_scn scn);
 void		ft_print_vect(t_vec v);
 void		ft_print_inter_sph(t_vec ray, t_sph *sph, t_2x3 inter);
+int			ft_pars_float(float *shr, char **str);
+int			ft_rgb(t_rgb *rgb, char **str);
+int			ft_coord(t_vec *vec, char **str);
 
 //Memory free exits
 int			ft_exit_success(t_win *win);
