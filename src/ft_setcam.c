@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:42:47 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:58:04 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 16:26:00 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static int	ft_valid_cam(t_cam *new, char **str)
 	while ((*str)[i] && ft_isdigit((*str)[i]))
 		i++;
 	new->fov = ft_atoi(*str);
-	if (!i || ((*str)[i] && !ft_isspace((*str)[i])) || new->fov > 180)
+	if (!i || ((*str)[i] && !ft_isspace((*str)[i]))
+		|| new->fov > 180 || new->fov < 0)
 		return (8);
 	*str += i;
 	while (**str && ft_isspace(**str))

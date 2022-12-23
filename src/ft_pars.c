@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 16:02:05 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 16:36:56 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static int	ft_error_manager(int err, char *line)
 		ft_putstr_fd("invalid cylinder argument\n", 2);
 	else if (err == 15)
 		ft_putstr_fd("invalid plan argument\n", 2);
+	else if (err == 15)
+		ft_putstr_fd("invalid sphere argument\n", 2);
 	return (1);
 }
 
@@ -77,7 +79,7 @@ static int	ft_new_elem(t_scn *scn, char *str)
 		else if (*str == 'p' && str[1] && str[1] == 'l')
 			return (ft_pars_pla(&(scn->obj), str + 2)); // pl = plan
 		else if (*str == 's' && str[1] && str[1] == 'p')
-			return (0);// sp = sphere
+			return (ft_pars_sph(&(scn->obj), str + 2));// sp = sphere
 	}
 	return (1);
 }

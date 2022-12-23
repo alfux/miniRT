@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:51:26 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:57:10 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 16:33:00 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_cyl	*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col)
 
 static int	ft_pars2_cyl(char *str, t_obj **obj, t_obj *new)
 {
+	if (ft_rgb(&((t_cyl *)(new->obj))->col, &str))
+		return (5);
 	if (*str)
 		return (14);
 	if (!(*obj))
@@ -54,14 +56,15 @@ int	ft_pars_cyl(t_obj **obj, char *str)
 	}
 	if (ft_coord(&((t_cyl *)(new->obj))->pos, &str))
 		return (4);
-	if (ft_coord(&((t_cyl *)(new->obj))->dir, &str))
+	if (ft_coord(&((t_cyl *)(new->obj))->dir, &str)
+		|| ((t_cyl *)(new->obj))->dir.x < 0 || ((t_cyl *)(new->obj))->dir.x > 1
+		|| ((t_cyl *)(new->obj))->dir.y < 0 || ((t_cyl *)(new->obj))->dir.y > 1
+		|| ((t_cyl *)(new->obj))->dir.z < 0 || ((t_cyl *)(new->obj))->dir.z > 1)
 		return (4);
 	((t_cyl *)(new->obj))->dir = ft_nrmlze(((t_cyl *)(new->obj))->dir);
 	if (ft_pars_float(&((t_cyl *)(new->obj))->dia, &str))
 		return (12);
 	if (ft_pars_float(&((t_cyl *)(new->obj))->dia, &str))
 		return (13);
-	if (ft_rgb(&((t_cyl *)(new->obj))->col, &str))
-		return (5);
 	return (ft_pars2_cyl(str, obj, new));
 }

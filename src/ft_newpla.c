@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:48:19 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:56:39 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 16:31:29 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_pla	*ft_newpla(t_vec pos, t_vec dir, t_rgb col)
 static int	ft_pars2_pla(char *str, t_obj **obj, t_obj *new)
 {
 	if (*str)
-		return (14);
+		return (15);
 	if (!(*obj))
 		*obj = new;
 	else
@@ -52,7 +52,10 @@ int	ft_pars_pla(t_obj **obj, char *str)
 	}
 	if (ft_coord(&((t_pla *)(new->obj))->pos, &str))
 		return (4);
-	if (ft_coord(&((t_pla *)(new->obj))->dir, &str))
+	if (ft_coord(&((t_pla *)(new->obj))->dir, &str)
+		|| ((t_pla *)(new->obj))->dir.x < 0 || ((t_pla *)(new->obj))->dir.x > 1
+		|| ((t_pla *)(new->obj))->dir.y < 0 || ((t_pla *)(new->obj))->dir.y > 1
+		|| ((t_pla *)(new->obj))->dir.z < 0 || ((t_pla *)(new->obj))->dir.z > 1)
 		return (4);
 	((t_pla *)(new->obj))->dir = ft_nrmlze(((t_pla *)(new->obj))->dir);
 	if (ft_rgb(&((t_pla *)(new->obj))->col, &str))

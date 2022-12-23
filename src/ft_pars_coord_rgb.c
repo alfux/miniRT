@@ -6,21 +6,21 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 15:48:48 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 16:24:59 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static int	ft_coord_format(char *str)
+static int	ft_coord_format(char *str, char nb)
 {
-	char	nb;
 	char	digit;
 
-	nb = 0;
 	while (*str && nb < 3)
 	{
 		digit = 0;
+		if (*str && *str == '-')
+			str++;
 		while (*str && ft_isdigit(*str) && ++digit)
 			str++;
 		if (*str && *str == '.')
@@ -45,7 +45,7 @@ int	ft_coord(t_vec *vec, char **str)
 {
 	while (**str && ft_isspace(**str))
 		(*str)++;
-	if (ft_coord_format(*str))
+	if (ft_coord_format(*str, 0))
 		return (4);
 	vec->x = ft_atof(*str);
 	while (**str && (ft_isdigit(**str) || **str == '.'))
@@ -87,21 +87,28 @@ static int	ft_rgb_format(char *str)
 
 int	ft_rgb(t_rgb *rgb, char **str)
 {
+	int	tmp[3];
+
 	while (**str && ft_isspace(**str))
 		(*str)++;
 	if (ft_rgb_format(*str))
 		return (5);
-	rgb->r = ft_atoi(*str);
+	tmp[0] = ft_atoi(*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
-	rgb->g = ft_atoi(*str);
+	tmp[1] = ft_atoi(*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
-	rgb->b = ft_atoi(*str);
+	tmp[2] = ft_atoi(*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
 	while (**str && ft_isspace(**str))
 		(*str)++;
+	if (tmp[0] > 255 || tmp[1] > 255 || tmp[2] > 255)
+		return (5);
+	rgb->r = (char)tmp[0];
+	rgb->g = (char)tmp[1];
+	rgb->b = (char)tmp[2];
 	return (0);
 }
 
@@ -112,6 +119,8 @@ int	ft_pars_float(float *shr, char **str)
 	i = 0;
 	while (**str && ft_isspace(**str))
 		(*str)++;
+	if ((*str)[i] && (*str)[i] == '-')
+		i++;
 	while ((*str)[i] && ft_isdigit((*str)[i]))
 		i++;
 	if ((*str)[i] && (*str)[i] == '.')
@@ -122,7 +131,8 @@ int	ft_pars_float(float *shr, char **str)
 	}
 	while ((*str)[i] && ft_isdigit((*str)[i]))
 		i++;
-	if (!i || ((*str)[i] && !ft_isspace((*str)[i])))
+	if (!i || ((*str)[i] && ((i == 1 && **str == '-')
+			|| !ft_isspace((*str)[i]))))
 		return (1);
 	*shr = ft_atof(*str);
 	*str += i;
