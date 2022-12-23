@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 15:50:14 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 16:02:05 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,26 @@ static int	ft_error_manager(int err, char *line)
 
 static int	ft_new_elem(t_scn *scn, char *str)
 {
-	int	err;
-
-	err = /* value */; // error 'Bad objet's define'
 	if (*str == 'A' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_amb(&(scn->amb), &(str + 1))); // A = lumiere ambiante
+		return (ft_pars_amb(&(scn->amb), str + 1)); // A = lumiere ambiante
 	else if (*str == 'C' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_cam(&(scn->cam), &(str + 1)));// C = camera
+		return (ft_pars_cam(&(scn->cam), str + 1)); // C = camera
 	else if (*str == 'L' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_light(&(scn->lig, &(str + 1))));// L = lumiere
+		return (ft_pars_light(&(scn->lig), str + 1)); // L = lumiere
 	else if (*str && str[1] && str[2] && ft_isspace(str[2]))
 	{
-		// if (*str == 'c' && str[1] && str[1] == 'o')
-		// 	return ();// co = cone
+		if (*str == 'c' && str[1] && str[1] == 'o')
+			return (0);// co = cone
 		else if (*str == 'c' && str[1] && str[1] == 'y')
-			return (ft_pars_cyl(&(scn->obj), &(str + 2)));// cy = cylindre
-		// else if (*str == 'h' && str[1] && str[1] == 'y')
-		// 	return ();// hy = Hyperboloïde
-		// else if (*str == 'p' && str[1] && str[1] == 'a')
-		// 	return ();// pa = Paraboloïde
+			return (ft_pars_cyl(&(scn->obj), str + 2)); // cy = cylindre
+		else if (*str == 'h' && str[1] && str[1] == 'y')
+			return (0);// hy = Hyperboloïde
+		else if (*str == 'p' && str[1] && str[1] == 'a')
+			return (0);// pa = Paraboloïde
 		else if (*str == 'p' && str[1] && str[1] == 'l')
-			return (int	ft_pars_pla(&(scn->obj), &(str + 2)));// pl = plan
-		// else if (*str == 's' && str[1] && str[1] == 'p')
-		// 	return ();// sp = sphere
+			return (ft_pars_pla(&(scn->obj), str + 2)); // pl = plan
+		else if (*str == 's' && str[1] && str[1] == 'p')
+			return (0);// sp = sphere
 	}
 	return (1);
 }
@@ -117,7 +114,7 @@ int	ft_pars(t_win *win, char *arg)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		if (line[i])
-			err = ft_new_elem(win, line + i);
+			err = ft_new_elem(&win->scn, line + i);
 		if (err)
 			return (ft_error_manager(err, line)); // free la memoire utilise // close fd
 		free(line);

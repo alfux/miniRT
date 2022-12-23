@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:42:47 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:44:58 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:58:04 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	ft_valid_cam(t_cam *new, char **str)
 	return (0);
 }
 
-int	ft_pars_cam(t_cam **cam, char **str)
+int	ft_pars_cam(t_cam **cam, char *str)
 {
 	t_cam	*new;
 	t_cam	*tmp;
@@ -81,7 +81,7 @@ int	ft_pars_cam(t_cam **cam, char **str)
 	new = malloc(sizeof(t_cam));
 	if (!new)
 		return (6);
-	err = ft_valid_cam(new, str);
+	err = ft_valid_cam(new, &str);
 	if (err)
 	{
 		free(new);

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:44:12 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:10:17 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/23 15:59:22 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_lig	*ft_newlig(t_vec pos, float rat, t_rgb col)
 	return (new);
 }
 
-int	ft_pars_light(t_obj **lig, char **str)
+int	ft_pars_light(t_obj **lig, char *str)
 {
 	t_obj	*new;
 
@@ -39,13 +39,13 @@ int	ft_pars_light(t_obj **lig, char **str)
 		free(new);
 		return (6);
 	}
-	if (ft_coord(&((t_lig *)(new->obj))->pos, str))
+	if (ft_coord(&((t_lig *)(new->obj))->pos, &str))
 		return (4);
-	if (ft_pars_float(&((t_lig *)(new->obj))->rat, str))
+	if (ft_pars_float(&((t_lig *)(new->obj))->rat, &str))
 		return (7);
-	if (ft_rgb(&((t_lig *)(new->obj))->col, str))
+	if (ft_rgb(&((t_lig *)(new->obj))->col, &str))
 		return (5);
-	if (**str)
+	if (*str)
 		return (11);
 	if (!(*lig))
 		*lig = new;
