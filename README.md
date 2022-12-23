@@ -12,6 +12,8 @@
 <br /> ☛ Tuesday December 13th 01:39: Added kind of ambiant light
 <br /> ☛ Tuesday December 13th 17:30: Added heavy camera movements
 <br /> ☛ Thursday December 22th 17:47: Fixed polyd2 and added cylinders
+<br /> ☛ Friday December 23th 12:07: Improved light processing
+<br /> ☛ Friday December 23th 12:07: Added deadzone around cam and light to prevent undesired artefacts
 ## Personal bonus ideas
 ☛ Anti-aliasing ?
 <br />☛ Use of GPU to have a moving camera ?
