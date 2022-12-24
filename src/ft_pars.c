@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 16:36:56 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/24 14:04:12 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	ft_pars(t_win *win, char *arg)
 	line = get_next_line(fd);
 	while (line)
 	{
+		printf("line: %s\n", line);
 		i = 0;
 		err = 0;
 		while (line[i] && ft_isspace(line[i]))

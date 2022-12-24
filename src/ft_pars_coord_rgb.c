@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/23 16:24:59 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/24 14:40:02 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ static int	ft_coord_format(char *str, char nb)
 		nb++;
 		if (*str && *str == ',')
 			str++;
-		if (nb != 3 && (!ft_isdigit(*str) || !digit))
+		printf("str: %s\n", str);
+		if (nb != 3 && ((!ft_isdigit(*str) && *str != '-' && *str != '+')
+				|| !digit))
 			return (1);
 	}
 	if (nb != 3 || !(*str) || !ft_isspace(*str))
@@ -48,13 +50,13 @@ int	ft_coord(t_vec *vec, char **str)
 	if (ft_coord_format(*str, 0))
 		return (4);
 	vec->x = ft_atof(*str);
-	while (**str && (ft_isdigit(**str) || **str == '.'))
+	while (**str && (ft_isdigit(**str) || **str == '.' || **str == '-'))
 		(*str)++;
-	vec->y = ft_atof(*str);
-	while (**str && (ft_isdigit(**str) || **str == '.'))
+	vec->y = ft_atof(++*str);
+	while (**str && (ft_isdigit(**str) || **str == '.' || **str == '-'))
 		(*str)++;
-	vec->z = ft_atof(*str);
-	while (**str && (ft_isdigit(**str) || **str == '.'))
+	vec->z = ft_atof(++*str);
+	while (**str && (ft_isdigit(**str) || **str == '.' || **str == '-'))
 		(*str)++;
 	while (**str && ft_isspace(**str))
 		(*str)++;
@@ -96,10 +98,10 @@ int	ft_rgb(t_rgb *rgb, char **str)
 	tmp[0] = ft_atoi(*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
-	tmp[1] = ft_atoi(*str);
+	tmp[1] = ft_atoi(++*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
-	tmp[2] = ft_atoi(*str);
+	tmp[2] = ft_atoi(++*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
 	while (**str && ft_isspace(**str))

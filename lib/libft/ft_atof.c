@@ -6,18 +6,19 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:22:18 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/22 17:33:16 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/24 13:11:08 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int	ft_atof(const char *str)
+float	ft_atof(const char *str)
 {
 	size_t	i;
 	float	sign;
 	float	res;
-	float	power;
+	int		power;
 
 	i = 0;
 	sign = 1;
@@ -30,13 +31,12 @@ int	ft_atof(const char *str)
 			sign = -1;
 	while ((*(str + i) >= 48 && *(str + i) <= 57) || *(str + i) == '.')
 	{
-		if (*(str + i) == '.' && !power)
+		if ((*(str + i) == '.' && !power) || (power && *(str + i) != '.'))
 			power++;
-		else if (power && *(str + i) != '.')
-			power++;
-		res = (10 * res + (*(str + i++) - 48));
+		if (*(str + i++) != '.')
+			res = (10 * res + (*(str + i - 1) - 48));
 	}
-	while (power--)
+	while (--power > 0)
 		res *= 0.1;
-	return (sign * (int)res);
+	return (sign * res);
 }
