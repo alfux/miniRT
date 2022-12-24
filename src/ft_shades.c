@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/24 14:43:56 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/24 15:22:52 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -16,11 +16,9 @@ static int	ft_is_obstacle(t_2x3 const *i, t_vec const *vec, t_vec const *ldir,
 {
 	if (ft_is_sol(i))
 		if (((ft_scalar(ft_dif_uv(i->top, *vec), *ldir) > 0
-					&& ft_distce(i->top, *vec) < norm
-					&& ft_distce(i->top, *vec) >= EPSILON)
+					&& ft_distce(i->top, *vec) < norm)
 				|| (ft_scalar(ft_dif_uv(i->bot, *vec), *ldir) > 0
-					&& ft_distce(i->bot, *vec) < norm
-					&& ft_distce(i->bot, *vec) >= EPSILON)))
+					&& ft_distce(i->bot, *vec) < norm)))
 			return (1);
 	return (0);
 }
@@ -38,12 +36,12 @@ static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos)
 	while (lst)
 	{
 		obs = ft_sysres(&ldir, vec, lst);
-		if (ft_deadzn(&obs, lpos, EPSILON))
+		if (ft_deadzn(&obs, vec, EPSILON))
 		{
 			lst = lst->next;
 			continue ;
 		}
-		if (ft_is_obstacle(&obs, vec, &ldir, norm))
+		if (ft_deadzn(&obs, lpos, EPSILON) || ft_is_obstacle(&obs, vec, &ldir, norm))
 			return (1);
 		lst = lst->next;
 	}
