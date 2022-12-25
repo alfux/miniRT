@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/24 14:40:02 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/25 04:41:00 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	ft_coord_format(char *str, char nb)
 		nb++;
 		if (*str && *str == ',')
 			str++;
-		printf("str: %s\n", str);
 		if (nb != 3 && ((!ft_isdigit(*str) && *str != '-' && *str != '+')
 				|| !digit))
 			return (1);
