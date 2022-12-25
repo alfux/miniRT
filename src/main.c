@@ -6,12 +6,12 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/24 14:39:23 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/25 05:11:42 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
-#define RESOLUTION 1280
+#define RESOLUTION 300
 
 int	main(int argc, char **argv)
 {
