@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/24 15:22:52 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/25 04:30:21 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -41,7 +41,7 @@ static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos)
 			lst = lst->next;
 			continue ;
 		}
-		if (ft_deadzn(&obs, lpos, EPSILON) || ft_is_obstacle(&obs, vec, &ldir, norm))
+		if (ft_deadzn(&obs, lpos, DEADZONE) || ft_is_obstacle(&obs, vec, &ldir, norm))
 			return (1);
 		lst = lst->next;
 	}
