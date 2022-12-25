@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/24 15:26:59 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/25 04:44:07 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -24,6 +24,8 @@ static t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
 
 static int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
 {
+	if (ft_distce(*tmp, *vec) < EPSILON)
+		return (0);
 	if (isnan(tmp->x) || isnan(tmp->y) || isnan(tmp->z))
 		return (0);
 	if ((isnan(vec->x) && isnan(vec->y) && isnan(vec->z))
@@ -58,7 +60,7 @@ static int	ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray)
 	float	tscl;
 	float	bscl;
 
-	if (ft_deadzn(intr, pov, EPSILON))
+	if (ft_deadzn(intr, pov, DEADZONE))
 		return (0);
 	tscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(intr->top, *pov)));
 	bscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(intr->bot, *pov)));
