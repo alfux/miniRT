@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/25 04:30:21 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/26 21:46:56 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -23,7 +23,8 @@ static int	ft_is_obstacle(t_2x3 const *i, t_vec const *vec, t_vec const *ldir,
 	return (0);
 }
 
-static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos)
+static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos,
+	t_obj const *obj)
 {
 	t_obj	*lst;
 	t_vec	ldir;
@@ -36,12 +37,13 @@ static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos)
 	while (lst)
 	{
 		obs = ft_sysres(&ldir, vec, lst);
-		if (ft_deadzn(&obs, vec, EPSILON))
+		if (lst == obj && ft_deadzn(&obs, vec, EPSILON))
 		{
 			lst = lst->next;
 			continue ;
 		}
-		if (ft_deadzn(&obs, lpos, DEADZONE) || ft_is_obstacle(&obs, vec, &ldir, norm))
+		if (ft_deadzn(&obs, lpos, DEADZONE)
+			|| ft_is_obstacle(&obs, vec, &ldir, norm))
 			return (1);
 		lst = lst->next;
 	}
@@ -63,7 +65,7 @@ t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 		i = ft_shdcyl(win, (t_cyl *)obj->obj, vec);
 	else
 		i = 0;
-	if (i < 0.f || ft_shadow(win, vec, &((t_lig *)win->scn.lig->obj)->pos))
+	if (i < 0.f || ft_shadow(win, vec, &((t_lig *)win->scn.lig->obj)->pos, obj))
 		i = 0;
 	i = ((t_lig *)win->scn.lig->obj)->rat * i + win->scn.amb.rat * (1 - i);
 	return (ft_setrgb(rgb->r * i, rgb->g * i, rgb->b * i));
