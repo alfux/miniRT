@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 16:22:03 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 17:33:45 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # define K_COMA 43
 # define M_LEFT 1
 # define M_RIGHT 2
-# define M_SCROLL_UP 4
-# define M_SCROLL_DOWN 5
 
 //Constants
 # define EPSILON 0.001f

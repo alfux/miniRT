@@ -6,16 +6,11 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/27 16:37:33 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 17:05:23 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
-
-void	ft_movobj(int kitm, t_win *win)
-{
-	
-}
 
 static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 				t_obj *obj)
@@ -47,17 +42,17 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 	return (sav);
 }
 
-int	ft_mousehook(int kid, int x, int y, t_win *win)
+int	ft_mousehook(int mid, int x, int y, t_win *win)
 {
 	t_vec	ray;
 
-	printf("Mouse - Keycode: %i\n", kid);
-	if (kid == M_LEFT)
+	printf("Mouse - Keycode: %i\n", mid);
+	if (mid == M_LEFT)
 	{
 		ray = ft_getdir(win, x, y);
 		win->cur = ft_obj_select(win, &ray, win->scn.obj);
 	}
-	else if (kid == M_RIGHT)
+	else if (mid == M_RIGHT)
 		win->cur = NULL;
 	return (0);
 }
