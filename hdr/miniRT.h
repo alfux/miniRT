@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 18:43:31 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 10:17:48 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int			ft_exit(t_win *win, int status);
 int			ft_keyhook(int kid, t_win *win);
 
 //Rendering
-void		ft_render(t_win const *win);
+void		ft_render(t_win const *win, int flag);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 int			ft_deadzn(t_2x3 *i, t_vec const *p, float dz);
 float		ft_shdsph(t_win const *win, t_sph const *s, t_vec const *p);

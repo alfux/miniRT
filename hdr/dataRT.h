@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/26 21:38:17 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 09:29:26 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 //Constants
 # define EPSILON 0.001f
 # define DEADZONE 0.02f
+# define HIGHRES 0
+# define LOWRES 1
 
 //Vetcor data structure
 struct					s_vec

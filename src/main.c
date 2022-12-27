@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/26 21:44:40 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 10:18:56 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	(void)mlx_hook(window.wid, 17, 0L, &ft_exit_success, &window);
 	(void)mlx_hook(window.wid, 2, 0L, &ft_keyhook, &window);
 	ft_print_scene(window.scn);
-	ft_render(&window);
+	ft_render(&window, HIGHRES);
 	(void)mlx_loop(window.cid);
 	return (0);
 }
