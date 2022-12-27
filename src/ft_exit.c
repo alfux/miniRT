@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:34:18 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 16:44:06 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 16:28:39 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
 int	ft_exit_failure(t_win *win, char const *msg)
@@ -34,6 +35,7 @@ int	ft_exit(t_win *win, int status)
 	(void)mlx_destroy_window(win->cid, win->wid);
 	ft_objclear(&win->scn.lig, &free);
 	ft_objclear(&win->scn.obj, &free);
+	ft_camclear(&win->scn.cam, &free);
 	exit(status);
 	return (status);
 }

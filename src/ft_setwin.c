@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setwin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:23:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/03 18:09:09 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 16:16:54 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
 t_win	ft_setwin(int width, int height, char *title)
@@ -23,5 +24,7 @@ t_win	ft_setwin(int width, int height, char *title)
 			&win.scr.end);
 	win.w = width;
 	win.h = height;
+	win.mod = 0;
+	win.cur = NULL;
 	return (win);
 }

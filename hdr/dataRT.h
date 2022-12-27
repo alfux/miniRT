@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 15:06:35 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 16:22:03 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@
 # define K_L 37
 # define K_O 31
 # define K_SPACE 49
+# define K_COMA 43
+# define M_LEFT 1
+# define M_RIGHT 2
+# define M_SCROLL_UP 4
+# define M_SCROLL_DOWN 5
 
 //Constants
 # define EPSILON 0.001f
@@ -179,6 +184,7 @@ struct					s_win
 	uint32_t		h;
 	t_scn			scn;
 	char			mod;
+	t_obj			*cur;
 };
 typedef struct s_win	t_win;
 

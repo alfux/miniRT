@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raytra.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/25 04:44:07 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 16:26:02 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-static t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
+t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
 {
 	if (isnan(cmp->top.x) || isnan(cmp->top.y) || isnan(cmp->top.z))
 		return (cmp->bot);
@@ -22,7 +23,7 @@ static t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
 	return (cmp->bot);
 }
 
-static int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
+int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
 {
 	if (ft_distce(*tmp, *vec) < EPSILON)
 		return (0);
@@ -34,7 +35,7 @@ static int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
 	return (0);
 }
 
-static t_rgb	ft_objrgb(t_obj const *obj)
+t_rgb	ft_objrgb(t_obj const *obj)
 {
 	if (obj->type == 'S')
 	{
@@ -55,7 +56,7 @@ static t_rgb	ft_objrgb(t_obj const *obj)
 		return (ft_setrgb(0, 0, 0));
 }
 
-static int	ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray)
+int	ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray)
 {
 	float	tscl;
 	float	bscl;

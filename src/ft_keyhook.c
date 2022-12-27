@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_keyhook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 10:18:12 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 16:33:20 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
 static void	ft_rota_x(t_cam *cam, float theta)
@@ -69,15 +70,25 @@ static void	ft_movcam(int kid, t_cam *cam)
 int	ft_keyhook(int kid, t_win *win)
 {
 	printf("Keycode: %i\n", kid);
-	if (kid == K_ESCAPE)
-		return (ft_exit(win, 0));
 	if (kid == K_SPACE)
 		ft_print_scene(win->scn);
-	else if (kid == K_O)
+	if (kid == K_COMA)
+	{
+		if (!win->mod)
+			win->mod = 1;
+		else
+			win->mod = 0;
+	}
+	else if (kid == K_ESCAPE)
+		return (ft_exit(win, 0));
+	else if (win->mod && kid == K_O)
 		win->scn.cam->fov += (2 * M_PI) / 360;
-	else if (kid == K_L)
+	else if (win->mod && kid == K_L)
 		win->scn.cam->fov -= (2 * M_PI) / 360;
-	ft_movcam(kid, win->scn.cam);
+	else if (win->mod && !win->cur)
+		ft_movcam(kid, win->scn.cam);
+	else if (win->mod)
+		ft_movobj(kid, win->scn.cam);
 	ft_render(win, LOWRES);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 10:17:48 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 16:35:34 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_obj		*ft_objnew(char type, void *obj);
 void		ft_objadd(t_obj **obj, t_obj *add);
 void		ft_objdelone(t_obj *obj, void (*del)(void *));
 void		ft_objclear(t_obj **obj, void (*del)(void *));
+void		ft_camclear(t_cam **cam, void (*del)(void *));
 
 //Math tools
 float		ft_scalar(t_vec u, t_vec v);
@@ -86,9 +87,16 @@ int			ft_exit(t_win *win, int status);
 
 //Key hooks
 int			ft_keyhook(int kid, t_win *win);
+int			ft_mousehook(int kid, int x, int y, t_win *win);
+void		ft_movobj(int kitm, t_win *win);
 
 //Rendering
 void		ft_render(t_win const *win, int flag);
+t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
+t_vec		ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov);
+int			ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray);
+t_rgb		ft_objrgb(t_obj const *obj);
+int			ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 int			ft_deadzn(t_2x3 *i, t_vec const *p, float dz);
 float		ft_shdsph(t_win const *win, t_sph const *s, t_vec const *p);

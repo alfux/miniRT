@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_render.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 11:50:24 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 16:02:44 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-static t_vec	ft_getdir(t_win const *win, uint32_t i, uint32_t j)
+t_vec	ft_getdir(t_win const *win, uint32_t i, uint32_t j)
 {
 	float	theta;
 	float	phi;
