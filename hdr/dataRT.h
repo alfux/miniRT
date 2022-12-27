@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 16:22:03 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 19:05:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@
 # define M_SCROLL_DOWN 5
 
 //Constants
-# define EPSILON 0.001f
+# define EPSILON 0.000005f
 # define DEADZONE 0.02f
-# define HIGHRES 0
-# define LOWRES 1
 
 //Vetcor data structure
 struct					s_vec

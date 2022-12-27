@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 17:13:17 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 18:42:16 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static void	ft_big_pixel(t_win const *win, uint32_t i, uint32_t j, uint32_t rgb)
 	uint32_t	col;
 
 	lin = -1;
-	while (++lin < 4 && i + lin < win->h)
+	while (++lin < 16 && i + lin < win->h)
 	{
 		col = -1;
-		while (++col < 4 && j + col < win->w)
+		while (++col < 16 && j + col < win->w)
 			*(uint32_t *)(win->scr.iad + (i + lin) * win->scr.opl + (j + col)
 					* (win->scr.bpp / 8)) = rgb;
 	}
@@ -57,9 +57,9 @@ static void	ft_low_render(t_win const *win)
 		{
 			ray = ft_getdir(win, i, j);
 			ft_big_pixel(win, i, j, ft_raytra(win, &ray, win->scn.obj));
-			j += 4;
+			j += 16;
 		}
-		i += 4;
+		i += 16;
 	}
 	mlx_clear_window(win->cid, win->wid);
 	mlx_put_image_to_window(win->cid, win->wid, win->scr.iid, 0, 0);
