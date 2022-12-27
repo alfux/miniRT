@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:51:26 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 16:33:00 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/24 13:51:35 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_pars_cyl(t_obj **obj, char *str)
 	((t_cyl *)(new->obj))->dir = ft_nrmlze(((t_cyl *)(new->obj))->dir);
 	if (ft_pars_float(&((t_cyl *)(new->obj))->dia, &str))
 		return (12);
-	if (ft_pars_float(&((t_cyl *)(new->obj))->dia, &str))
+	if (ft_pars_float(&((t_cyl *)(new->obj))->hgt, &str))
 		return (13);
 	return (ft_pars2_cyl(str, obj, new));
 }

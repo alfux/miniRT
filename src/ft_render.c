@@ -6,17 +6,10 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 15:08:53 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/12/27 11:50:24 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
-
-void	ft_print_pixdir(t_vec const *dir, uint32_t i, uint32_t j)
-{
-	printf("dir(%i, %i) = ", j, i);
-	ft_print_vect(*dir);
-	printf("\n");
-}
 
 static t_vec	ft_getdir(t_win const *win, uint32_t i, uint32_t j)
 {
@@ -34,12 +27,49 @@ static t_vec	ft_getdir(t_win const *win, uint32_t i, uint32_t j)
 	return (dir);
 }
 
-void	ft_render(t_win const *win)
+void	ft_big_pixel(t_win const *win, uint32_t i, uint32_t j, uint32_t rgb)
+{
+	uint32_t	lin;
+	uint32_t	col;
+	char		*pix;
+
+	pix = win->scr.iad + 4 * i * win->scr.opl + 4 * j * (win->scr.bpp / 8);
+	lin = -1;
+	while (++lin < 4 && i + lin < win->h)
+	{
+		col = -1;
+		while (++col < 4 && j + col < win->w)
+			*(uint32_t *)(pix + (i + lin) * win->scr.opl + (j + col) * (win->scr.bpp / 8))
+				= rgb;
+	}
+}
+
+void	ft_low_render(t_win const *win)
 {
 	uint32_t	i;
 	uint32_t	j;
 	t_vec		ray;
 
+	i = -1;
+	while (++i < 180)
+	{
+		j = -1;
+		while (++j < 320)
+		{
+			ray = ft_getdir(win, i, j);
+			ft_big_pixel(win, i, j, ft_raytra(win, &ray, win->scn.obj));
+		}
+	}
+}
+
+void	ft_render(t_win const *win, int flag)
+{
+	uint32_t	i;
+	uint32_t	j;
+	t_vec		ray;
+
+	if (flag == LOWRES)
+		return (ft_low_render(win));
 	i = -1;
 	while (++i < win->h)
 	{
