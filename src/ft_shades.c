@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 15:21:59 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 16:55:41 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_is_obstacle(t_2x3 const *i, t_vec const *vec, t_vec const *ldir,
 }
 
 static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos,
-			const t_obj *obj)
+	t_obj const *obj)
 {
 	t_obj	*lst;
 	t_vec	ldir;
