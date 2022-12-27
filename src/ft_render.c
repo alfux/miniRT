@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 10:17:04 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 11:50:24 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -35,11 +35,11 @@ void	ft_big_pixel(t_win const *win, uint32_t i, uint32_t j, uint32_t rgb)
 
 	pix = win->scr.iad + 4 * i * win->scr.opl + 4 * j * (win->scr.bpp / 8);
 	lin = -1;
-	while (++lin < 4)
+	while (++lin < 4 && i + lin < win->h)
 	{
 		col = -1;
-		while (++col < 4)
-			*(uint32_t *)(pix + lin * win->scr.opl + col * (win->scr.bpp / 8))
+		while (++col < 4 && j + col < win->w)
+			*(uint32_t *)(pix + (i + lin) * win->scr.opl + (j + col) * (win->scr.bpp / 8))
 				= rgb;
 	}
 }
