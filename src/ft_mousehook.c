@@ -6,15 +6,16 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/27 16:37:33 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 17:06:50 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-void	ft_movobj(int kitm, t_win *win)
+void	ft_movobj(int mid, t_obj *cur)
 {
-	
+	(void)mid;
+	(void)cur;
 }
 
 static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
@@ -23,10 +24,8 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 	t_2x3	intr;
 	t_vec	tmp;
 	t_vec	vec;
-	t_rgb	rgb;
 	t_obj	*sav;
 
-	rgb = ft_setrgb(0, 0, 0);
 	vec = ft_setvec(NAN, NAN, NAN);
 	sav = (t_obj *)0;
 	while (obj)
@@ -38,7 +37,6 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 			if (ft_iscloser(&vec, &tmp, &win->scn.cam->pov))
 			{
 				vec = tmp;
-				rgb = ft_objrgb(obj);
 				sav = obj;
 			}
 		}
@@ -47,17 +45,17 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 	return (sav);
 }
 
-int	ft_mousehook(int kid, int x, int y, t_win *win)
+int	ft_mousehook(int mid, int x, int y, t_win *win)
 {
 	t_vec	ray;
 
-	printf("Mouse - Keycode: %i\n", kid);
-	if (kid == M_LEFT)
+	printf("Mouse - Keycode: %i\n", mid);
+	if (mid == M_LEFT)
 	{
 		ray = ft_getdir(win, x, y);
 		win->cur = ft_obj_select(win, &ray, win->scn.obj);
 	}
-	else if (kid == M_RIGHT)
+	else if (mid == M_RIGHT)
 		win->cur = NULL;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 16:35:34 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 17:05:20 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ int			ft_exit(t_win *win, int status);
 
 //Key hooks
 int			ft_keyhook(int kid, t_win *win);
-int			ft_mousehook(int kid, int x, int y, t_win *win);
-void		ft_movobj(int kitm, t_win *win);
+int			ft_mousehook(int mid, int x, int y, t_win *win);
+void		ft_movobj(int mid, t_obj *cur);
 
 //Rendering
-void		ft_render(t_win const *win, int flag);
+void		ft_render(t_win const *win);
 t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
 t_vec		ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov);
 int			ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray);

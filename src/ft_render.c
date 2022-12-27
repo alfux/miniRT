@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 16:54:57 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/27 17:13:17 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vec	ft_getdir(t_win const *win, uint32_t i, uint32_t j)
 	return (dir);
 }
 
-void	ft_big_pixel(t_win const *win, uint32_t i, uint32_t j, uint32_t rgb)
+static void	ft_big_pixel(t_win const *win, uint32_t i, uint32_t j, uint32_t rgb)
 {
 	uint32_t	lin;
 	uint32_t	col;
@@ -43,7 +43,7 @@ void	ft_big_pixel(t_win const *win, uint32_t i, uint32_t j, uint32_t rgb)
 	}
 }
 
-void	ft_low_render(t_win const *win)
+static void	ft_low_render(t_win const *win)
 {
 	uint32_t	i;
 	uint32_t	j;
@@ -65,13 +65,13 @@ void	ft_low_render(t_win const *win)
 	mlx_put_image_to_window(win->cid, win->wid, win->scr.iid, 0, 0);
 }
 
-void	ft_render(t_win const *win, int flag)
+void	ft_render(t_win const *win)
 {
 	uint32_t	i;
 	uint32_t	j;
 	t_vec		ray;
 
-	if (flag == LOWRES)
+	if (win->mod)
 		return (ft_low_render(win));
 	i = -1;
 	while (++i < win->h)
