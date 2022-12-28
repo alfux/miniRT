@@ -14,6 +14,7 @@
 <br /> ☛ Thursday December 22th 17:47: Fixed polyd2 and added cylinders
 <br /> ☛ Friday December 23th 12:07: Improved light processing
 <br /> ☛ Friday December 23th 12:07: Added deadzone around cam and light to prevent undesired artefacts
+<br /> ☛ Wednesday December 28th 04:28: We can now move camera properly in low resolution
 ## Personal bonus ideas
 ☛ Anti-aliasing ?
 <br />☛ Use of GPU to have a moving camera ?
