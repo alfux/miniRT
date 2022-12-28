@@ -6,11 +6,17 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/27 17:05:23 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/28 04:21:53 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
+
+void	ft_movobj(int mid, t_obj *cur)
+{
+	(void)mid;
+	(void)cur;
+}
 
 static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 				t_obj *obj)
@@ -18,10 +24,8 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 	t_2x3	intr;
 	t_vec	tmp;
 	t_vec	vec;
-	t_rgb	rgb;
 	t_obj	*sav;
 
-	rgb = ft_setrgb(0, 0, 0);
 	vec = ft_setvec(NAN, NAN, NAN);
 	sav = (t_obj *)0;
 	while (obj)
@@ -33,7 +37,6 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 			if (ft_iscloser(&vec, &tmp, &win->scn.cam->pov))
 			{
 				vec = tmp;
-				rgb = ft_objrgb(obj);
 				sav = obj;
 			}
 		}

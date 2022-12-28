@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 16:33:20 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/27 17:12:41 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	ft_keyhook(int kid, t_win *win)
 		if (!win->mod)
 			win->mod = 1;
 		else
+		{
 			win->mod = 0;
+			ft_render(win);
+		}
 	}
 	else if (kid == K_ESCAPE)
 		return (ft_exit(win, 0));
@@ -88,7 +91,8 @@ int	ft_keyhook(int kid, t_win *win)
 	else if (win->mod && !win->cur)
 		ft_movcam(kid, win->scn.cam);
 	else if (win->mod)
-		ft_movobj(kid, win->scn.cam);
-	ft_render(win, LOWRES);
+		ft_movobj(kid, win->cur);
+	if (win->mod)
+		ft_render(win);
 	return (0);
 }
