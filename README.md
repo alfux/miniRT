@@ -16,7 +16,7 @@
 <br />☛ Friday December 23th 12:07: Added deadzone around cam and light to prevent undesired artefacts
 <br />☛ Wednesday December 28th 04:28: We can now move camera properly in low resolution
 <br />☛ Thursday December 29th 01:12: Changed float for double to improve precision
-## Personal bonus ideas
+## Bonus ideas
 ☛ Anti-aliasing ?
 <br />☛ Use of GPU to have a moving camera ?
 <br />☛ Light diffraction for "glass" effect with transparency ?
