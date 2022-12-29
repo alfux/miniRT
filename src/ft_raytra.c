@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 16:26:02 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/29 00:04:13 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_rgb	ft_objrgb(t_obj const *obj)
 
 int	ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray)
 {
-	float	tscl;
-	float	bscl;
+	double	tscl;
+	double	bscl;
 
 	if (ft_deadzn(intr, pov, DEADZONE))
 		return (0);

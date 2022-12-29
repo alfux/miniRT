@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 12:13:57 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 01:02:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -85,20 +85,22 @@ static t_2x3	ft_syssphz(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 
 t_2x3	ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 {
-	float	a;
-	float	b;
-	float	c;
-	float	choose;
+	double	a;
+	double	b;
+	double	c;
+	double	choice;
 
 	a = fabs(dir->x);
 	b = fabs(dir->y);
 	c = fabs(dir->z);
-	choose = fmax(fmax(a, b), c);
-	if (choose == c)
+	choice = fmax(fmax(a, b), c);
+	if (choice < EPSILON)
+		return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
+	if (choice == c)
 		return (ft_syssphz(dir, pov, sph));
-	if (choose == b)
+	if (choice == b)
 		return (ft_syssphy(dir, pov, sph));
-	if (choose == a)
+	if (choice == a)
 		return (ft_syssphx(dir, pov, sph));
 	return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
 }

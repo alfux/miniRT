@@ -6,14 +6,14 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 18:46:07 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:10:22 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
 static int	ft_is_obstacle(t_2x3 const *i, t_vec const *vec, t_vec const *ldir,
-				float norm)
+				double norm)
 {
 	if (ft_is_sol(i))
 		if (((ft_scalar(ft_dif_uv(i->top, *vec), *ldir) > 0
@@ -29,7 +29,7 @@ static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos,
 {
 	t_obj	*lst;
 	t_vec	ldir;
-	float	norm;
+	double	norm;
 	t_2x3	obs;
 
 	lst = win->scn.obj;
@@ -54,7 +54,7 @@ static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos,
 t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 	t_rgb const *rgb)
 {
-	float	i;
+	double	i;
 
 	if (!obj)
 		return (*rgb);

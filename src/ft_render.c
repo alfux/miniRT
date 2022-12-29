@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 18:42:16 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:04:33 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_vec	ft_getdir(t_win const *win, uint32_t i, uint32_t j)
 {
-	float	theta;
-	float	phi;
+	double	theta;
+	double	phi;
 	t_vec	dir;
 
 	theta = (j + 1) * (win->scn.cam->fov / win->w) + (M_PI - win->scn.cam->fov)

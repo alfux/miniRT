@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/25 04:41:00 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:28:44 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	ft_rgb(t_rgb *rgb, char **str)
 	return (0);
 }
 
-int	ft_pars_float(float *shr, char **str)
+int	ft_pars_double(double *shr, char **str)
 {
 	size_t	i;
 

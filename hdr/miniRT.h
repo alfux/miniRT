@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/28 04:17:40 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 01:15:20 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int			ft_pars(t_win *win, char *arg);
 t_win		ft_setwin(int width, int height, char *title);
 void		ft_setcam(t_cam *cam);
 t_win		ft_tobase_cam(t_win win);//Deprecated atm
-t_vec		ft_setvec(float x, float y, float z);
+t_vec		ft_setvec(double x, double y, double z);
 t_rgb		ft_setrgb(unsigned char r, unsigned char g, unsigned char b);
-t_amb		ft_setamb(float rat, t_rgb col);
+t_amb		ft_setamb(double rat, t_rgb col);
 int			ft_pars_amb(t_amb *amb, char *str);
 int			ft_pars_cam(t_cam **cam, char *str);
 t_lin		ft_setlin(t_vec pos, t_vec dir);
@@ -36,9 +36,9 @@ t_3x3		ft_set3x3(t_vec lft, t_vec mid, t_vec rgt);
 t_2x3		ft_set2x3(t_vec top, t_vec bot);
 
 //Object allocation
-t_lig		*ft_newlig(t_vec pos, float rat, t_rgb col);
+t_lig		*ft_newlig(t_vec pos, double rat, t_rgb col);
 int			ft_pars_light(t_obj **lig, char *str);
-t_sph		*ft_newsph(float dia, t_vec pos, t_rgb col);
+t_sph		*ft_newsph(double dia, t_vec pos, t_rgb col);
 int			ft_pars_sph(t_obj **obj, char *str);
 t_pla		*ft_newpla(t_vec pos, t_vec dir, t_rgb col);
 int			ft_pars_pla(t_obj **obj, char *str);
@@ -53,13 +53,13 @@ void		ft_objclear(t_obj **obj, void (*del)(void *));
 void		ft_camclear(t_cam **cam, void (*del)(void *));
 
 //Math tools
-float		ft_scalar(t_vec u, t_vec v);
-float		ft_distce(t_vec a, t_vec b);
-float		ft_norm(t_vec u);
-float		ft_det3x3(t_3x3 m);
+double		ft_scalar(t_vec u, t_vec v);
+double		ft_distce(t_vec a, t_vec b);
+double		ft_norm(t_vec u);
+double		ft_det3x3(t_3x3 m);
 t_3x3		ft_invmat(t_3x3 m);
 t_vec		ft_nrmlze(t_vec v);
-t_vec		ft_multlv(float l, t_vec v);
+t_vec		ft_multlv(double l, t_vec v);
 t_vec		ft_multmv(t_3x3 m, t_vec v);
 t_vec		ft_sum_uv(t_vec u, t_vec v);
 t_vec		ft_dif_uv(t_vec u, t_vec v);
@@ -76,7 +76,7 @@ uint32_t	ft_rgbtoi(t_rgb rgb);
 void		ft_print_scene(t_scn scn);
 void		ft_print_vect(t_vec v);
 void		ft_print_inter_sph(t_vec ray, t_sph *sph, t_2x3 inter);
-int			ft_pars_float(float *shr, char **str);
+int			ft_pars_double(double *shr, char **str);
 int			ft_rgb(t_rgb *rgb, char **str);
 int			ft_coord(t_vec *vec, char **str);
 
@@ -98,10 +98,10 @@ int			ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray);
 t_rgb		ft_objrgb(t_obj const *obj);
 int			ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
-int			ft_deadzn(t_2x3 *i, t_vec const *p, float dz);
-float		ft_shdsph(t_win const *win, t_sph const *s, t_vec const *p);
-float		ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p);
-float		ft_shdpla(t_win const *win, t_pla const *pl, t_vec const *p);
+int			ft_deadzn(t_2x3 *i, t_vec const *p, double dz);
+double		ft_shdsph(t_win const *win, t_sph const *s, t_vec const *p);
+double		ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p);
+double		ft_shdpla(t_win const *win, t_pla const *pl, t_vec const *p);
 t_rgb		ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 				t_rgb const *rgb);
 int			ft_clside(t_vec const *i, t_vec const *p, t_vec const *n,

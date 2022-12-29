@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/28 04:17:07 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 01:14:51 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@
 # define M_RIGHT 2
 
 //Constants
-# define EPSILON 0.000002f
-# define DEADZONE 0.02f
+# define EPSILON 0.0000001
+# define DEADZONE 0.01
 
 //Vetcor data structure
 struct					s_vec
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 };
 typedef struct s_vec	t_vec;
 
@@ -76,7 +76,7 @@ typedef struct s_rgb	t_rgb;
 //Ambiant light data structure
 struct					s_amb
 {
-	float	rat;
+	double	rat;
 	t_rgb	col;
 };
 typedef struct s_amb	t_amb;
@@ -90,7 +90,7 @@ struct					s_cam
 	t_vec			hor;
 	struct s_cam	*prev;
 	struct s_cam	*next;
-	float			fov;
+	double			fov;
 };
 typedef struct s_cam	t_cam;
 
@@ -98,7 +98,7 @@ typedef struct s_cam	t_cam;
 struct					s_lig
 {
 	t_vec	pos;
-	float	rat;
+	double	rat;
 	t_rgb	col;
 };
 typedef struct s_lig	t_lig;
@@ -106,7 +106,7 @@ typedef struct s_lig	t_lig;
 //Sphere data structure
 struct					s_sph
 {
-	float	dia;
+	double	dia;
 	t_vec	pos;
 	t_rgb	col;
 };
@@ -126,8 +126,8 @@ struct					s_cyl
 {
 	t_vec	pos;
 	t_vec	dir;
-	float	dia;
-	float	hgt;
+	double	dia;
+	double	hgt;
 	t_rgb	col;
 };
 typedef struct s_cyl	t_cyl;

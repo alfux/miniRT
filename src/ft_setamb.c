@@ -6,13 +6,13 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:41:33 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/24 12:55:04 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:05:11 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-t_amb	ft_setamb(float rat, t_rgb col)
+t_amb	ft_setamb(double rat, t_rgb col)
 {
 	t_amb	set;
 

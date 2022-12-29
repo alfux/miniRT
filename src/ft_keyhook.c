@@ -6,13 +6,13 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 17:12:41 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:01:22 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static void	ft_rota_x(t_cam *cam, float theta)
+static void	ft_rota_x(t_cam *cam, double theta)
 {
 	t_3x3	m;
 
@@ -21,7 +21,7 @@ static void	ft_rota_x(t_cam *cam, float theta)
 	cam->dir = ft_multmv(m, ft_setvec(0, (-1) * sin(theta), cos(theta)));
 }
 
-static void	ft_rota_y(t_cam *cam, float theta)
+static void	ft_rota_y(t_cam *cam, double theta)
 {
 	t_3x3	m;
 
@@ -30,7 +30,7 @@ static void	ft_rota_y(t_cam *cam, float theta)
 	cam->dir = ft_multmv(m, ft_setvec((-1) * sin(theta), 0, cos(theta)));
 }
 
-static void	ft_rota_z(t_cam *cam, float theta)
+static void	ft_rota_z(t_cam *cam, double theta)
 {
 	t_3x3	m;
 
