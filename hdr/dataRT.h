@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 09:44:59 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 14:51:43 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,5 +187,8 @@ struct					s_win
 	t_obj			*cur;
 };
 typedef struct s_win	t_win;
+
+//Easter eggs
+# define EEGGS 111
 
 #endif

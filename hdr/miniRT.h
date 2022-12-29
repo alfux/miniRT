@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 01:15:20 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 14:51:58 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,8 @@ t_rgb		ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 				t_rgb const *rgb);
 int			ft_clside(t_vec const *i, t_vec const *p, t_vec const *n,
 				t_vec const *l);
+
+//Easter eggs
+void		ft_eeggs(t_cam *cam);
 
 #endif
