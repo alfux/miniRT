@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 01:14:51 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 01:47:24 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 //Constants
 # define EPSILON 0.0000001
-# define DEADZONE 0.01
+# define DEADZONE 0.02
 
 //Vetcor data structure
 struct					s_vec
