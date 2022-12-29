@@ -6,13 +6,13 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:44:12 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 16:26:37 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/29 00:27:43 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-t_lig	*ft_newlig(t_vec pos, float rat, t_rgb col)
+t_lig	*ft_newlig(t_vec pos, double rat, t_rgb col)
 {
 	t_lig	*new;
 
@@ -41,7 +41,7 @@ int	ft_pars_light(t_obj **lig, char *str)
 	}
 	if (ft_coord(&((t_lig *)(new->obj))->pos, &str))
 		return (4);
-	if (ft_pars_float(&((t_lig *)(new->obj))->rat, &str)
+	if (ft_pars_double(&((t_lig *)(new->obj))->rat, &str)
 		|| ((t_lig *)(new->obj))->rat > 1 || ((t_lig *)(new->obj))->rat < 0)
 		return (7);
 	if (ft_rgb(&((t_lig *)(new->obj))->col, &str))

@@ -6,12 +6,12 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:11:46 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/03 18:04:36 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:03:09 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-float	ft_norm(t_vec u)
+double	ft_norm(t_vec u)
 {
 	return (sqrt(ft_scalar(u, u)));
 }

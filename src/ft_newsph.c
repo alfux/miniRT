@@ -6,13 +6,13 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:46:58 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/24 13:49:19 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:28:00 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-t_sph	*ft_newsph(float dia, t_vec pos, t_rgb col)
+t_sph	*ft_newsph(double dia, t_vec pos, t_rgb col)
 {
 	t_sph	*new;
 
@@ -52,7 +52,7 @@ int	ft_pars_sph(t_obj **obj, char *str)
 	}
 	if (ft_coord(&((t_sph *)(new->obj))->pos, &str))
 		return (4);
-	if (ft_pars_float(&((t_sph *)(new->obj))->dia, &str)
+	if (ft_pars_double(&((t_sph *)(new->obj))->dia, &str)
 		|| ((t_sph *)(new->obj))->dia < 0)
 		return (12);
 	if (ft_rgb(&((t_sph *)(new->obj))->col, &str))

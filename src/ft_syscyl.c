@@ -6,17 +6,17 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:11:03 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/22 19:02:37 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 01:01:48 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
 static t_2x3	ft_syscylx(t_vec const *d, t_vec const *p, t_cyl const *c)
 {
-	float	e;
-	float	f;
-	float	d_s_n;
-	float	em_p_fn;
+	double	e;
+	double	f;
+	double	d_s_n;
+	double	em_p_fn;
 	t_vec	sol;
 
 	e = d->x * (p->y - c->pos.y) - d->y * (p->x - c->pos.x);
@@ -36,10 +36,10 @@ static t_2x3	ft_syscylx(t_vec const *d, t_vec const *p, t_cyl const *c)
 
 static t_2x3	ft_syscyly(t_vec const *d, t_vec const *p, t_cyl const *c)
 {
-	float	e;
-	float	f;
-	float	d_s_n;
-	float	el_p_fn;
+	double	e;
+	double	f;
+	double	d_s_n;
+	double	el_p_fn;
 	t_vec	sol;
 
 	e = d->y * (p->x - c->pos.x) - d->x * (p->y - c->pos.y);
@@ -59,10 +59,10 @@ static t_2x3	ft_syscyly(t_vec const *d, t_vec const *p, t_cyl const *c)
 
 static t_2x3	ft_syscylz(t_vec const *d, t_vec const *p, t_cyl const *c)
 {
-	float	e;
-	float	f;
-	float	d_s_n;
-	float	el_p_fm;
+	double	e;
+	double	f;
+	double	d_s_n;
+	double	el_p_fm;
 	t_vec	sol;
 
 	e = d->z * (p->x - c->pos.x) - d->x * (p->z - c->pos.z);
@@ -80,7 +80,7 @@ static t_2x3	ft_syscylz(t_vec const *d, t_vec const *p, t_cyl const *c)
 					(d->y * sol.y + f) / d->z, sol.y), c->pos)));
 }
 
-float	ft_height(t_vec const *p, t_cyl const *c)
+double	ft_height(t_vec const *p, t_cyl const *c)
 {
 	t_vec	q;
 
@@ -90,16 +90,18 @@ float	ft_height(t_vec const *p, t_cyl const *c)
 
 t_2x3	ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl)
 {
-	float	choose;
+	double	choice;
 	t_2x3	res;
 
-	choose = fmax(fmax(fabs(dir->x), fabs(dir->y)), fabs(dir->z));
+	choice = fmax(fmax(fabs(dir->x), fabs(dir->y)), fabs(dir->z));
 	res = ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN));
-	if (choose == fabs(dir->x))
+	if (choice < EPSILON)
+		return (res);
+	if (choice == fabs(dir->x))
 		res = ft_syscylx(dir, pov, cyl);
-	if (choose == fabs(dir->y))
+	if (choice == fabs(dir->y))
 		res = ft_syscyly(dir, pov, cyl);
-	if (choose == fabs(dir->z))
+	if (choice == fabs(dir->z))
 		res = ft_syscylz(dir, pov, cyl);
 	if (ft_height(&res.top, cyl) > cyl->hgt / 2)
 	{

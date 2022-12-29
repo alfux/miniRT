@@ -6,13 +6,13 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:42:47 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/24 14:06:17 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:05:53 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static int	ft_sign(float x)
+static int	ft_sign(double x)
 {
 	if (x >= 0)
 		return (1);
@@ -22,7 +22,7 @@ static int	ft_sign(float x)
 
 void	ft_setcam(t_cam *cam)
 {
-	float	norm;
+	double	norm;
 
 	if (cam->dir.x != 0 || cam->dir.z != 0)
 	{

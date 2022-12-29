@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 19:03:24 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 01:00:07 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -49,15 +49,17 @@ static t_2x3	ft_sysplaz(t_vec const *dir, t_vec const *pov, t_pla const *pla,
 
 static int	ft_choose(t_3x3 const *mx, t_3x3 const *my, t_3x3 const *mz)
 {
-	float	detx;
-	float	dety;
-	float	detz;
-	float	choice;
+	double	detx;
+	double	dety;
+	double	detz;
+	double	choice;
 
 	detx = ft_det3x3(*mx);
 	dety = ft_det3x3(*my);
 	detz = ft_det3x3(*mz);
 	choice = fmax(fmax(fabs(detx), fabs(dety)), fabs(detz));
+	if (choice < EPSILON)
+		return (0);
 	if (choice == detx)
 		return (1);
 	if (choice == dety)
@@ -70,7 +72,7 @@ t_2x3	ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla)
 	t_3x3	mx;
 	t_3x3	my;
 	t_3x3	mz;
-	int	choice;
+	int		choice;
 
 	mx.top = pla->dir;
 	mx.mid = ft_setvec(dir->z, 0, (-1) * dir->x);

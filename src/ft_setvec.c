@@ -6,12 +6,12 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:38:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/11/28 12:39:48 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:08:07 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_vec	ft_setvec(float x, float y, float z)
+t_vec	ft_setvec(double x, double y, double z)
 {
 	t_vec	set;
 

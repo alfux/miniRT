@@ -6,12 +6,12 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:24:27 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/09 09:55:54 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:01:44 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-t_vec	ft_multlv(float l, t_vec v)
+t_vec	ft_multlv(double l, t_vec v)
 {
 	t_vec	lv;
 

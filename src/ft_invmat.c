@@ -6,14 +6,14 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 20:52:46 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/21 12:29:02 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:00:37 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
 t_3x3	ft_invmat(t_3x3 m)
 {
-	float	det;
+	double	det;
 	t_3x3	inv;
 
 	det = ft_det3x3(m);

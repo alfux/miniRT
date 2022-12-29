@@ -6,13 +6,13 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 09:51:29 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/23 10:57:32 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:10:56 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-float	ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p)
+double	ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p)
 {
 	t_vec	*lpos;
 	t_vec	n;
