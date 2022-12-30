@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2022/12/29 14:39:03 by alfux            ###   ########.fr        #
+#    Updated: 2022/12/30 09:23:27 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	ft_eeggs.c ft_deadzn.c ft_shdpla.c	\
+SSRC		=	ft_is_val.c ft_eeggs.c ft_deadzn.c ft_shdpla.c	\
 				ft_shdcyl.c ft_shdsph.c ft_clside.c ft_is_sol.c ft_syscyl.c	\
 				ft_syspla.c ft_syssph.c ft_tobase_cam.c ft_multmv.c			\
 				ft_invmat.c ft_det3x3.c ft_nrmlze.c ft_dif_uv.c ft_rgbtoi.c	\
