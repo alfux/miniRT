@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/27 17:41:29 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/30 14:23:38 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,81 @@ static void	ft_movcoord(int kid, t_vec *vec, t_cam *cam)
 		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->ver));
 	else if (kid == K_DOWN || kid == K_D)
 		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->ver));
-	else if (kid == K_P || kid == K_R)
+	else if (kid == K_P || kid == K_Q)
 		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->dir));
-	else if (kid == K_M || kid == K_T)
+	else if (kid == K_M || kid == K_E)
 		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->dir));
 	if (kid == K_Z || kid == K_S || kid == K_Q || kid == K_D
-		|| kid == K_R || kid == K_T)
+		|| kid == K_Q || kid == K_E)
 		*vec = ft_nrmlze(*vec);
 }
 
-void	ft_movrgb(int kid, t_rgb *rgb)
+static void	ft_movrgb(int kid, t_rgb *rgb)
 {
-	if (kid == K_O)
-	else if (kid == K_L)
+	if (kid == K_F)
+		rgb->r -= 1;
+	else if (kid == K_C)
+		rgb->r += 1;
+	else if (kid == K_G)
+		rgb->g -= 1;
+	else if (kid == K_V)
+		rgb->g += 1;
+	else if (kid == K_H)
+		rgb->b -= 1;
+	else if (kid == K_B)
+		rgb->b += 1;
+	else if (kid == K_J)
+		rgb->a -= 1;
+	else if (kid == K_N)
+		rgb->a += 1;
 }
 
-void	ft_movobj(int kid, t_obj *cur)
+static void	ft_change_color(int kid, t_obj *cur)
 {
-	if (cur->type == 'S')
-		ft_mv_sph(kid, (t_sph *)(cur->obj));
-	else if (cur->type == 'P')
-		ft_mv_pla(kid, (t_pla *)(cur->obj));
-	else if (cur->type == 'C')
-		ft_mv_cyl(kid, (t_cyl *)(cur->obj));
+	if (kid == K_K && cur->type == 'S')
+		((t_sph *)(cur->obj))->dia /= 1.2;
+	else if (kid == K_K && cur->type == 'C')
+		((t_cyl *)(cur->obj))->dia /= 1.2;
+	else if (kid == K_O && cur->type == 'C')
+		((t_cyl *)(cur->obj))->hgt /= 1.2;
+	else if (kid == K_L && cur->type == 'C')
+		((t_cyl *)(cur->obj))->hgt /= 1.2;
+	else if (kid == K_F || kid == K_G || kid == K_H || kid == K_J
+		|| kid == K_C || kid == K_V || kid == K_B || kid == K_N)
+	{
+		if (cur->type == 'S')
+			ft_movrgb(kid, &((t_sph *)(cur->obj))->col);
+		else if (cur->type == 'P')
+			ft_movrgb(kid, &((t_pla *)(cur->obj))->col);
+		else if (cur->type == 'C')
+			ft_movrgb(kid, &((t_cyl *)(cur->obj))->col);
+	}
+}
+
+void	ft_movobj(int kid, t_obj *cur, t_cam *cam)
+{
+	if (kid == K_Z || kid == K_S || kid == K_Q || kid == K_D
+		|| kid == K_Q || kid == K_E)
+	{
+		if (cur->type == 'S')
+			ft_movcoord(kid, &((t_sph *)(cur->obj))->pos, cam);
+		else if (cur->type == 'P')
+			ft_movcoord(kid, &((t_pla *)(cur->obj))->pos, cam);
+		else if (cur->type == 'C')
+			ft_movcoord(kid, &((t_cyl *)(cur->obj))->pos, cam);
+	}
+	else if (kid == K_LEFT || kid == K_RIGHT
+		|| kid == K_UP || kid == K_DOWN || kid == K_P || kid == K_M)
+	{
+		if (cur->type == 'P')
+			ft_movcoord(kid, &((t_pla *)(cur->obj))->dir, cam);
+		else if (cur->type == 'C')
+			ft_movcoord(kid, &((t_cyl *)(cur->obj))->dir, cam);
+	}
+	else if (kid == K_I && cur->type == 'S')
+		((t_sph *)(cur->obj))->dia *= 1.2;
+	else if (kid == K_I && cur->type == 'C')
+		((t_cyl *)(cur->obj))->dia *= 1.2;
+	else
+		ft_change_color(kid, cur);
 }

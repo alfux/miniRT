@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 14:46:20 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/30 13:34:55 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	ft_movcam(int kid, t_cam *cam)
 		ft_rota_y(cam, -6 * M_PI / 360);
 	else if (kid == K_D)
 		ft_rota_y(cam, 6 * M_PI / 360);
-	else if (kid == K_R)
+	else if (kid == K_Q)
 		ft_rota_z(cam, -6 * M_PI / 360);
-	else if (kid == K_T)
+	else if (kid == K_E)
 		ft_rota_z(cam, 6 * M_PI / 360);
 }
 
@@ -93,7 +93,7 @@ int	ft_keyhook(int kid, t_win *win)
 	else if (win->mod && !win->cur)
 		ft_movcam(kid, win->scn.cam);
 	else if (win->mod)
-		ft_movobj(kid, win->cur);
+		ft_movobj(kid, win->cur, win->scn.cam);
 	if (win->mod)
 		ft_render(win);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 14:51:58 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/30 13:30:32 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int			ft_exit(t_win *win, int status);
 //Key hooks
 int			ft_keyhook(int kid, t_win *win);
 int			ft_mousehook(int mid, int x, int y, t_win *win);
-void		ft_movobj(int mid, t_obj *cur);
+void		ft_movobj(int mid, t_obj *cur, t_cam *cam);
 
 //Rendering
 void		ft_render(t_win const *win);
