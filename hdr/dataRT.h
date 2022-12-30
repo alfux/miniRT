@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 14:25:51 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/30 14:30:45 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define K_Q 0
 # define K_S 1
 # define K_D 2
-# define K_Q 12
+# define K_A 12
 # define K_E 14
 # define K_L 37
 # define K_O 31
