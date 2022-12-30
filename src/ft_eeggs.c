@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 14:35:39 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 14:38:45 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/29 15:15:11 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void	ft_eeggs(t_cam *cam)
 {
 	cam->pov = ft_setvec(7.1, -7.9, -4.9);
 	cam->dir = ft_setvec(-0.318048, 0.662013, 0.678664);
-	cam->ver = ft_setvec(0.186221, 0.745511, -0.639949);
-	cam->hor = ft_setvec(0.929606, 0.077153, 0.360389);
+	cam->fov = (cam->fov * 360) / (2 * M_PI);
+	ft_setcam(cam);
 }

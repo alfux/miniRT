@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_sol.c                                        :+:      :+:    :+:   */
+/*   ft_getimp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 14:54:58 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 09:28:14 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/30 13:11:47 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/30 13:18:09 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-int	ft_is_sol(t_2x3 const *itr)
+t_imp	*ft_getimp(char const *file)
 {
-	if (!ft_is_val(&itr->top) || !ft_is_val(&itr->bot))
-		return (0);
-	return (1);
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return ((t_imp *)0);
 }
