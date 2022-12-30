@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 13:21:57 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/30 14:17:42 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,9 +194,9 @@ typedef struct s_win	t_win;
 //Index data structure
 struct					s_idx
 {
-	uint32_t	a;
-	uint32_t	b;
-	uint32_t	c;
+	size_t	a;
+	size_t	b;
+	size_t	c;
 };
 typedef struct s_idx	t_idx;
 
