@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 13:00:40 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/30 13:21:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # define K_COMA 43
 # define M_LEFT 1
 # define M_RIGHT 2
-# define M_SCROLL_UP 4
-# define M_SCROLL_DOWN 5
 
 //Screen resolution
 # define RESOLUTION 1280
@@ -76,6 +74,7 @@ struct					s_rgb
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
+	unsigned char	a;
 };
 typedef struct s_rgb	t_rgb;
 

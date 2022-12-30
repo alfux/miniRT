@@ -6,16 +6,14 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/29 00:28:44 by alfux            ###   ########.fr       */
+/*   Updated: 2022/12/30 13:17:08 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static int	ft_coord_format(char *str, char nb)
+static int	ft_coord_format(char *str, char nb, char digit)
 {
-	char	digit;
-
 	while (*str && nb < 3)
 	{
 		digit = 0;
@@ -46,7 +44,7 @@ int	ft_coord(t_vec *vec, char **str)
 {
 	while (**str && ft_isspace(**str))
 		(*str)++;
-	if (ft_coord_format(*str, 0))
+	if (ft_coord_format(*str, 0, 0))
 		return (4);
 	vec->x = ft_atof(*str);
 	while (**str && (ft_isdigit(**str) || **str == '.' || **str == '-'))
@@ -76,13 +74,34 @@ static int	ft_rgb_format(char *str)
 		nb++;
 		if (*str && *str == ',')
 			str++;
-		if (nb != 3 && (!ft_isdigit(*str) || !digit))
+		if (*str == '-' || (nb != 3 && (!ft_isdigit(*str) || !digit)))
 			return (1);
 	}
 	while (*str && ft_isspace(*str))
 		str++;
 	if (nb != 3 || *str)
 		return (1);
+	return (0);
+}
+
+static int	ft_opacity(t_rgb *rgb, char **str)
+{
+	int	op;
+
+	if (**str != ',')
+		rgb->a = 255;
+	else
+	{
+		(*str)++;
+		op = ft_atoi(*str);
+		if (op > 255 || op < 0)
+			return (5);
+		rgb->a = op;
+		while (**str && ft_isdigit(**str))
+		(*str)++;
+	}
+	while (**str && ft_isspace(**str))
+		(*str)++;
 	return (0);
 }
 
@@ -103,41 +122,11 @@ int	ft_rgb(t_rgb *rgb, char **str)
 	tmp[2] = ft_atoi(++*str);
 	while (**str && ft_isdigit(**str))
 		(*str)++;
-	while (**str && ft_isspace(**str))
-		(*str)++;
-	if (tmp[0] > 255 || tmp[1] > 255 || tmp[2] > 255)
+	if (tmp[0] > 255 || tmp[1] > 255 || tmp[2] > 255
+		|| tmp[0] < 0 || tmp[1] < 0 || tmp[2] < 0)
 		return (5);
 	rgb->r = (char)tmp[0];
 	rgb->g = (char)tmp[1];
 	rgb->b = (char)tmp[2];
-	return (0);
-}
-
-int	ft_pars_double(double *shr, char **str)
-{
-	size_t	i;
-
-	i = 0;
-	while (**str && ft_isspace(**str))
-		(*str)++;
-	if ((*str)[i] && (*str)[i] == '-')
-		i++;
-	while ((*str)[i] && ft_isdigit((*str)[i]))
-		i++;
-	if ((*str)[i] && (*str)[i] == '.')
-	{
-		if (!(*str)[i + 1] || !ft_isdigit((*str)[i + 1]))
-			return (1);
-		i++;
-	}
-	while ((*str)[i] && ft_isdigit((*str)[i]))
-		i++;
-	if (!i || ((*str)[i] && ((i == 1 && **str == '-')
-			|| !ft_isspace((*str)[i]))))
-		return (1);
-	*shr = ft_atof(*str);
-	*str += i;
-	while (**str && ft_isspace(**str))
-		(*str)++;
-	return (0);
+	return (ft_opacity(rgb, str));
 }
