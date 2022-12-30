@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/30 14:23:38 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/30 14:29:47 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_movcoord(int kid, t_vec *vec, t_cam *cam)
 		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->ver));
 	else if (kid == K_DOWN || kid == K_D)
 		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->ver));
-	else if (kid == K_P || kid == K_Q)
+	else if (kid == K_P || kid == K_A)
 		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->dir));
 	else if (kid == K_M || kid == K_E)
 		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->dir));
@@ -75,7 +75,7 @@ static void	ft_change_color(int kid, t_obj *cur)
 
 void	ft_movobj(int kid, t_obj *cur, t_cam *cam)
 {
-	if (kid == K_Z || kid == K_S || kid == K_Q || kid == K_D
+	if (kid == K_Z || kid == K_S || kid == K_A || kid == K_D
 		|| kid == K_Q || kid == K_E)
 	{
 		if (cur->type == 'S')

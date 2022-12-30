@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 13:34:55 by efunes           ###   ########.fr       */
+/*   Updated: 2022/12/30 14:29:58 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ft_movcam(int kid, t_cam *cam)
 		ft_rota_y(cam, -6 * M_PI / 360);
 	else if (kid == K_D)
 		ft_rota_y(cam, 6 * M_PI / 360);
-	else if (kid == K_Q)
+	else if (kid == K_A)
 		ft_rota_z(cam, -6 * M_PI / 360);
 	else if (kid == K_E)
 		ft_rota_z(cam, 6 * M_PI / 360);
