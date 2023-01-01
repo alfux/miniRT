@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 14:17:42 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/01 13:07:49 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define K_T 17
 # define K_L 37
 # define K_O 31
+# define K_A 12
+# define K_E 14
 # define K_SPACE 49
 # define K_COMA 43
 # define M_LEFT 1
@@ -189,14 +191,33 @@ struct					s_win
 };
 typedef struct s_win	t_win;
 
-//Bonus part
+//Bonus part--------------------------------------------------------------------
+
+//Data extraction lists
+struct					s_dat
+{
+	t_list	*v;
+	t_list	*vt;
+	t_list	*vn;
+	t_list	*f;
+};
+typedef struct s_dat	t_dat;
+
+//Vertex Texture Normal triplet
+struct					s_vtn
+{
+	size_t	v;
+	size_t	t;
+	size_t	n;
+};
+typedef struct s_vtn	t_vtn;
 
 //Index data structure
 struct					s_idx
 {
-	size_t	a;
-	size_t	b;
-	size_t	c;
+	t_vtn	a;
+	t_vtn	b;
+	t_vtn	c;
 };
 typedef struct s_idx	t_idx;
 
@@ -204,10 +225,11 @@ typedef struct s_idx	t_idx;
 struct					s_imp
 {
 	t_vec	*vtx;
+	t_vec	*txt;
 	t_vec	*nml;
 	t_idx	*idx;
 };
-typedef struct s_vtx	t_imp;
+typedef struct s_imp	t_imp;
 
 //Easter eggs
 # define EEGGS 111

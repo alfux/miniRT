@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 13:25:16 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/01 12:57:22 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ t_pla		*ft_newpla(t_vec pos, t_vec dir, t_rgb col);
 int			ft_pars_pla(t_obj **obj, char *str);
 t_cyl		*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col);
 int			ft_pars_cyl(t_obj **lig, char *str);
+char		ft_datatp(char const *line);
+int			ft_addelm(char const *line, t_dat *dat);
+t_imp		*ft_getimp(char const *file);
 
 //Object list manipulation
 t_obj		*ft_objnew(char type, void *obj);
@@ -51,6 +54,8 @@ void		ft_objadd(t_obj **obj, t_obj *add);
 void		ft_objdelone(t_obj *obj, void (*del)(void *));
 void		ft_objclear(t_obj **obj, void (*del)(void *));
 void		ft_camclear(t_cam **cam, void (*del)(void *));
+int			ft_lstadd_new(t_list **lst, void *content);
+int			ft_lstclear_return(t_list **lst, int ret);
 
 //Math tools
 double		ft_scalar(t_vec u, t_vec v);
@@ -73,6 +78,8 @@ int			ft_is_val(t_vec const *v);
 
 //Other tools
 int			ft_free(void *ptr);
+int			ft_cleardat(t_dat *dat);
+int			ft_delimp(t_imp *imp);
 uint32_t	ft_rgbtoi(t_rgb rgb);
 void		ft_print_scene(t_scn scn);
 void		ft_print_vect(t_vec v);
@@ -80,6 +87,9 @@ void		ft_print_inter_sph(t_vec ray, t_sph *sph, t_2x3 inter);
 int			ft_pars_double(double *shr, char **str);
 int			ft_rgb(t_rgb *rgb, char **str);
 int			ft_coord(t_vec *vec, char **str);
+int			ft_skipdigit(char const **str);
+int			ft_skipspace(char const **str);
+int			ft_skipnodigit(char const **str);
 
 //Memory free exits
 int			ft_exit_success(t_win *win);
