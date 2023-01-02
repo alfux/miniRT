@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 00:04:13 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/01 19:27:28 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,17 @@ int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
 t_rgb	ft_objrgb(t_obj const *obj)
 {
 	if (obj->type == 'S')
-	{
 		return (ft_setrgb(((t_sph *)obj->obj)->col.r,
 				((t_sph *)obj->obj)->col.g, ((t_sph *)obj->obj)->col.b));
-	}
 	else if (obj->type == 'P')
-	{
 		return (ft_setrgb(((t_pla *)obj->obj)->col.r,
 				((t_pla *)obj->obj)->col.g, ((t_pla *)obj->obj)->col.b));
-	}
 	else if (obj->type == 'C')
-	{
 		return (ft_setrgb(((t_cyl *)obj->obj)->col.r,
 				((t_cyl *)obj->obj)->col.g, ((t_cyl *)obj->obj)->col.b));
-	}
+	else if (obj->type == 'I')
+		return (ft_setrgb(((t_imp *)obj->obj)->col.r,
+				((t_imp *)obj->obj)->col.g, ((t_imp *)obj->obj)->col.b));
 	else
 		return (ft_setrgb(0, 0, 0));
 }
@@ -103,5 +100,6 @@ uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj)
 		}
 		obj = obj->next;
 	}
+	(void)sav;
 	return (ft_rgbtoi(ft_shades(win, sav, &vec, &rgb)));
 }

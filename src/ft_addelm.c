@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 12:44:12 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/01 12:54:47 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/01 17:22:25 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	ft_setvtn(char const **str, t_vtn *set)
 {
-	set->v = ft_atoi(*str);
+	set->v = ft_atoi(*str) - 1;
 	if (ft_skipdigit(str) || !ft_isdigit(*(++(*str))))
 		return (1);
-	set->t = ft_atoi(*str);
+	set->t = ft_atoi(*str) - 1;
 	if (ft_skipdigit(str) || !ft_isdigit(*(++(*str))))
 		return (1);
-	set->n = ft_atoi(*str);
+	set->n = ft_atoi(*str) - 1;
 	if (ft_skipdigit(str))
 		return (1);
 	return (0);

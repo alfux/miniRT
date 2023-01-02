@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/01 13:07:49 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/01 17:25:44 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ struct					s_imp
 	t_vec	*txt;
 	t_vec	*nml;
 	t_idx	*idx;
+	t_rgb	col;
 };
 typedef struct s_imp	t_imp;
 

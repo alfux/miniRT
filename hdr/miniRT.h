@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/01 12:57:22 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/01 18:36:34 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,13 @@ t_vec		ft_multlv(double l, t_vec v);
 t_vec		ft_multmv(t_3x3 m, t_vec v);
 t_vec		ft_sum_uv(t_vec u, t_vec v);
 t_vec		ft_dif_uv(t_vec u, t_vec v);
+t_vec		ft_provec(t_vec u, t_vec v);
 t_vec		ft_polyd2(t_vec coef);
 t_2x3		ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj);
 t_2x3		ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph);
 t_2x3		ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
 t_2x3		ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
+t_list		*ft_sysimp(t_vec const *dir, t_vec const *pov, t_imp const *imp);
 int			ft_is_sol(t_2x3 const *itr);
 int			ft_is_val(t_vec const *v);
 
