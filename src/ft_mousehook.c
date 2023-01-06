@@ -6,39 +6,79 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/28 04:21:53 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/06 15:28:19 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-void	ft_movobj(int mid, t_obj *cur)
+static t_list	*ft_closer_to_pov(t_list *itr, t_vec const *pov)
 {
-	(void)mid;
-	(void)cur;
+	t_list	*temp;
+	t_list	*clsr;
+	double	dist;
+	double	smlst;
+
+	temp = itr->next;
+	clsr = itr;
+	smlst = ft_distce(((t_itr *)clsr->content)->vtx, *pov);
+	while (temp)
+	{
+		dist = ft_distce(((t_itr *)temp->content)->vtx, *pov);
+		if (dist < smlst)
+		{
+			clsr = temp;
+			smlst = dist;
+		}
+		temp = temp->next;
+	}
+	return (clsr);
+}
+
+static void	ft_keep_face_cam(t_list **itr, t_vec const *pov, t_vec const *ray)
+{
+	t_list	*buf;
+	t_itr	*vtx;
+
+	while (*itr)
+	{
+		vtx = (*itr)->content;
+		if (ft_deadzn(&vtx->vtx, pov, DEADZONE)
+			|| ft_scalar(*ray, ft_nrmlze(ft_dif_uv(vtx->vtx, *pov))) < 0)
+		{
+			buf = *itr;
+			*itr = (*itr)->next;
+			ft_lstdelone(buf, &free);
+		}
+		else
+			itr = &(*itr)->next;
+	}
 }
 
 static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 				t_obj *obj)
 {
-	t_2x3	intr;
-	t_vec	tmp;
-	t_vec	vec;
+	t_list	*itr;
 	t_obj	*sav;
+	double	tdst;
+	double	dist;
 
-	vec = ft_setvec(NAN, NAN, NAN);
 	sav = (t_obj *)0;
+	dist = 0;
 	while (obj)
 	{
-		intr = ft_sysres(ray, &win->scn.cam->pov, obj);
-		if (ft_is_sol(&intr) && ft_face_cam(&intr, &win->scn.cam->pov, ray))
+		itr = ft_sysres(ray, &win->scn.cam->pov, obj);
+		if (itr == (void *)-1)
+			ft_exit_failure((t_win *)win, "malloc error: ");
+		if (itr)
+			ft_keep_face_cam(&itr, &win->scn.cam->pov, ray);
+		if (itr)
 		{
-			tmp = ft_closer_to_pov(&intr, &win->scn.cam->pov);
-			if (ft_iscloser(&vec, &tmp, &win->scn.cam->pov))
-			{
-				vec = tmp;
+			tdst = ft_distce(((t_itr *)ft_closer_to_pov(itr,
+							&win->scn.cam->pov)->content)->vtx,
+					win->scn.cam->pov);
+			if (tdst < dist || dist == 0)
 				sav = obj;
-			}
 		}
 		obj = obj->next;
 	}

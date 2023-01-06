@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_shdpla.c                                        :+:      :+:    :+:   */
+/*   ft_lstrem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 10:06:25 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 00:11:50 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/05 15:45:34 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/05 16:04:29 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-double	ft_shdpla(t_win const *win, t_pla const *pl, t_vec const *p)
+void	ft_lstrem(t_list **lst, t_list *rem)
 {
-	t_vec	*lpos;
-	t_vec	n;
-	t_vec	ldir;
-
-	lpos = &((t_lig *)win->scn.lig->obj)->pos;
-	n = pl->dir;
-	ldir = ft_nrmlze(ft_dif_uv(*lpos, *p));
-	if (ft_clside(p, &win->scn.cam->pov, &n, lpos))
-		return (fabs(ft_scalar(ldir, n)));
-	return (0);
+	if (!lst || !*lst || !rem)
+		return ;
+	while (*lst)
+	{
+		if (*lst == rem)
+		{
+			*lst = rem->next;
+			ft_lstdelone(rem, &free);
+			return ;
+		}
+		lst = &(*lst)->next;
+	}
 }

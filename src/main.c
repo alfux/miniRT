@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/01 18:50:06 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/06 16:08:37 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 //---------------TMP-FOR-TESTS-------------------------------------------------
 	imp = ft_getimp("models/cube.obj");
 	if (!imp)
-		ft_exit(&window, 1);
+		ft_exit_failure(&window, "error: ");
 	imp->col = ft_setrgb(255, 0, 0);
 	tmp = ft_objnew('I', imp);
 	if (!tmp)

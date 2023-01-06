@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/27 17:41:29 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/06 15:19:06 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ static void	ft_movcoord(int kid, t_vec *vec, t_cam *cam)
 void	ft_movrgb(int kid, t_rgb *rgb)
 {
 	if (kid == K_O)
+		;
 	else if (kid == K_L)
+		;
 }
 
 void	ft_movobj(int kid, t_obj *cur)

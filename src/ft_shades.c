@@ -3,69 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shades.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 09:36:48 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/05 17:21:09 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/06 16:55:39 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static int	ft_is_obstacle(t_2x3 const *i, t_vec const *vec, t_vec const *ldir,
+static int	ft_is_obs(t_list const *obs, t_vec const *vtx, t_vec const *ldir,
 				double norm)
 {
-	if (ft_is_sol(i))
-		if (((ft_scalar(ft_dif_uv(i->top, *vec), *ldir) > 0
-					&& ft_distce(i->top, *vec) < norm)
-				|| (ft_scalar(ft_dif_uv(i->bot, *vec), *ldir) > 0
-					&& ft_distce(i->bot, *vec) < norm)))
-			return (1);
-	return (0);
-}
+	t_itr	*itr;
 
-static int	ft_shadow(t_win const *win, t_vec const *vec, t_vec const *lpos)
-{
-	t_obj	*lst;
-	t_vec	ldir;
-	double	norm;
-	t_2x3	obs;
-
-	lst = win->scn.obj;
-	ldir = ft_nrmlze(ft_dif_uv(*lpos, *vec));
-	norm = ft_distce(*lpos, *vec);
-	while (lst)
+	while (obs)
 	{
-		obs = ft_sysres(&ldir, vec, lst);
-		if (ft_deadzn(&obs, vec, EPSILON) || ft_deadzn(&obs, lpos, DEADZONE))
-		{
-			lst = lst->next;
-			continue ;
-		}
-		if (ft_is_obstacle(&obs, vec, &ldir, norm))
+		itr = (t_itr *)obs->content;
+		if (ft_scalar(*ldir, ft_dif_uv(itr->vtx, *vtx)) > 0
+			&& ft_distce(itr->vtx, *vtx) < norm)
 			return (1);
-		lst = lst->next;
+		obs = obs->next;
 	}
 	return (0);
 }
 
-t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
-	t_rgb const *rgb)
+static void	ft_remdzn(t_list **obs, t_vec const *ctr, double rad)
+{
+	t_list	*buf;
+	t_itr	*vtx;
+
+	while (*obs)
+	{
+		vtx = (*obs)->content;
+		if (ft_deadzn(&vtx->vtx, ctr, rad))
+		{
+			buf = *obs;
+			*obs = (*obs)->next;
+			ft_lstdelone(buf, &free);
+		}
+		else
+			obs = &(*obs)->next;
+	}
+}
+
+static int	ft_shadow(t_win const *win, t_vec const *vtx, t_vec const *lpos)
+{
+	t_obj	*obj;
+	t_vec	ldir;
+	double	norm;
+	t_list	*obs;
+
+	obj = win->scn.obj;
+	ldir = ft_dif_uv(*lpos, *vtx);
+	norm = ft_norm(ldir);
+	ldir = ft_nrmlze(ldir);
+	while (obj)
+	{
+		obs = ft_sysres(&ldir, vtx, obj);
+		ft_remdzn(&obs, vtx, EPSILON);
+		ft_remdzn(&obs, lpos, DEADZONE);
+		if (!obs)
+			;
+		else if (ft_is_obs(obs, vtx, &ldir, norm))
+			return (ft_lstclear_return(&obs, 1));
+		ft_lstclear(&obs, &free);
+		obj = obj->next;
+	}
+	return (0);
+}
+
+t_rgb	ft_shades(t_win const *win, t_list *itr)
 {
 	double	i;
+	t_itr	*vtx;
+	t_lig	*lig;
 
-	if (!obj)
-		return (*rgb);
-	if (obj->type == 'S')
-		i = ft_shdsph(win, (t_sph *)obj->obj, vec);
-	else if (obj->type == 'P')
-		i = ft_shdpla(win, (t_pla *)obj->obj, vec);
-	else if (obj->type == 'C')
-		i = ft_shdcyl(win, (t_cyl *)obj->obj, vec);
+	vtx = itr->content;
+	lig = win->scn.lig->obj;
+	i = ft_scalar(vtx->nml, ft_nrmlze(ft_dif_uv(lig->pos, vtx->vtx)));
+	if (ft_scalar(vtx->nml, ft_dif_uv(win->scn.cam->pov, vtx->vtx)) * i < 0)
+		i = 0;
 	else
+		i = fabs(i);
+	if (ft_shadow(win, &vtx->vtx, &lig->pos))
 		i = 0;
-	if (i < 0 || ft_shadow(win, vec, &((t_lig *)win->scn.lig->obj)->pos))
-		i = 0;
-	i = ((t_lig *)win->scn.lig->obj)->rat * i + win->scn.amb.rat * (1 - i);
-	return (ft_setrgb(rgb->r * i, rgb->g * i, rgb->b * i));
+	i = i * lig->rat + (1 - i) * win->scn.amb.rat;
+	return (ft_setrgb(vtx->col.r * i, vtx->col.g * i, vtx->col.b * i));
 }

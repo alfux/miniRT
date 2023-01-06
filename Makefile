@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2023/01/01 18:12:07 by alfux            ###   ########.fr        #
+#    Updated: 2023/01/05 19:05:24 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,12 @@ HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	ft_provec.c ft_datatp.c ft_addelm.c ft_cleardat.c	\
+SSRC		=	ft_is_sol.c ft_syscyl.c	\
+				ft_cylhgt.c ft_provec.c ft_datatp.c ft_addelm.c ft_multmv.c	\
 				ft_skipnodigit.c ft_skipspace.c ft_skipdigit.c ft_delimp.c	\
 				ft_lstadd_new.c ft_lstclear_return.c ft_pars_double.c		\
-				ft_getimp.c ft_is_val.c ft_eeggs.c ft_deadzn.c ft_shdpla.c	\
-				ft_shdcyl.c ft_shdsph.c ft_clside.c ft_is_sol.c ft_syscyl.c	\
-				ft_syspla.c ft_syssph.c ft_tobase_cam.c ft_multmv.c			\
+				ft_getimp.c ft_is_val.c ft_eeggs.c ft_deadzn.c ft_lstrem.c	\
+				ft_syspla.c ft_syssph.c ft_tobase_cam.c ft_cleardat.c		\
 				ft_invmat.c ft_det3x3.c ft_nrmlze.c ft_dif_uv.c ft_rgbtoi.c	\
 				ft_shades.c ft_distce.c ft_sysres.c	ft_print_inter_sph.c	\
 				ft_set2x3.c ft_set3x3.c ft_polyd2.c ft_sum_uv.c ft_multlv.c	\

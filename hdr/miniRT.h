@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/01 18:36:34 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/05 21:27:02 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		ft_objclear(t_obj **obj, void (*del)(void *));
 void		ft_camclear(t_cam **cam, void (*del)(void *));
 int			ft_lstadd_new(t_list **lst, void *content);
 int			ft_lstclear_return(t_list **lst, int ret);
+void		ft_lstrem(t_list **lst, t_list *rem);
 
 //Math tools
 double		ft_scalar(t_vec u, t_vec v);
@@ -70,11 +71,12 @@ t_vec		ft_sum_uv(t_vec u, t_vec v);
 t_vec		ft_dif_uv(t_vec u, t_vec v);
 t_vec		ft_provec(t_vec u, t_vec v);
 t_vec		ft_polyd2(t_vec coef);
-t_2x3		ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj);
-t_2x3		ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph);
-t_2x3		ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
-t_2x3		ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
+t_list		*ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj);
 t_list		*ft_sysimp(t_vec const *dir, t_vec const *pov, t_imp const *imp);
+t_list		*ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph);
+t_list		*ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
+t_list		*ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
+double		ft_cylhgt(t_vec const *p, t_cyl const *c);
 int			ft_is_sol(t_2x3 const *itr);
 int			ft_is_val(t_vec const *v);
 
@@ -101,22 +103,19 @@ int			ft_exit(t_win *win, int status);
 //Key hooks
 int			ft_keyhook(int kid, t_win *win);
 int			ft_mousehook(int mid, int x, int y, t_win *win);
-void		ft_movobj(int mid, t_obj *cur);
 
 //Rendering
 void		ft_render(t_win const *win);
 t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
-t_vec		ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov);
 int			ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray);
 t_rgb		ft_objrgb(t_obj const *obj);
 int			ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
-int			ft_deadzn(t_2x3 *i, t_vec const *p, double dz);
+int			ft_deadzn(t_vec const *vec, t_vec const *ctr, double rad);
 double		ft_shdsph(t_win const *win, t_sph const *s, t_vec const *p);
 double		ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p);
 double		ft_shdpla(t_win const *win, t_pla const *pl, t_vec const *p);
-t_rgb		ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
-				t_rgb const *rgb);
+t_rgb		ft_shades(t_win const *win, t_list *itr);
 int			ft_clside(t_vec const *i, t_vec const *p, t_vec const *n,
 				t_vec const *l);
 

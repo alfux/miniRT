@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 15:55:31 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/01 18:15:00 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/06 15:24:17 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 t_vec	ft_provec(t_vec u, t_vec v)
 {
 	return (ft_setvec(u.y * v.z - u.z * v.y, u.z * v.x - u.x * v.z,
-		u.x * v.y - u.y * v.x));
+			u.x * v.y - u.y * v.x));
 }

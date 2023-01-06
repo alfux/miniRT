@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/01 17:25:44 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/06 15:49:30 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ struct					s_rgb
 	unsigned char	a;
 };
 typedef struct s_rgb	t_rgb;
+
+//Intersection data structure
+struct					s_itr
+{
+	t_vec	vtx;
+	t_vec	nml;
+	t_rgb	col;
+};
+typedef struct s_itr	t_itr;
 
 //Ambiant light data structure
 struct					s_amb
