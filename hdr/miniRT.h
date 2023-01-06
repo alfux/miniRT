@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/05 21:27:02 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/06 17:32:21 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,12 @@
 int			ft_pars(t_win *win, char *arg);
 t_win		ft_setwin(int width, int height, char *title);
 void		ft_setcam(t_cam *cam);
-t_win		ft_tobase_cam(t_win win);//Deprecated atm
 t_vec		ft_setvec(double x, double y, double z);
 t_rgb		ft_setrgb(unsigned char r, unsigned char g, unsigned char b);
 t_amb		ft_setamb(double rat, t_rgb col);
 int			ft_pars_amb(t_amb *amb, char *str);
 int			ft_pars_cam(t_cam **cam, char *str);
-t_lin		ft_setlin(t_vec pos, t_vec dir);
 t_3x3		ft_set3x3(t_vec lft, t_vec mid, t_vec rgt);
-t_2x3		ft_set2x3(t_vec top, t_vec bot);
 
 //Object allocation
 t_lig		*ft_newlig(t_vec pos, double rat, t_rgb col);
@@ -77,7 +74,6 @@ t_list		*ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph);
 t_list		*ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
 t_list		*ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
 double		ft_cylhgt(t_vec const *p, t_cyl const *c);
-int			ft_is_sol(t_2x3 const *itr);
 int			ft_is_val(t_vec const *v);
 
 //Other tools
@@ -87,7 +83,6 @@ int			ft_delimp(t_imp *imp);
 uint32_t	ft_rgbtoi(t_rgb rgb);
 void		ft_print_scene(t_scn scn);
 void		ft_print_vect(t_vec v);
-void		ft_print_inter_sph(t_vec ray, t_sph *sph, t_2x3 inter);
 int			ft_pars_double(double *shr, char **str);
 int			ft_rgb(t_rgb *rgb, char **str);
 int			ft_coord(t_vec *vec, char **str);
@@ -107,17 +102,9 @@ int			ft_mousehook(int mid, int x, int y, t_win *win);
 //Rendering
 void		ft_render(t_win const *win);
 t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
-int			ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray);
-t_rgb		ft_objrgb(t_obj const *obj);
-int			ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 int			ft_deadzn(t_vec const *vec, t_vec const *ctr, double rad);
-double		ft_shdsph(t_win const *win, t_sph const *s, t_vec const *p);
-double		ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p);
-double		ft_shdpla(t_win const *win, t_pla const *pl, t_vec const *p);
 t_rgb		ft_shades(t_win const *win, t_list *itr);
-int			ft_clside(t_vec const *i, t_vec const *p, t_vec const *n,
-				t_vec const *l);
 
 //Easter eggs
 void		ft_eeggs(t_cam *cam);

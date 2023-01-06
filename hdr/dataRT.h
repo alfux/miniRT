@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/06 15:49:30 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/06 17:28:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,6 @@ struct					s_3x3
 	t_vec	bot;
 };
 typedef struct s_3x3	t_3x3;
-
-//2x3 matrix structure
-struct					s_2x3
-{
-	t_vec	top;
-	t_vec	bot;
-};
-typedef struct s_2x3	t_2x3;
 
 //Color data structure
 struct					s_rgb
