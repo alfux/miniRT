@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:06:10 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/11 17:33:20 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/11 17:34:54 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	ft_pars_pbol(t_obj **obj, char *str)
 		|| ((t_pbol *)(new->obj))->dir.z < -1
 		|| ((t_pbol *)(new->obj))->dir.z > 1)
 		return (4);
+	((t_pbol *)(new->obj))->dir = ft_nrmlze(((t_pbol *)(new->obj))->dir);
 	return (ft_pars_hbol2(new, str));
 }
