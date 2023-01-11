@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/05 21:28:00 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/11 15:47:12 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int	ft_keyhook(int kid, t_win *win)
 		ft_eeggs(win->scn.cam);
 	else if (win->mod && !win->cur)
 		ft_movcam(kid, win->scn.cam);
+	else if (win->mod)
+		ft_movobj(kid, win->cur, win->scn.cam);
 	if (win->mod)
 		ft_render(win);
 	return (0);
