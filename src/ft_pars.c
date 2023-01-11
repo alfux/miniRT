@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/25 04:41:34 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/11 17:13:46 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 votre programme doit se fermer correctement et renvoyer "Error\n" suivi
 d’un message explicite de votre choix. */
 
-static int	ft_error_manager(int err, char *line)
+static int	ft_error_manager(int err, char *line, int fd)
 {
 	ft_putstr_fd("Error\n", 2);
+	if (fd)
+		close(fd);
 	if (line)
 		free(line);
 	if (!err && errno)
@@ -55,33 +57,35 @@ static int	ft_error_manager(int err, char *line)
 		ft_putstr_fd("invalid plan argument\n", 2);
 	else if (err == 15)
 		ft_putstr_fd("invalid sphere argument\n", 2);
+	else if (err == 16)
+		ft_putstr_fd("invalid hyperbol or parabol ratio\n", 2);
 	return (1);
 }
 
 static int	ft_new_elem(t_scn *scn, char *str)
 {
 	if (*str == 'A' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_amb(&(scn->amb), str + 1)); // A = lumiere ambiante
+		return (ft_pars_amb(&(scn->amb), str + 1));
 	else if (*str == 'C' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_cam(&(scn->cam), str + 1)); // C = camera
+		return (ft_pars_cam(&(scn->cam), str + 1));
 	else if (*str == 'L' && str[1] && ft_isspace(str[1]))
-		return (ft_pars_light(&(scn->lig), str + 1)); // L = lumiere
+		return (ft_pars_light(&(scn->lig), str + 1));
 	else if (*str && str[1] && str[2] && ft_isspace(str[2]))
 	{
 		if (*str == 'c' && str[1] && str[1] == 'o')
-			return (0);// co = cone
+			return (ft_pars_cone(&(scn->obj), str + 2));
 		else if (*str == 'c' && str[1] && str[1] == 'y')
-			return (ft_pars_cyl(&(scn->obj), str + 2)); // cy = cylindre
+			return (ft_pars_cyl(&(scn->obj), str + 2));
 		else if (*str == 'h' && str[1] && str[1] == 'y')
-			return (0);// hy = Hyperboloïde
+			return (ft_pars_hbol(&(scn->obj), str + 2));
 		else if (*str == 'p' && str[1] && str[1] == 'a')
-			return (0);// pa = Paraboloïde
+			return (ft_pars_pbol(&(scn->obj), str + 2));
 		else if (*str == 'p' && str[1] && str[1] == 'l')
-			return (ft_pars_pla(&(scn->obj), str + 2)); // pl = plan
+			return (ft_pars_pla(&(scn->obj), str + 2));
 		else if (*str == 's' && str[1] && str[1] == 'p')
-			return (ft_pars_sph(&(scn->obj), str + 2));// sp = sphere
+			return (ft_pars_sph(&(scn->obj), str + 2));
 	}
-	return (1);
+	return (2);
 }
 
 static int	ft_valid_extension_name(char *str)
@@ -93,7 +97,7 @@ static int	ft_valid_extension_name(char *str)
 		return (1);
 	if (str[i] == 't' && str[i - 1] == 'r' && str[i - 2] == '.')
 		return (0);
-	return (2);
+	return (1);
 }
 
 int	ft_pars(t_win *win, char *arg)
@@ -104,10 +108,10 @@ int	ft_pars(t_win *win, char *arg)
 	size_t	i;
 
 	if (ft_valid_extension_name(arg))
-		return (ft_error_manager(1, NULL));
+		return (ft_error_manager(1, NULL, 0));
 	fd = open(arg, O_RDONLY);
 	if (fd < 2)
-		return (ft_error_manager(0, NULL)); // Bad file descriptor
+		return (ft_error_manager(0, NULL, 0));
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -118,11 +122,12 @@ int	ft_pars(t_win *win, char *arg)
 		if (line[i])
 			err = ft_new_elem(&win->scn, line + i);
 		if (err)
-			return (ft_error_manager(err, line)); // free la memoire utilise // close fd
+			return (ft_error_manager(err, line, fd));
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (!win->scn.cam)
-		return (ft_error_manager(3, NULL)); // No cam found // free memoire // close fd
+		return (ft_error_manager(3, NULL, fd));
+	close (fd);
 	return (0);
 }

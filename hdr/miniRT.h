@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 14:26:04 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/11 17:05:47 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ t_pla		*ft_newpla(t_vec pos, t_vec dir, t_rgb col);
 int			ft_pars_pla(t_obj **obj, char *str);
 t_cyl		*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col);
 int			ft_pars_cyl(t_obj **lig, char *str);
+int			ft_pars_pbol(t_obj **obj, char *str);
+int			ft_pars_hbol(t_obj **obj, char *str);
+int			ft_pars_cone(t_obj **obj, char *str);
 
 //Object list manipulation
 t_obj		*ft_objnew(char type, void *obj);

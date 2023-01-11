@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 14:30:45 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/11 17:03:39 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,39 @@ struct					s_sph
 	t_rgb	col;
 };
 typedef struct s_sph	t_sph;
+
+//parabol
+struct					s_pbol
+{
+	double	dia;
+	t_vec	pos;
+	t_vec	rat;
+	t_vec	dir;
+	t_rgb	col;
+};
+typedef struct s_pbol	t_pbol;
+
+//hyperbol
+struct					s_hbol
+{
+	double	dia;
+	t_vec	pos;
+	t_vec	rat;
+	t_vec	dir;
+	t_rgb	col;
+};
+typedef struct s_hbol	t_hbol;
+
+//hyperbol
+struct					s_cone
+{
+	double	dia;
+	double	hgt;
+	t_vec	pos;
+	t_vec	dir;
+	t_rgb	col;
+};
+typedef struct s_cone	t_co;
 
 //Plane data structre
 struct					s_pla
