@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/11 12:26:34 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/11 15:27:03 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ft_mousehook(int mid, int x, int y, t_win *win)
 	printf("Mouse - Keycode: %i\n", mid);
 	if (mid == M_LEFT)
 	{
-		ray = ft_getdir(win, x, y);
+		ray = ft_getdir(win, y, x);
 		win->cur = ft_obj_select(win, &ray, win->scn.obj);
 	}
 	else if (mid == M_RIGHT)

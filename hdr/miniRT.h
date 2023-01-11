@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/06 17:32:21 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/11 15:14:59 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_list		*ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
 t_list		*ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
 double		ft_cylhgt(t_vec const *p, t_cyl const *c);
 int			ft_is_val(t_vec const *v);
+t_rgb		ft_addrgb(t_rgb const *c1, t_rgb const *c2);
 
 //Other tools
 int			ft_free(void *ptr);
