@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:48:19 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 12:42:46 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/11 15:45:08 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@ t_pla	*ft_newpla(t_vec pos, t_vec dir, t_rgb col)
 	return (new);
 }
 
-static int	ft_pars2_pla(char *str, t_obj **obj, t_obj *new)
-{
-	if (*str)
-		return (15);
-	if (!(*obj))
-		*obj = new;
-	else
-		ft_objadd(obj, new);
-	return (0);
-}
-
 int	ft_pars_pla(t_obj **obj, char *str)
 {
 	t_obj	*new;
@@ -46,10 +35,8 @@ int	ft_pars_pla(t_obj **obj, char *str)
 	new->type = 'P';
 	new->obj = (t_pla *)ft_calloc(1, sizeof (t_pla));
 	if (!new->obj)
-	{
-		free(new);
-		return (6);
-	}
+		return (6 + ft_free(new));
+	ft_objadd(obj, new);
 	if (ft_coord(&((t_pla *)(new->obj))->pos, &str))
 		return (4);
 	if (ft_coord(&((t_pla *)(new->obj))->dir, &str)
@@ -61,5 +48,7 @@ int	ft_pars_pla(t_obj **obj, char *str)
 	((t_pla *)(new->obj))->dir = ft_nrmlze(((t_pla *)(new->obj))->dir);
 	if (ft_rgb(&((t_pla *)(new->obj))->col, &str))
 		return (5);
-	return (ft_pars2_pla(str, obj, new));
+	if (*str)
+		return (15);
+	return (0);
 }

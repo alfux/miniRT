@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:51:26 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 15:33:09 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/11 15:46:05 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,8 @@ int	ft_pars_cyl(t_obj **obj, char *str)
 	new->type = 'C';
 	new->obj = (t_cyl *)ft_calloc(1, sizeof (t_cyl));
 	if (!new->obj)
-	{
-		free(new);
-		return (6);
-	}
-	if (!(*obj))
-		*obj = new;
-	else
-		ft_objadd(obj, new);
+		return (6 + ft_free(new));
+	ft_objadd(obj, new);
 	if (ft_coord(&((t_cyl *)(new->obj))->pos, &str))
 		return (4);
 	return (ft_pars2_cyl(str, new));

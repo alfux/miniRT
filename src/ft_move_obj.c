@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/30 16:08:48 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/11 15:52:51 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	ft_change_color(int kid, t_obj *cur)
 	else if (kid == K_K && cur->type == 'C')
 		((t_cyl *)(cur->obj))->dia /= 1.2;
 	else if (kid == K_O && cur->type == 'C')
-		((t_cyl *)(cur->obj))->hgt /= 1.2;
+		((t_cyl *)(cur->obj))->hgt *= 1.2;
 	else if (kid == K_L && cur->type == 'C')
 		((t_cyl *)(cur->obj))->hgt /= 1.2;
 	else if (kid == K_F || kid == K_G || kid == K_H || kid == K_J
