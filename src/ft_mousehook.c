@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/06 15:28:19 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/11 12:26:34 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 							&win->scn.cam->pov)->content)->vtx,
 					win->scn.cam->pov);
 			if (tdst < dist || dist == 0)
-				sav = obj;
+				sav = obj + ft_lstclear_return(&itr, 0);
 		}
 		obj = obj->next;
 	}
