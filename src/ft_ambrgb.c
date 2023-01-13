@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cleardat.c                                      :+:      :+:    :+:   */
+/*   ft_ambrgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 19:40:23 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/31 19:42:19 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/11 17:51:23 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/13 14:14:03 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-int	ft_cleardat(t_dat *dat)
+t_rgb	ft_ambrgb(t_rgb const *rgb, t_amb const *amb)
 {
-	ft_lstclear(&dat->v, &free);
-	ft_lstclear(&dat->vt, &free);
-	ft_lstclear(&dat->vn, &free);
-	ft_lstclear(&dat->f, &free);
-	return (0);
+	t_rgb	res;
+
+	res.r = amb->col.r * amb->rat * rgb->r / 255;
+	res.g = amb->col.g * amb->rat * rgb->g / 255;
+	res.b = amb->col.b * amb->rat * rgb->b / 255;
+	return (res);
 }

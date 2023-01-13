@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 15:45:58 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:43:38 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,13 @@ t_list		*ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
 t_list		*ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
 double		ft_cylhgt(t_vec const *p, t_cyl const *c);
 int			ft_is_val(t_vec const *v);
-t_rgb		ft_addrgb(t_rgb const *c1, t_rgb const *c2);
+t_rgb		ft_addrgb(t_rgb c1, t_rgb c2);
+t_rgb		ft_ligrgb(t_rgb const *rgb, t_lig const *lig, double i);
+t_rgb		ft_ambrgb(t_rgb const *rgb, t_amb const *amb);
 
 //Other tools
 int			ft_free(void *ptr);
-int			ft_cleardat(t_dat *dat);
+int			ft_clrdat(t_dat *dat);
 int			ft_delimp(t_imp *imp);
 uint32_t	ft_rgbtoi(t_rgb rgb);
 void		ft_print_scene(t_scn scn);

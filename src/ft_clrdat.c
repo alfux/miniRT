@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_addrgb.c                                        :+:      :+:    :+:   */
+/*   ft_clrdat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 14:32:52 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/13 15:08:09 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/31 19:40:23 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/11 17:54:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-t_rgb	ft_addrgb(t_rgb c1, t_rgb c2)
+int	ft_clrdat(t_dat *dat)
 {
-	uint16_t	r;
-	uint16_t	g;
-	uint16_t	b;
-	uint16_t	max;
-
-	r = c1.r + c2.r;
-	g = c1.g + c2.g;
-	b = c1.b + c2.b;
-	max = fmax(fmax(r, g), b);
-	if (r > 255 || g > 255 || b > 255)
-		return (ft_setrgb(r * 255 / max, g * 255 / max, b * 255 / max));
-	return (ft_setrgb(r, g, b));
+	ft_lstclear(&dat->v, &free);
+	ft_lstclear(&dat->vt, &free);
+	ft_lstclear(&dat->vn, &free);
+	ft_lstclear(&dat->f, &free);
+	return (0);
 }

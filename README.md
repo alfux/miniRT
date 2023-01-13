@@ -17,6 +17,7 @@
 <br />☛ Wednesday December 28th 04:28: We can now move camera properly in low resolution
 <br />☛ Thursday December 29th 01:12: Changed float for double to improve precision
 <br />☛	Friday January 6th 17:17: Added full support of .obj files. (Heavy operations tho)
+<br />☛	Friday Janyary 13th 15:09: Added multi-lightning and color-lightning
 ## Bonus ideas
 ☛ Anti-aliasing ?
 <br />☛ Use of GPU to have a moving camera ?

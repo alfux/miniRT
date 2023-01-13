@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:21:09 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/06 16:55:39 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:42:02 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,27 @@ static int	ft_shadow(t_win const *win, t_vec const *vtx, t_vec const *lpos)
 t_rgb	ft_shades(t_win const *win, t_list *itr)
 {
 	double	i;
+	t_obj	*lst;
 	t_itr	*vtx;
 	t_lig	*lig;
+	t_rgb	rgb;
 
 	vtx = itr->content;
-	lig = win->scn.lig->obj;
-	i = ft_scalar(vtx->nml, ft_nrmlze(ft_dif_uv(lig->pos, vtx->vtx)));
-	if (ft_scalar(vtx->nml, ft_dif_uv(win->scn.cam->pov, vtx->vtx)) * i < 0)
-		i = 0;
-	else
-		i = fabs(i);
-	if (ft_shadow(win, &vtx->vtx, &lig->pos))
-		i = 0;
-	i = i * lig->rat + (1 - i) * win->scn.amb.rat;
-	return (ft_setrgb(vtx->col.r * i, vtx->col.g * i, vtx->col.b * i));
+	lst = win->scn.lig;
+	rgb = ft_setrgb(0, 0, 0);
+	while (lst)
+	{
+		lig = lst->obj;
+		i = ft_scalar(vtx->nml, ft_nrmlze(ft_dif_uv(lig->pos, vtx->vtx)));
+		if (ft_scalar(vtx->nml, ft_dif_uv(win->scn.cam->pov, vtx->vtx)) * i < 0)
+			i = 0;
+		else
+			i = fabs(i);
+		if (ft_shadow(win, &vtx->vtx, &lig->pos))
+			i = 0;
+		rgb = ft_addrgb(rgb, ft_ligrgb(&vtx->col, lig, i));
+		lst = lst->next;
+	}
+	rgb = ft_addrgb(rgb, ft_ambrgb(&vtx->col, &win->scn.amb));
+	return (rgb);
 }
