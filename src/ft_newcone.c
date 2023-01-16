@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:57:50 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/11 17:05:31 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/16 19:45:04 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_pars_cone(t_obj **obj, char *str)
 	new = (t_obj *)ft_calloc(1, sizeof (t_obj));
 	if (!new)
 		return (6);
-	new->type = 'S';
+	new->type = 'c';
 	new->obj = (t_co *)ft_calloc(1, sizeof (t_co));
 	if (!new->obj)
 		return (6 + ft_free(new));

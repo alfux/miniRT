@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 17:03:39 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/16 19:44:17 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,16 @@ struct					s_sph
 	t_rgb	col;
 };
 typedef struct s_sph	t_sph;
+
+//Ellipse data structure
+struct					s_ell
+{
+	double	dia;
+	t_vec	pos;
+	t_vec	rat;
+	t_rgb	col;
+};
+typedef struct s_ell	t_ell;
 
 //parabol
 struct					s_pbol

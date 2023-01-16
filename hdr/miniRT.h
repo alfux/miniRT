@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 17:05:47 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/16 14:21:45 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			ft_pars_cyl(t_obj **lig, char *str);
 int			ft_pars_pbol(t_obj **obj, char *str);
 int			ft_pars_hbol(t_obj **obj, char *str);
 int			ft_pars_cone(t_obj **obj, char *str);
+int			ft_pars_ell(t_obj **obj, char *str);
 
 //Object list manipulation
 t_obj		*ft_objnew(char type, void *obj);
@@ -73,6 +74,7 @@ t_2x3		ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
 t_2x3		ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
 int			ft_is_sol(t_2x3 const *itr);
 int			ft_is_val(t_vec const *v);
+t_2x3		ft_sysell(t_vec const *dir, t_vec const *pov, t_ell const *ell);
 
 //Other tools
 int			ft_free(void *ptr);

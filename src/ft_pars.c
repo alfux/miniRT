@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/11 17:13:46 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/16 14:06:11 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_error_manager(int err, char *line, int fd)
 	else if (err == 15)
 		ft_putstr_fd("invalid sphere argument\n", 2);
 	else if (err == 16)
-		ft_putstr_fd("invalid hyperbol or parabol ratio\n", 2);
+		ft_putstr_fd("invalid hyperbol or parabol or ellipse ratio\n", 2);
 	return (1);
 }
 
@@ -84,6 +84,8 @@ static int	ft_new_elem(t_scn *scn, char *str)
 			return (ft_pars_pla(&(scn->obj), str + 2));
 		else if (*str == 's' && str[1] && str[1] == 'p')
 			return (ft_pars_sph(&(scn->obj), str + 2));
+		else if (*str == 'e' && str[1] && str[1] == 'l')
+			return (ft_pars_ell(&(scn->obj), str + 2));
 	}
 	return (2);
 }

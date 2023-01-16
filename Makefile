@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2022/12/30 16:09:46 by efunes           ###   ########.fr        #
+#    Updated: 2023/01/16 19:45:58 by efunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SSRC		=	ft_pars_double.c ft_move_obj.c 	\
 				ft_setvec.c ft_setrgb.c ft_setamb.c ft_setcam.c ft_newlig.c	\
 				ft_newsph.c ft_newpla.c ft_newcyl.c ft_setlin.c ft_scalar.c	\
 				ft_objdelone.c ft_objclear.c ft_objnew.c ft_objadd.c main.c	\
-				ft_pars_coord_rgb.c ft_pars.c ft_mousehook.c				\
+				ft_pars_coord_rgb.c ft_pars.c ft_mousehook.c ft_sysell.c	\
+				ft_newell.c ft_newcone.c ft_newhbol.c ft_newpbol.c 			\
 
 SRC			=	$(SSRC:%=$(SDIR)%)
 
