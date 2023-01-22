@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 00:04:13 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/22 15:37:09 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
 t_rgb	ft_objrgb(t_obj const *obj)
 {
 	if (obj->type == 'S')
-	{
 		return (ft_setrgb(((t_sph *)obj->obj)->col.r,
 				((t_sph *)obj->obj)->col.g, ((t_sph *)obj->obj)->col.b));
-	}
 	else if (obj->type == 'P')
-	{
 		return (ft_setrgb(((t_pla *)obj->obj)->col.r,
 				((t_pla *)obj->obj)->col.g, ((t_pla *)obj->obj)->col.b));
-	}
 	else if (obj->type == 'C')
-	{
 		return (ft_setrgb(((t_cyl *)obj->obj)->col.r,
 				((t_cyl *)obj->obj)->col.g, ((t_cyl *)obj->obj)->col.b));
-	}
+	else if (obj->type == 'e')
+		return (ft_setrgb(((t_ell *)obj->obj)->col.r,
+				((t_ell *)obj->obj)->col.g, ((t_ell *)obj->obj)->col.b));
+	else if (obj->type == 'p')
+		return (ft_setrgb(((t_pbol *)obj->obj)->col.r,
+				((t_pbol *)obj->obj)->col.g, ((t_pbol *)obj->obj)->col.b));
 	else
 		return (ft_setrgb(0, 0, 0));
 }

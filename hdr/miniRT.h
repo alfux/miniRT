@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/16 14:21:45 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/22 15:34:55 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_2x3		ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj);
 t_2x3		ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph);
 t_2x3		ft_syspla(t_vec const *dir, t_vec const *pov, t_pla const *pla);
 t_2x3		ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
+t_2x3		ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl);
 int			ft_is_sol(t_2x3 const *itr);
 int			ft_is_val(t_vec const *v);
 t_2x3		ft_sysell(t_vec const *dir, t_vec const *pov, t_ell const *ell);
@@ -112,6 +113,7 @@ t_rgb		ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 				t_rgb const *rgb);
 int			ft_clside(t_vec const *i, t_vec const *p, t_vec const *n,
 				t_vec const *l);
+double		ft_shdell(t_win const *win, t_ell const *s, t_vec const *p);
 
 //Easter eggs
 void		ft_eeggs(t_cam *cam);

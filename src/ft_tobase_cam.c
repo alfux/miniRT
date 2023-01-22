@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tobase_cam.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 09:32:12 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/20 16:58:08 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/22 15:37:58 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
 static void	ft_objlst_tobase(t_3x3 *m, t_obj *lst)
@@ -19,6 +20,8 @@ static void	ft_objlst_tobase(t_3x3 *m, t_obj *lst)
 			((t_lig *)lst->obj)->pos = ft_multmv(*m, ((t_lig *)lst->obj)->pos);
 		else if (lst->type == 'S')
 			((t_sph *)lst->obj)->pos = ft_multmv(*m, ((t_sph *)lst->obj)->pos);
+		else if (lst->type == 'e')
+			((t_ell *)lst->obj)->pos = ft_multmv(*m, ((t_ell *)lst->obj)->pos);
 		else if (lst->type == 'P')
 		{
 			((t_pla *)lst->obj)->pos = ft_multmv(*m, ((t_pla *)lst->obj)->pos);
@@ -28,6 +31,11 @@ static void	ft_objlst_tobase(t_3x3 *m, t_obj *lst)
 		{
 			((t_cyl *)lst->obj)->pos = ft_multmv(*m, ((t_cyl *)lst->obj)->pos);
 			((t_cyl *)lst->obj)->dir = ft_multmv(*m, ((t_cyl *)lst->obj)->dir);
+		}
+		else if (lst->type == 'p')
+		{
+			((t_pbol *)lst->obj)->pos = ft_multmv(*m, ((t_pbol *)lst->obj)->pos);
+			((t_pbol *)lst->obj)->dir = ft_multmv(*m, ((t_pbol *)lst->obj)->dir);
 		}
 		lst = lst->next;
 	}

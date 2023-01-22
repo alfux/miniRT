@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/16 19:44:17 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/22 16:07:54 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define M_RIGHT 2
 
 //Screen resolution
-# define RESOLUTION 1280
+# define RESOLUTION 2560
 # define LOW_R 80
 
 //Constants

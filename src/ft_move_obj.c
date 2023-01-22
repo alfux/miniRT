@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/11 15:52:51 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/22 16:02:38 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	ft_rota_obj(t_vec *vec, t_cam *cam, double theta, char id)
 	*vec = ft_multmv(ft_invmat(m), *vec);
 	if (id == 'H')
 	{
-		vec->y = vec->y * cos(theta) - vec->z * sin(theta);
-		vec->z = vec->z * cos(theta) + vec->y * sin(theta);
+		vec->x = vec->x * cos(theta - vec->y * sin(theta));
+		vec->y = vec->y * cos(theta) + vec->x * sin(theta);
 	}
 	else if (id == 'V')
 	{
@@ -30,8 +30,8 @@ static void	ft_rota_obj(t_vec *vec, t_cam *cam, double theta, char id)
 	}
 	else if (id == 'D')
 	{
-		vec->x = vec->x * cos(theta - vec->y * sin(theta));
-		vec->y = vec->y * cos(theta) + vec->x * sin(theta);
+		vec->y = vec->y * cos(theta) - vec->z * sin(theta);
+		vec->z = vec->z * cos(theta) + vec->y * sin(theta);
 	}
 	*vec = ft_multmv(m, *vec);
 }
@@ -114,9 +114,9 @@ void	ft_movobj(int kid, t_obj *cur, t_cam *cam)
 		if (cur->type == 'S')
 			ft_movcoord(kid, &((t_sph *)(cur->obj))->pos, cam);
 		else if (cur->type == 'P')
-			ft_movcoord(kid, &((t_pla *)(cur->obj))->pos, cam);
+			ft_movcoord(kid, &((t_pla *)(cur->obj))->dir, cam);
 		else if (cur->type == 'C')
-			ft_movcoord(kid, &((t_cyl *)(cur->obj))->pos, cam);
+			ft_movcoord(kid, &((t_cyl *)(cur->obj))->dir, cam);
 	}
 	else if (kid == K_LEFT || kid == K_RIGHT
 		|| kid == K_UP || kid == K_DOWN || kid == K_P || kid == K_M)

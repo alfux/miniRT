@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:22:41 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 09:36:48 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/22 10:35:17 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ t_rgb	ft_shades(t_win const *win, t_obj const *obj, t_vec const *vec,
 		i = ft_shdpla(win, (t_pla *)obj->obj, vec);
 	else if (obj->type == 'C')
 		i = ft_shdcyl(win, (t_cyl *)obj->obj, vec);
+	else if (obj->type == 'e')
+		i = ft_shdell(win, (t_ell *)obj->obj, vec);
 	else
 		i = 0;
 	if (i < 0 || ft_shadow(win, vec, &((t_lig *)win->scn.lig->obj)->pos))

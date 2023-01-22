@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/16 19:49:14 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/22 15:36:19 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ t_2x3	ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj)
 				return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
 //return (ft_sys***(dir, pov, (t_*** *)obj->obj));
 	else if (obj->type == 'p')
-				return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
-//return (ft_syspbol(dir, pov, (t_pbol *)obj->obj));
+		return (ft_syspbl(dir, pov, (t_pbol *)obj->obj));
 	else if (obj->type == 'e')
 		return (ft_sysell(dir, pov, (t_ell *)obj->obj));
 	else
