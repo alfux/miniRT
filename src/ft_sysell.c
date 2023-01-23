@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/22 12:54:46 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/23 13:12:30 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,23 @@ static t_2x3	ft_sysellx(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 {
 	t_vec	util;
 	t_vec	sol;
+	double	d_y;
+	double	d_z;
 	// t_2x3	res;
 
 (void)pov;
-	sol = ft_polyd2(ft_setvec(pow(ell->rat.x, 2) * (pow(ell->rat.z * dir->y / dir->x, 2) + pow(ell->rat.y * dir->z / dir->x, 2)) + pow(ell->rat.y * ell->rat.z, 2), 0, pow(ell->rat.x * ell->rat.y * ell->rat.z * ell->dia, 2) * -1/*pow(ell->rat.y * ell->rat.z, 2)
-				+ pow(ell->rat.x, 2) / pow(dir->x, 2) * (pow(dir->y
+	d_y = dir->x * (ell->pos.z - pov->z) - dir->z * (ell->pos.x - pov->x);
+	d_z = dir->y * (ell->pos.x - pov->x) - dir->x * (ell->pos.y - pov->y);
+	sol = ft_polyd2(ft_setvec(pow(ell->rat.y * ell->rat.z, 2)
+				+ pow(ell->rat.x / dir->x, 2) * (pow(dir->y
+						* ell->rat.z, 2) + pow(dir->z * ell->rat.y, 2)),
+				2 * pow(ell->rat.x / dir->x, 2) * (dir->y * d_y
+					* pow(ell->rat.z, 2) - dir->z * d_z
+					* pow(ell->rat.y, 2)), (d_z * d_z + d_y * d_y)
+					/ pow(dir->x, 2) - pow(ell->rat.x * ell->rat.y
+					* ell->rat.z, 2) * ell->dia
+		/*pow(ell->rat.y * ell->rat.z, 2)
+				+ pow(ell->rat.x / dir->x, 2) * (pow(dir->y
 						* ell->rat.z, 2) + pow(dir->z * ell->rat.y, 2)),
 				2 * pow(ell->rat.x, 2) * ((pow(dir->y * ell->rat.z, 2)
 						+ pow(dir->z * ell->rat.y, 2)) / pow(dir->x, 2)
@@ -33,8 +45,8 @@ static t_2x3	ft_sysellx(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 						* (ell->pos.x - pov->x) + pov->z - ell->pos.z, 2)
 					* pow(ell->rat.y, 2)) - pow(ell->rat.x * ell->rat.y
 					* ell->rat.z * ell->dia, 2)*/));
-	util.z = 0/*dir->z / dir->x * (pov->x - ell->pos.x) + pov->z - ell->pos.z*/;
-	util.y = 0/*dir->y / dir->x * (pov->x - ell->pos.x) + pov->y - ell->pos.y*/;
+	util.z = dir->z / dir->x * (pov->x - ell->pos.x) + pov->z - ell->pos.z;
+	util.y = dir->y / dir->x * (pov->x - ell->pos.x) + pov->y - ell->pos.y;
 	if (isnan(sol.x) || isnan(sol.y))
 		return (ft_set2x3(sol, sol));
 	// res.top.x = sol.x;
@@ -54,10 +66,22 @@ static t_2x3	ft_syselly(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 {
 	t_vec	util;
 	t_vec	sol;
+	double	d_x;
+	double	d_z;
 	// t_2x3	res;
 
 (void)pov;
-	sol = ft_polyd2(ft_setvec(pow(ell->rat.y, 2) * (pow(ell->rat.z * dir->x / dir->y, 2) + pow(ell->rat.x * dir->z / dir->y, 2)) + pow(ell->rat.x * ell->rat.z, 2), 0, pow(ell->rat.x * ell->rat.y * ell->rat.z * ell->dia, 2) * -1/*pow(ell->rat.x, 2) * pow(ell->rat.z, 2)
+	d_x = dir->y * (ell->pos.x - pov->x) - dir->x * (ell->pos.y - pov->y);
+	d_z = dir->z * (ell->pos.y - pov->y) - dir->y * (ell->pos.z - pov->x);
+	sol = ft_polyd2(ft_setvec(pow(ell->rat.x * ell->rat.z, 2)
+				+ pow(ell->rat.y / dir->y, 2) * (pow(dir->z
+						* ell->rat.x, 2) + pow(dir->x * ell->rat.z, 2)),
+				2 * pow(ell->rat.y / dir->y, 2) * (dir->z * d_z
+					* pow(ell->rat.x, 2) - dir->x * d_x
+					* pow(ell->rat.z, 2)), (d_z * d_z + d_x * d_x)
+					/ pow(dir->y, 2) - pow(ell->rat.x * ell->rat.y
+					* ell->rat.z, 2) * ell->dia
+		/*pow(ell->rat.x, 2) * pow(ell->rat.z, 2)
 				+ pow(ell->rat.y, 2) / pow(dir->y, 2) * (pow(dir->x, 2)
 					* pow(ell->rat.z, 2) + pow(dir->z, 2) * pow(ell->rat.x, 2)),
 				2 * pow(ell->rat.y, 2) * ((pow(dir->x, 2) * pow(ell->rat.z, 2)
@@ -90,10 +114,21 @@ static t_2x3	ft_sysellz(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 {
 	t_vec	util;
 	t_vec	sol;
+	double	d_x;
+	double	d_y;
 	// t_2x3	res;
 
 (void)pov;
-	sol = ft_polyd2(ft_setvec(pow(ell->rat.z, 2) * (pow(ell->rat.x * dir->x / dir->z, 2) + pow(ell->rat.y * dir->y / dir->z, 2)) + pow(ell->rat.x * ell->rat.y, 2), 0, pow(ell->rat.x * ell->rat.y * ell->rat.z * ell->dia, 2) * -1/*pow(ell->rat.x, 2) * pow(ell->rat.y, 2)
+	d_x = dir->x * (ell->pos.z - pov->z) - dir->z * (ell->pos.x - pov->x);
+	d_y = dir->z * (ell->pos.y - pov->y) - dir->y * (ell->pos.z - pov->x);
+	sol = ft_polyd2(ft_setvec(pow(ell->rat.x * ell->rat.y, 2)
+				+ pow(ell->rat.z / dir->z, 2) * (pow(dir->x
+						* ell->rat.y, 2) + pow(dir->y * ell->rat.x, 2)),
+				2 * pow(ell->rat.z / dir->z, 2) * (dir->y * d_y
+					* pow(ell->rat.x, 2) - dir->x * d_x
+					* pow(ell->rat.y, 2)), (d_y * d_y + d_x * d_x)
+					/ pow(dir->z, 2) - pow(ell->rat.x * ell->rat.y
+					* ell->rat.z, 2) * ell->dia/*pow(ell->rat.x, 2) * pow(ell->rat.y, 2)
 				+ pow(ell->rat.z, 2) / pow(dir->z, 2) * (pow(dir->y, 2)
 					* pow(ell->rat.x, 2) + pow(dir->x, 2) * pow(ell->rat.y, 2)),
 				2 * pow(ell->rat.z, 2) / pow(dir->z, 2) * (pow(dir->x, 2)
