@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/23 13:12:30 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/23 14:27:31 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_2x3	ft_sysellx(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 {
-	t_vec	util;
+	// t_vec	util;
 	t_vec	sol;
 	double	d_y;
 	double	d_z;
@@ -45,8 +45,8 @@ static t_2x3	ft_sysellx(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 						* (ell->pos.x - pov->x) + pov->z - ell->pos.z, 2)
 					* pow(ell->rat.y, 2)) - pow(ell->rat.x * ell->rat.y
 					* ell->rat.z * ell->dia, 2)*/));
-	util.z = dir->z / dir->x * (pov->x - ell->pos.x) + pov->z - ell->pos.z;
-	util.y = dir->y / dir->x * (pov->x - ell->pos.x) + pov->y - ell->pos.y;
+	// util.z = dir->z / dir->x * (pov->x - ell->pos.x) + pov->z - ell->pos.z;
+	// util.y = dir->y / dir->x * (pov->x - ell->pos.x) + pov->y - ell->pos.y;
 	if (isnan(sol.x) || isnan(sol.y))
 		return (ft_set2x3(sol, sol));
 	// res.top.x = sol.x;
@@ -55,10 +55,12 @@ static t_2x3	ft_sysellx(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 	// res.bot.x = sol.y;
 	// res.bot.y = util.y + sol.y * dir->z / dir->x;
 	// res.bot.z = util.z + sol.y * dir->y / dir->x;
-	return (ft_set2x3(ft_sum_uv(ft_setvec(sol.x, util.y + sol.x * dir->z
-					/ dir->x, util.z + sol.x * dir->y / dir->x), ell->pos),
-				ft_sum_uv(ft_setvec(sol.y, util.y + sol.y * dir->z / dir->x,
-				util.z + sol.y * dir->y / dir->x), ell->pos)));
+	return (ft_set2x3(ft_sum_uv(ft_setvec(sol.x, (sol.x * dir->y - d_y)
+					/ dir->x, (sol.x * dir->z - d_z) / dir->x/*sol.x, util.y + sol.x * dir->z
+					/ dir->x, util.z + sol.x * dir->y / dir->x*/), ell->pos),
+				ft_sum_uv(ft_setvec(sol.y, (sol.y * dir->y - d_y)
+					/ dir->x, (sol.y * dir->z - d_z) / dir->x/*sol.y, util.y + sol.y * dir->z / dir->x,
+				util.z + sol.y * dir->y / dir->x*/), ell->pos)));
 	// return (res);
 }
 
@@ -93,8 +95,8 @@ static t_2x3	ft_syselly(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 				* pow(ell->rat.y, 2) + pow(dir->z / dir->y * (ell->pos.y
 						- pov->y) + pov->z - ell->rat.z, 2) * pow(ell->rat.x, 2)
 				- pow(ell->dia * ell->rat.x * ell->rat.y * ell->rat.z, 2)*/));
-	util.x = 0/*dir->x / dir->y * (pov->y - ell->pos.y) + pov->x - ell->pos.x*/;
-	util.z = 0/*dir->z / dir->y * (pov->y - ell->pos.y) + pov->z - ell->pos.z*/;
+	util.x = dir->x / dir->y * (pov->y - ell->pos.y) + pov->x - ell->pos.x;
+	util.z = dir->z / dir->y * (pov->y - ell->pos.y) + pov->z - ell->pos.z;
 	if (isnan(sol.x) || isnan(sol.y))
 		return (ft_set2x3(sol, sol));
 	// res.top.y = sol.x;
@@ -103,10 +105,12 @@ static t_2x3	ft_syselly(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 	// res.bot.y = sol.y;
 	// res.bot.x = util.x + sol.y * dir->x / dir->y;
 	// res.bot.z = util.z + sol.y * dir->z / dir->y;
-	return (ft_set2x3(ft_sum_uv(ft_setvec(util.x + sol.x * dir->x / dir->y,
-					sol.x, util.z + sol.x * dir->z / dir->y), ell->pos),
-				ft_sum_uv(ft_setvec(util.x + sol.y * dir->x / dir->y, sol.y,
-						util.z + sol.y * dir->z / dir->y), ell->pos)));
+	return (ft_set2x3(ft_sum_uv(ft_setvec((sol.x * dir->x - d_x)
+					/ dir->y, sol.x, (sol.x * dir->z - d_z) / dir->y/*util.x + sol.x * dir->x / dir->y,
+					sol.x, util.z + sol.x * dir->z / dir->y*/), ell->pos),
+				ft_sum_uv(ft_setvec((sol.y * dir->x - d_x)
+					/ dir->y, sol.y, (sol.y * dir->z - d_z) / dir->y/*util.x + sol.y * dir->x / dir->y, sol.y,
+						util.z + sol.y * dir->z / dir->y*/), ell->pos)));
 	// return (res);
 }
 
@@ -124,9 +128,9 @@ static t_2x3	ft_sysellz(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 	sol = ft_polyd2(ft_setvec(pow(ell->rat.x * ell->rat.y, 2)
 				+ pow(ell->rat.z / dir->z, 2) * (pow(dir->x
 						* ell->rat.y, 2) + pow(dir->y * ell->rat.x, 2)),
-				2 * pow(ell->rat.z / dir->z, 2) * (dir->y * d_y
-					* pow(ell->rat.x, 2) - dir->x * d_x
-					* pow(ell->rat.y, 2)), (d_y * d_y + d_x * d_x)
+				2 * pow(ell->rat.z / dir->z, 2) * (dir->x * d_x
+					* pow(ell->rat.y, 2) - dir->y * d_y
+					* pow(ell->rat.x, 2)), (d_y * d_y + d_x * d_x)
 					/ pow(dir->z, 2) - pow(ell->rat.x * ell->rat.y
 					* ell->rat.z, 2) * ell->dia/*pow(ell->rat.x, 2) * pow(ell->rat.y, 2)
 				+ pow(ell->rat.z, 2) / pow(dir->z, 2) * (pow(dir->y, 2)
@@ -142,8 +146,8 @@ static t_2x3	ft_sysellz(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 						- pov->z) + pov->y - ell->pos.y, 2) * pow(ell->rat.x, 2)
 				* pow(ell->rat.z, 2) - pow(ell->rat.x * ell->rat.y
 					* ell->rat.z * ell->dia, 2)*/));
-	util.x = 0/*dir->z / dir->x * (pov->x - ell->pos.x) + pov->z - ell->pos.z*/;
-	util.y = 0/*dir->y / dir->x * (pov->x - ell->pos.x) + pov->y - ell->pos.y*/;
+	util.x = dir->z / dir->x * (pov->x - ell->pos.x) + pov->z - ell->pos.z;
+	util.y = dir->y / dir->x * (pov->x - ell->pos.x) + pov->y - ell->pos.y;
 	if (isnan(sol.x) || isnan(sol.y))
 		return (ft_set2x3(sol, sol));
 	// res.top.z = sol.x;
@@ -152,10 +156,12 @@ static t_2x3	ft_sysellz(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 	// res.bot.z = sol.y;
 	// res.bot.y = util.y + sol.y * dir->y / dir->z;
 	// res.bot.x = util.x + sol.y * dir->x / dir->z;
-	return (ft_set2x3(ft_sum_uv(ft_setvec(util.x + sol.x * dir->x / dir->z,
-					util.y + sol.x * dir->y / dir->z, sol.x), ell->pos),
-			ft_sum_uv(ft_setvec(util.x + sol.y * dir->x / dir->z,
-					util.y + sol.y * dir->y / dir->z, sol.y), ell->pos)));
+	return (ft_set2x3(ft_sum_uv(ft_setvec((sol.x * dir->x - d_x)
+					/ dir->z, (sol.x * dir->y - d_y) / dir->z, sol.x/*util.x + sol.x * dir->x / dir->z,
+					util.y + sol.x * dir->y / dir->z, sol.x*/), ell->pos),
+			ft_sum_uv(ft_setvec((sol.y * dir->x - d_x)
+					/ dir->z, (sol.y * dir->y - d_y) / dir->z, sol.y/*util.x + sol.y * dir->x / dir->z,
+					util.y + sol.y * dir->y / dir->z, sol.y*/), ell->pos)));
 	// return (res);
 }
 
