@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:46:15 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/05 19:57:33 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/17 08:41:00 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj)
 	ft_keep_face_cam(&itr, &win->scn.cam->pov, ray);
 	if (!itr)
 		return (0);
-	rgb = ft_shades(win, ft_closer_to_pov(itr, &win->scn.cam->pov));
+	rgb = ft_shades(win, ray, ft_closer_to_pov(itr, &win->scn.cam->pov));
 	ft_lstclear(&itr, &free);
 	return (ft_rgbtoi(rgb));
 }

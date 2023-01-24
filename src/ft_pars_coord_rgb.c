@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:23:33 by efunes            #+#    #+#             */
-/*   Updated: 2022/12/30 13:17:08 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/19 21:11:39 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ int	ft_rgb(t_rgb *rgb, char **str)
 	if (tmp[0] > 255 || tmp[1] > 255 || tmp[2] > 255
 		|| tmp[0] < 0 || tmp[1] < 0 || tmp[2] < 0)
 		return (5);
-	rgb->r = (char)tmp[0];
-	rgb->g = (char)tmp[1];
-	rgb->b = (char)tmp[2];
+	rgb->r = (unsigned char)tmp[0];
+	rgb->g = (unsigned char)tmp[1];
+	rgb->b = (unsigned char)tmp[2];
 	return (ft_opacity(rgb, str));
 }

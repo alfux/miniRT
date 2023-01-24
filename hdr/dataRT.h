@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 15:43:21 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/24 00:22:39 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ typedef struct s_3x3	t_3x3;
 //Color data structure
 struct					s_rgb
 {
+	unsigned char	a;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	unsigned char	a;
 };
 typedef struct s_rgb	t_rgb;
 

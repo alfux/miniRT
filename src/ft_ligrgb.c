@@ -6,18 +6,29 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:47:21 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/13 14:13:23 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/24 01:18:26 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-t_rgb	ft_ligrgb(t_rgb const *rgb, t_lig const *lig, double i)
+t_rgb	ft_ligrgb(t_itr const *vtx, t_vec const *ray, t_lig const *lig,
+	double i)
 {
 	t_rgb	res;
+	t_vec	dir;
+	double	j;
 
-	res.r = lig->col.r * lig->rat * i * rgb->r / 255;
-	res.g = lig->col.g * lig->rat * i * rgb->g / 255;
-	res.b = lig->col.b * lig->rat * i * rgb->b / 255;
+	j = 0;
+	if (i > 0)
+	{
+		dir = ft_dif_uv(lig->pos, vtx->vtx);
+		dir = ft_dif_uv(ft_multlv(2 * ft_scalar(dir, vtx->nml), vtx->nml), dir);
+		j = fmin(1,
+				lig->rat * pow(fmax(0, -ft_scalar(ft_nrmlze(dir), *ray)), 10));
+	}
+	res.r = lig->col.r * fmin(1, j + lig->rat * i * vtx->col.r / 255);
+	res.g = lig->col.g * fmin(1, j + lig->rat * i * vtx->col.g / 255);
+	res.b = lig->col.b * fmin(1, j + lig->rat * i * vtx->col.b / 255);
 	return (res);
 }

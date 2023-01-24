@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/13 12:43:38 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/24 01:24:24 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ t_list		*ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
 double		ft_cylhgt(t_vec const *p, t_cyl const *c);
 int			ft_is_val(t_vec const *v);
 t_rgb		ft_addrgb(t_rgb c1, t_rgb c2);
-t_rgb		ft_ligrgb(t_rgb const *rgb, t_lig const *lig, double i);
 t_rgb		ft_ambrgb(t_rgb const *rgb, t_amb const *amb);
+t_rgb		ft_ligrgb(t_itr const *vtx, t_vec const *ray, t_lig const *lig,
+				double i);
 
 //Other tools
 int			ft_free(void *ptr);
@@ -108,7 +109,7 @@ void		ft_render(t_win const *win);
 t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 int			ft_deadzn(t_vec const *vec, t_vec const *ctr, double rad);
-t_rgb		ft_shades(t_win const *win, t_list *itr);
+t_rgb		ft_shades(t_win const *win, t_vec const *ray, t_list *itr);
 
 //Easter eggs
 void		ft_eeggs(t_cam *cam);
