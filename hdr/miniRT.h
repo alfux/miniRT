@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/22 15:34:55 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/27 17:01:35 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_2x3		ft_syscyl(t_vec const *dir, t_vec const *pov, t_cyl const *cyl);
 t_2x3		ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl);
 int			ft_is_sol(t_2x3 const *itr);
 int			ft_is_val(t_vec const *v);
-t_2x3		ft_sysell(t_vec const *dir, t_vec const *pov, t_ell const *ell);
+t_2x3		ft_sysell(t_vec const *dir, t_vec const *pov, t_ell *ell);
 
 //Other tools
 int			ft_free(void *ptr);

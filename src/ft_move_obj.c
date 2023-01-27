@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/22 16:02:38 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:33:39 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,24 @@
 static void	ft_rota_obj(t_vec *vec, t_cam *cam, double theta, char id)
 {
 	t_3x3	m;
+	t_vec	tmp;
 
 	m = ft_set3x3(cam->hor, cam->ver, cam->dir);
-	*vec = ft_multmv(ft_invmat(m), *vec);
+	tmp = ft_multmv(ft_invmat(m), *vec);
 	if (id == 'H')
 	{
-		vec->x = vec->x * cos(theta - vec->y * sin(theta));
-		vec->y = vec->y * cos(theta) + vec->x * sin(theta);
+		vec->x = tmp.x * cos(theta - tmp.y * sin(theta));
+		vec->y = tmp.y * cos(theta) + tmp.x * sin(theta);
 	}
 	else if (id == 'V')
 	{
-		vec->x = vec->x * cos(theta) + vec->z * sin(theta);
-		vec->z = vec->z * cos(theta) - vec->x * sin(theta);
+		vec->x = tmp.x * cos(theta) + tmp.z * sin(theta);
+		vec->z = tmp.z * cos(theta) - tmp.x * sin(theta);
 	}
 	else if (id == 'D')
 	{
-		vec->y = vec->y * cos(theta) - vec->z * sin(theta);
-		vec->z = vec->z * cos(theta) + vec->y * sin(theta);
+		vec->y = tmp.y * cos(theta) - tmp.z * sin(theta);
+		vec->z = tmp.z * cos(theta) + tmp.y * sin(theta);
 	}
 	*vec = ft_multmv(m, *vec);
 }
@@ -39,13 +40,13 @@ static void	ft_rota_obj(t_vec *vec, t_cam *cam, double theta, char id)
 static void	ft_movcoord(int kid, t_vec *vec, t_cam *cam)
 {
 	if (kid == K_Z)
-		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->hor));
-	else if (kid == K_S)
-		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->hor));
-	else if (kid == K_Q)
 		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->ver));
-	else if (kid == K_D)
+	else if (kid == K_S)
 		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->ver));
+	else if (kid == K_Q)
+			*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->hor));
+	else if (kid == K_D)
+			*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->hor));
 	else if (kid == K_A)
 		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->dir));
 	else if (kid == K_E)
