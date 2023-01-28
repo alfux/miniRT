@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/11 15:50:57 by alfux            ###   ########.fr       */
+/*   Updated: 2023/01/28 15:56:03 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,38 @@ static void	ft_rota_obj(t_vec *vec, t_cam *cam, double theta, char id)
 	}
 	else if (id == 'D')
 	{
-		vec->x = vec->x * cos(theta - vec->y * sin(theta));
+		vec->x = vec->x * cos(theta) - vec->y * sin(theta);
 		vec->y = vec->y * cos(theta) + vec->x * sin(theta);
 	}
-	*vec = ft_multmv(m, *vec);
+	*vec = ft_nrmlze(ft_multmv(m, *vec));
 }
 
 static void	ft_movcoord(int kid, t_vec *vec, t_cam *cam)
 {
 	if (kid == K_Z)
-		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->hor));
-	else if (kid == K_S)
-		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->hor));
-	else if (kid == K_Q)
-		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->ver));
-	else if (kid == K_D)
-		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->ver));
-	else if (kid == K_A)
 		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->dir));
-	else if (kid == K_E)
+	else if (kid == K_S)
 		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->dir));
+	else if (kid == K_Q)
+		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->hor));
+	else if (kid == K_D)
+		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->hor));
+	else if (kid == K_A)
+		*vec = ft_sum_uv(*vec, ft_multlv(0.2, cam->ver));
+	else if (kid == K_E)
+		*vec = ft_sum_uv(*vec, ft_multlv(-0.2, cam->ver));
 	else if (kid == K_LEFT)
-		ft_rota_obj(vec, cam, M_PI / 60, 'H');
+		ft_rota_obj(vec, cam, -M_PI / 60, 'V');
 	else if (kid == K_RIGHT)
-		ft_rota_obj(vec, cam, -1 * M_PI / 60, 'H');
-	else if (kid == K_UP)
 		ft_rota_obj(vec, cam, M_PI / 60, 'V');
+	else if (kid == K_UP)
+		ft_rota_obj(vec, cam, M_PI / 60, 'H');
 	else if (kid == K_DOWN)
-		ft_rota_obj(vec, cam, -1 * M_PI / 60, 'V');
+		ft_rota_obj(vec, cam, -1 * M_PI / 60, 'H');
 	else if (kid == K_P)
-		ft_rota_obj(vec, cam, M_PI / 60, 'D');
+		ft_rota_obj(vec, cam, -M_PI / 60, 'D');
 	else if (kid == K_M)
-		ft_rota_obj(vec, cam, -1 * M_PI / 60, 'D');
+		ft_rota_obj(vec, cam, M_PI / 60, 'D');
 }
 
 static void	ft_movrgb(int kid, t_rgb *rgb)
