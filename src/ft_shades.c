@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:21:09 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/28 14:32:22 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/01 10:03:20 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_rgb	ft_shades(t_win const *win, t_vec const *ray, t_list *itr)
 			i = fabs(i);
 		if (ft_shadow(win, &vtx->vtx, &lig->pos))
 			i = 0;
-		rgb = ft_addrgb(rgb, ft_ligrgb(vtx, ray, lig, i));
+		rgb = ft_addrgb(rgb, ft_ligrgb(vtx, ray, lig, pow(i, GAMMA)));
 		lst = lst->next;
 	}
 	rgb = ft_addrgb(rgb, ft_ambrgb(&vtx->col, &win->scn.amb));
