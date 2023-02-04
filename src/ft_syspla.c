@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/06 15:28:46 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/01 10:34:42 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -27,6 +27,7 @@ static t_list	*ft_sysplax(t_vec const *dir, t_vec const *pov,
 				dir->y * pov->x - dir->x * pov->y));
 	itr->nml = pla->dir;
 	itr->col = pla->col;
+	itr->spc = pla->spc;
 	return (lst);
 }
 

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/24 01:24:24 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/03 20:34:06 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 int			ft_deadzn(t_vec const *vec, t_vec const *ctr, double rad);
 t_rgb		ft_shades(t_win const *win, t_vec const *ray, t_list *itr);
+t_rgb		ft_sphrgb(t_vec const *vtx, t_sph const *sph);
 
 //Easter eggs
 void		ft_eeggs(t_cam *cam);

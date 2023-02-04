@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/01 10:10:00 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/04 12:27:18 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,21 @@ struct					s_rgb
 };
 typedef struct s_rgb	t_rgb;
 
+//Specular parameters
+struct					s_spc
+{
+	double	siz;
+	double	har;
+};
+typedef struct s_spc	t_spc;
+
 //Intersection data structure
 struct					s_itr
 {
 	t_vec	vtx;
 	t_vec	nml;
 	t_rgb	col;
+	t_spc	spc;
 };
 typedef struct s_itr	t_itr;
 
@@ -126,6 +135,9 @@ struct					s_sph
 	double	dia;
 	t_vec	pos;
 	t_rgb	col;
+	t_spc	spc;
+	t_3x3	bas;
+	t_rgb	co2;
 };
 typedef struct s_sph	t_sph;
 
@@ -135,6 +147,7 @@ struct					s_pla
 	t_vec	pos;
 	t_vec	dir;
 	t_rgb	col;
+	t_spc	spc;
 };
 typedef struct s_pla	t_pla;
 
@@ -146,6 +159,7 @@ struct					s_cyl
 	double	dia;
 	double	hgt;
 	t_rgb	col;
+	t_spc	spc;
 };
 typedef struct s_cyl	t_cyl;
 
@@ -201,8 +215,7 @@ struct					s_win
 };
 typedef struct s_win	t_win;
 
-//Bonus part--------------------------------------------------------------------
-
+//---------OBJ files data extraction structures---------------------------------
 //Data extraction lists
 struct					s_dat
 {
@@ -239,8 +252,10 @@ struct					s_imp
 	t_vec	*nml;
 	t_idx	*idx;
 	t_rgb	col;
+	t_spc	spc;
 };
 typedef struct s_imp	t_imp;
+//------------------------------------------------------------------------------
 
 //Easter eggs
 # define EEGGS 111
