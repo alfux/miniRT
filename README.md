@@ -19,6 +19,8 @@
 <br />☛	Friday January 6th 17:17: Added full support of .obj files. (Heavy operations tho)
 <br />☛	Friday January 13th 15:09: Added multi-lightning and color-lightning
 <br />☛ Tuesday January 24th 01:19: Added Specular reflections
+<br />☛ Thursday February 9th 09:18: Added basic object checkboard colors
+<br />☛ Thursday February 9th 09:18: Added sphere bumpmapping
 ## Bonus ideas
 ☛ Anti-aliasing ?
 <br />☛ Use of GPU to have a moving camera ?
