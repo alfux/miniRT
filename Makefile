@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2023/02/03 20:32:53 by alfux            ###   ########.fr        #
+#    Updated: 2023/02/09 09:10:00 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	ft_sphrgb.c	\
+SSRC		=	ft_bmpmap.c ft_rotnml.c	\
+				ft_sphbmp.c ft_multmm.c ft_cylrgb.c ft_plargb.c ft_sphrgb.c	\
 				ft_cylhgt.c ft_provec.c ft_datatp.c ft_addelm.c ft_multmv.c	\
 				ft_skipnodigit.c ft_skipspace.c ft_skipdigit.c ft_delimp.c	\
 				ft_lstadd_new.c ft_lstclear_return.c ft_pars_double.c		\

@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/01 10:34:42 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/04 23:54:19 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -26,7 +26,7 @@ static t_list	*ft_sysplax(t_vec const *dir, t_vec const *pov,
 				dir->z * pov->x - dir->x * pov->z,
 				dir->y * pov->x - dir->x * pov->y));
 	itr->nml = pla->dir;
-	itr->col = pla->col;
+	itr->col = ft_plargb(&itr->vtx, pla);
 	itr->spc = pla->spc;
 	return (lst);
 }
@@ -46,7 +46,8 @@ static t_list	*ft_sysplay(t_vec const *dir, t_vec const *pov,
 				dir->y * pov->x - dir->x * pov->y,
 				dir->z * pov->y - dir->y * pov->z));
 	itr->nml = pla->dir;
-	itr->col = pla->col;
+	itr->col = ft_plargb(&itr->vtx, pla);
+	itr->spc = pla->spc;
 	return (lst);
 }
 
@@ -65,7 +66,8 @@ static t_list	*ft_sysplaz(t_vec const *dir, t_vec const *pov,
 				dir->z * pov->x - dir->x * pov->z,
 				dir->z * pov->y - dir->y * pov->z));
 	itr->nml = pla->dir;
-	itr->col = pla->col;
+	itr->col = ft_plargb(&itr->vtx, pla);
+	itr->spc = pla->spc;
 	return (lst);
 }
 

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/04 12:27:18 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/06 01:23:11 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ struct					s_pla
 	t_vec	dir;
 	t_rgb	col;
 	t_spc	spc;
+	t_3x3	bas;
+	t_rgb	co2;
 };
 typedef struct s_pla	t_pla;
 
@@ -160,6 +162,8 @@ struct					s_cyl
 	double	hgt;
 	t_rgb	col;
 	t_spc	spc;
+	t_3x3	bas;
+	t_rgb	co2;
 };
 typedef struct s_cyl	t_cyl;
 
