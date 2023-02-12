@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/10 16:55:17 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/12 20:01:19 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -25,7 +25,8 @@ static t_list	*ft_sysplax(t_vec const *dir, t_vec const *pov,
 				ft_scalar(pla->dir, pla->pos),
 				dir->z * pov->x - dir->x * pov->z,
 				dir->y * pov->x - dir->x * pov->y));
-	itr->nml = ft_plabmp(&itr->vtx, pla);
+	itr->nml = pla->dir;
+	itr->bmp = ft_plabmp(&itr->vtx, pla);
 	itr->col = ft_plargb(&itr->vtx, pla);
 	itr->spc = pla->spc;
 	return (lst);
@@ -45,7 +46,8 @@ static t_list	*ft_sysplay(t_vec const *dir, t_vec const *pov,
 				ft_scalar(pla->dir, pla->pos),
 				dir->y * pov->x - dir->x * pov->y,
 				dir->z * pov->y - dir->y * pov->z));
-	itr->nml = ft_plabmp(&itr->vtx, pla);
+	itr->nml = pla->dir;
+	itr->bmp = ft_plabmp(&itr->vtx, pla);
 	itr->col = ft_plargb(&itr->vtx, pla);
 	itr->spc = pla->spc;
 	return (lst);
@@ -65,7 +67,8 @@ static t_list	*ft_sysplaz(t_vec const *dir, t_vec const *pov,
 				ft_scalar(pla->dir, pla->pos),
 				dir->z * pov->x - dir->x * pov->z,
 				dir->z * pov->y - dir->y * pov->z));
-	itr->nml = ft_plabmp(&itr->vtx, pla);
+	itr->nml = pla->dir;
+	itr->bmp = ft_plabmp(&itr->vtx, pla);
 	itr->col = ft_plargb(&itr->vtx, pla);
 	itr->spc = pla->spc;
 	return (lst);

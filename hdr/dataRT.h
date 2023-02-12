@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/06 01:23:11 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/12 20:00:36 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ struct					s_itr
 {
 	t_vec	vtx;
 	t_vec	nml;
+	t_vec	bmp;
 	t_rgb	col;
 	t_spc	spc;
 };

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/10 16:55:49 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/12 20:04:00 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_win	window;
-	t_pla	*pla;
+	t_sph	*pla;
 //	t_imp	*imp;
 //	t_obj	*tmp;
 
