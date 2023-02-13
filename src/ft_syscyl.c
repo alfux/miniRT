@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:11:03 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/06 01:30:31 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/13 15:53:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -27,6 +27,7 @@ static int	ft_lstcyl_itr(t_list **lst, t_vec res, t_cyl const *cyl)
 	itr->vtx = res;
 	itr->nml = ft_nrmlze(ft_dif_uv(q, ft_multlv(ft_scalar(q, cyl->dir),
 					cyl->dir)));
+	itr->bmp = ft_cylbmp(&itr->vtx, &itr->nml, cyl);
 	itr->col = ft_cylrgb(&itr->vtx, cyl);
 	itr->spc = cyl->spc;
 	return (0);

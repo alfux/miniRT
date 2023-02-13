@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/10 16:44:22 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/13 14:09:36 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_rgb		ft_plargb(t_vec const *vtx, t_pla const *sph);
 t_rgb		ft_cylrgb(t_vec const *vtx, t_cyl const *cyl);
 t_vec		ft_sphbmp(t_vec const *vtx, t_sph const *sph);
 t_vec		ft_plabmp(t_vec const *vtx, t_pla const *pla);
+t_vec		ft_cylbmp(t_vec const *vtx, t_vec const *nml, t_cyl const *cyl);
 t_vec		ft_bmpmap(double x, double y);
 
 //Easter eggs

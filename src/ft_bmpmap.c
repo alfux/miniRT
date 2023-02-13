@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:36:01 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/10 00:42:04 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/13 15:48:51 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static double	ft_tmp(double x, double y)
 {
-//	return (0.04 * cos(20 * sqrt(pow(x, 2) + pow(y, 2))));
-	return (0.03 * cos(20 * y) * sin(20 * x));
+	return (1);
+	return (0.04 * cos(50 * sqrt(pow(x, 2) + pow(y, 2))));
+	return (0.03 * cos(50 * y) * sin(50 * x));
 }
 
 t_vec	ft_bmpmap(double x, double y)
