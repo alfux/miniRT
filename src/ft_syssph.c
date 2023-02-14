@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/12 20:02:10 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/14 19:19:06 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -24,7 +24,7 @@ static int	ft_lstsph_itr(t_list **lst, t_vec const *res, t_sph const *sph)
 	}
 	itr->vtx = *res;
 	itr->nml = ft_nrmlze(ft_dif_uv(*res, sph->pos));
-	itr->bmp = ft_sphbmp(&itr->vtx, sph);
+	itr->bmp = ft_sphbmp(&itr->vtx, &itr->nml, sph);
 	itr->col = ft_sphrgb(res, sph);
 	itr->spc = sph->spc;
 	return (0);

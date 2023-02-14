@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_plabmp.c                                        :+:      :+:    :+:   */
+/*   ft_bmpimg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 16:42:41 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/14 19:24:33 by alfux            ###   ########.fr       */
+/*   Created: 2023/02/14 18:13:47 by alfux             #+#    #+#             */
+/*   Updated: 2023/02/14 19:51:30 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-t_vec	ft_plabmp(t_vec const *vtx, t_pla const *pla)
+double	ft_bmpimg(t_img const *img, double x, double y)
 {
-	t_vec	vec;
+	double	val;
 
-	if (ft_det3x3(pla->bas) == 0.f || !pla->bmp.iid)
-		return (pla->dir);
-	vec = ft_multmv(ft_invmat(pla->bas), ft_dif_uv(*vtx, pla->pos));
-	return (ft_multmv(pla->bas, ft_bmpmap(&pla->bmp, vec.x, vec.y)));
+	if (!img)
+		return (0);
+	if (x > img->h || x < 0)
+		x = x - floor(x / img->h) * img->h;
+	if (y > img->w || y < 0)
+		y = y - floor(y / img->w) * img->w;
+	val = ((double)(*(uint32_t *)(img->iad + (int)round(x) * img->opl
+		+ (int)round(y) * img->bpp / 8)) / ((1 << 24) - 1));
+	return (val);
 }

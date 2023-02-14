@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/12 20:00:36 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/14 19:30:27 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,19 @@ struct					s_lig
 };
 typedef struct s_lig	t_lig;
 
+//Image data structure
+struct					s_img
+{
+	void	*iid;
+	char	*iad;
+	int		bpp;
+	int		opl;
+	int		end;
+	int		w;
+	int		h;
+};
+typedef struct s_img	t_img;
+
 //Sphere data structure
 struct					s_sph
 {
@@ -139,6 +152,7 @@ struct					s_sph
 	t_spc	spc;
 	t_3x3	bas;
 	t_rgb	co2;
+	t_img	bmp;
 };
 typedef struct s_sph	t_sph;
 
@@ -151,6 +165,7 @@ struct					s_pla
 	t_spc	spc;
 	t_3x3	bas;
 	t_rgb	co2;
+	t_img	bmp;
 };
 typedef struct s_pla	t_pla;
 
@@ -165,6 +180,7 @@ struct					s_cyl
 	t_spc	spc;
 	t_3x3	bas;
 	t_rgb	co2;
+	t_img	bmp;
 };
 typedef struct s_cyl	t_cyl;
 
@@ -194,17 +210,6 @@ struct					s_scn
 	t_obj	*obj;
 };
 typedef struct s_scn	t_scn;
-
-//Image data structure
-struct					s_img
-{
-	void	*iid;
-	char	*iad;
-	int		bpp;
-	int		opl;
-	int		end;
-};
-typedef struct s_img	t_img;
 
 //MLX miniRT session structure
 struct					s_win

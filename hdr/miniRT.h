@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/13 14:09:36 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/14 19:22:11 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void		ft_camclear(t_cam **cam, void (*del)(void *));
 int			ft_lstadd_new(t_list **lst, void *content);
 int			ft_lstclear_return(t_list **lst, int ret);
 void		ft_lstrem(t_list **lst, t_list *rem);
+void		ft_clrbmp(void *cid, t_obj *obj);
 
 //Math tools
 double		ft_scalar(t_vec u, t_vec v);
@@ -115,10 +116,11 @@ t_rgb		ft_shades(t_win const *win, t_vec const *ray, t_list *itr);
 t_rgb		ft_sphrgb(t_vec const *vtx, t_sph const *sph);
 t_rgb		ft_plargb(t_vec const *vtx, t_pla const *sph);
 t_rgb		ft_cylrgb(t_vec const *vtx, t_cyl const *cyl);
-t_vec		ft_sphbmp(t_vec const *vtx, t_sph const *sph);
+t_vec		ft_sphbmp(t_vec const *vtx, t_vec const *nml, t_sph const *sph);
 t_vec		ft_plabmp(t_vec const *vtx, t_pla const *pla);
 t_vec		ft_cylbmp(t_vec const *vtx, t_vec const *nml, t_cyl const *cyl);
-t_vec		ft_bmpmap(double x, double y);
+t_vec		ft_bmpmap(t_img const *img, double x, double y);
+double		ft_bmpimg(t_img const *img, double x, double y);
 
 //Easter eggs
 void		ft_eeggs(t_cam *cam);
