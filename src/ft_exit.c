@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:34:18 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/27 16:28:39 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:04:17 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_exit(t_win *win, int status)
 	(void)mlx_destroy_image(win->cid, win->scr.iid);
 	(void)mlx_destroy_window(win->cid, win->wid);
 	ft_objclear(&win->scn.lig, &free);
+	ft_clrbmp(win->cid, win->scn.obj);
 	ft_objclear(&win->scn.obj, &free);
 	ft_camclear(&win->scn.cam, &free);
 	exit(status);

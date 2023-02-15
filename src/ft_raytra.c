@@ -3,105 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raytra.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 10:13:11 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/22 15:37:09 by efunes           ###   ########.fr       */
+/*   Created: 2023/01/05 16:46:15 by alfux             #+#    #+#             */
+/*   Updated: 2023/02/15 18:09:14 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-t_vec	ft_closer_to_pov(t_2x3 const *cmp, t_vec const *pov)
+static t_list	*ft_closer_to_pov(t_list *itr, t_vec const *pov)
 {
-	if (isnan(cmp->top.x) || isnan(cmp->top.y) || isnan(cmp->top.z))
-		return (cmp->bot);
-	if (isnan(cmp->bot.x) || isnan(cmp->bot.y) || isnan(cmp->bot.z))
-		return (cmp->top);
-	if (ft_distce(cmp->top, *pov) < ft_distce(cmp->bot, *pov))
-		return (cmp->top);
-	return (cmp->bot);
-}
+	t_list	*temp;
+	t_list	*clsr;
+	double	dist;
+	double	smlst;
 
-int	ft_iscloser(t_vec const *vec, t_vec const *tmp, t_vec const *pov)
-{
-	if (ft_distce(*tmp, *vec) < EPSILON)
-		return (0);
-	if (isnan(tmp->x) || isnan(tmp->y) || isnan(tmp->z))
-		return (0);
-	if ((isnan(vec->x) && isnan(vec->y) && isnan(vec->z))
-		|| ft_distce(*tmp, *pov) < ft_distce(*vec, *pov))
-		return (1);
-	return (0);
-}
-
-t_rgb	ft_objrgb(t_obj const *obj)
-{
-	if (obj->type == 'S')
-		return (ft_setrgb(((t_sph *)obj->obj)->col.r,
-				((t_sph *)obj->obj)->col.g, ((t_sph *)obj->obj)->col.b));
-	else if (obj->type == 'P')
-		return (ft_setrgb(((t_pla *)obj->obj)->col.r,
-				((t_pla *)obj->obj)->col.g, ((t_pla *)obj->obj)->col.b));
-	else if (obj->type == 'C')
-		return (ft_setrgb(((t_cyl *)obj->obj)->col.r,
-				((t_cyl *)obj->obj)->col.g, ((t_cyl *)obj->obj)->col.b));
-	else if (obj->type == 'e')
-		return (ft_setrgb(((t_ell *)obj->obj)->col.r,
-				((t_ell *)obj->obj)->col.g, ((t_ell *)obj->obj)->col.b));
-	else if (obj->type == 'p')
-		return (ft_setrgb(((t_pbol *)obj->obj)->col.r,
-				((t_pbol *)obj->obj)->col.g, ((t_pbol *)obj->obj)->col.b));
-	else
-		return (ft_setrgb(0, 0, 0));
-}
-
-int	ft_face_cam(t_2x3 *intr, t_vec const *pov, t_vec const *ray)
-{
-	double	tscl;
-	double	bscl;
-
-	if (ft_deadzn(intr, pov, DEADZONE))
-		return (0);
-	tscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(intr->top, *pov)));
-	bscl = ft_scalar(*ray, ft_nrmlze(ft_dif_uv(intr->bot, *pov)));
-	if (tscl < 0.f)
+	temp = itr->next;
+	clsr = itr;
+	smlst = ft_distce(((t_itr *)clsr->content)->vtx, *pov);
+	while (temp)
 	{
-		intr->top = intr->bot;
-		if (bscl < 0.f)
-			return (0);
-		return (1);
+		dist = ft_distce(((t_itr *)temp->content)->vtx, *pov);
+		if (dist < smlst)
+		{
+			clsr = temp;
+			smlst = dist;
+		}
+		temp = temp->next;
 	}
-	if (bscl < 0.f)
-		intr->bot = intr->top;
-	return (1);
+	return (clsr);
+}
+
+static void	ft_keep_face_cam(t_list **itr, t_vec const *pov, t_vec const *ray)
+{
+	t_list	*buf;
+	t_itr	*vtx;
+
+	while (*itr)
+	{
+		vtx = (*itr)->content;
+		if (ft_deadzn(&vtx->vtx, pov, DEADZONE)
+			|| ft_scalar(*ray, ft_nrmlze(ft_dif_uv(vtx->vtx, *pov))) < 0)
+		{
+			buf = *itr;
+			*itr = (*itr)->next;
+			ft_lstdelone(buf, &free);
+		}
+		else
+			itr = &(*itr)->next;
+	}
 }
 
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj)
 {
-	t_2x3		intr;
-	t_vec		tmp;
-	t_vec		vec;
-	t_rgb		rgb;
-	t_obj const	*sav;
+	t_list	*itr;
+	t_list	*tmp;
+	t_rgb	rgb;
 
-	rgb = ft_setrgb(0, 0, 0);
-	vec = ft_setvec(NAN, NAN, NAN);
-	sav = (t_obj *)0;
+	itr = (void *)0;
+	tmp = (void *)0;
 	while (obj)
 	{
-		intr = ft_sysres(ray, &win->scn.cam->pov, obj);
-		if (ft_is_sol(&intr) && ft_face_cam(&intr, &win->scn.cam->pov, ray))
+		tmp = ft_sysres(ray, &win->scn.cam->pov, obj);
+		if (tmp == (void *)-1)
 		{
-			tmp = ft_closer_to_pov(&intr, &win->scn.cam->pov);
-			if (ft_iscloser(&vec, &tmp, &win->scn.cam->pov))
-			{
-				vec = tmp;
-				rgb = ft_objrgb(obj);
-				sav = obj;
-			}
+			ft_lstclear(&itr, &free);
+			ft_exit_failure((t_win *)win, "malloc error: ");
 		}
+		ft_lstadd_back(&itr, tmp);
 		obj = obj->next;
 	}
-	return (ft_rgbtoi(ft_shades(win, sav, &vec, &rgb)));
+	ft_keep_face_cam(&itr, &win->scn.cam->pov, ray);
+	if (!itr)
+		return (0);
+	rgb = ft_shades(win, ray, ft_closer_to_pov(itr, &win->scn.cam->pov));
+	ft_lstclear(&itr, &free);
+	return (ft_rgbtoi(rgb));
 }

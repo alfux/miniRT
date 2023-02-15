@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_shdpla.c                                        :+:      :+:    :+:   */
+/*   ft_ambrgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 10:06:25 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 00:11:50 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/11 17:51:23 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/24 00:24:39 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-double	ft_shdpla(t_win const *win, t_pla const *pl, t_vec const *p)
+t_rgb	ft_ambrgb(t_rgb const *rgb, t_amb const *amb)
 {
-	t_vec	*lpos;
-	t_vec	n;
-	t_vec	ldir;
+	t_rgb	res;
 
-	lpos = &((t_lig *)win->scn.lig->obj)->pos;
-	n = pl->dir;
-	ldir = ft_nrmlze(ft_dif_uv(*lpos, *p));
-	if (ft_clside(p, &win->scn.cam->pov, &n, lpos))
-		return (fabs(ft_scalar(ldir, n)));
-	return (0);
+	res.r = amb->col.r * amb->rat * rgb->r / 255;
+	res.g = amb->col.g * amb->rat * rgb->g / 255;
+	res.b = amb->col.b * amb->rat * rgb->b / 255;
+	return (res);
 }

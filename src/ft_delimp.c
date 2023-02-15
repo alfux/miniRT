@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setrgb.c                                        :+:      :+:    :+:   */
+/*   ft_delimp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:39:55 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/24 00:25:33 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/31 14:02:24 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/31 19:31:23 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-t_rgb	ft_setrgb(unsigned char r, unsigned char g, unsigned char b)
+int	ft_delimp(t_imp *imp)
 {
-	t_rgb	set;
-
-	set.r = r;
-	set.g = g;
-	set.b = b;
-	return (set);
+	if (!imp)
+		return (0);
+	(void)ft_free(imp->vtx);
+	(void)ft_free(imp->txt);
+	(void)ft_free(imp->nml);
+	(void)ft_free(imp->idx);
+	(void)ft_free(imp);
+	return (0);
 }

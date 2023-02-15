@@ -6,16 +6,36 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 01:02:47 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/14 19:19:06 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
 
-static t_2x3	ft_syssphx(t_vec const *dir, t_vec const *pov, t_sph const *sph)
+static int	ft_lstsph_itr(t_list **lst, t_vec const *res, t_sph const *sph)
+{
+	t_itr	*itr;
+
+	itr = ft_calloc(1, sizeof (t_itr));
+	if (!itr || (ft_lstadd_new(lst, itr) && !ft_free(itr)))
+	{
+		ft_lstclear(lst, &free);
+		*lst = (void *)-1;
+		return (1);
+	}
+	itr->vtx = *res;
+	itr->nml = ft_nrmlze(ft_dif_uv(*res, sph->pos));
+	itr->bmp = ft_sphbmp(&itr->vtx, &itr->nml, sph);
+	itr->col = ft_sphrgb(res, sph);
+	itr->spc = sph->spc;
+	return (0);
+}
+
+static void	ft_syssphx(t_list **lst, t_vec const *dir, t_vec const *pov,
+	t_sph const *sph)
 {
 	t_vec	efg;
 	t_vec	sol;
-	t_2x3	res;
+	t_vec	res;
 
 	efg.x = dir->z * pov->x - dir->x * pov->z;
 	efg.y = dir->y * pov->x - dir->x * pov->y;
@@ -25,21 +45,24 @@ static t_2x3	ft_syssphx(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 				* (sph->pos.y * efg.y + efg.x * sph->pos.z) + pow(efg.x, 2)
 				+ pow(efg.y, 2) - efg.z * pow(dir->x, 2)));
 	if (isnan(sol.x))
-		return (ft_set2x3(sol, sol));
-	res.top.x = sol.x;
-	res.top.y = (dir->y * sol.x - efg.y) / dir->x;
-	res.top.z = (dir->z * sol.x - efg.x) / dir->x;
-	res.bot.x = sol.y;
-	res.bot.y = (dir->y * sol.y - efg.y) / dir->x;
-	res.bot.z = (dir->z * sol.y - efg.x) / dir->x;
-	return (res);
+		return ;
+	res.x = sol.x;
+	res.y = (dir->y * sol.x - efg.y) / dir->x;
+	res.z = (dir->z * sol.x - efg.x) / dir->x;
+	if (ft_lstsph_itr(lst, &res, sph) || sol.x == sol.y)
+		return ;
+	res.x = sol.y;
+	res.y = (dir->y * sol.y - efg.y) / dir->x;
+	res.z = (dir->z * sol.y - efg.x) / dir->x;
+	(void)ft_lstsph_itr(lst, &res, sph);
 }
 
-static t_2x3	ft_syssphy(t_vec const *dir, t_vec const *pov, t_sph const *sph)
+static void	ft_syssphy(t_list **lst, t_vec const *dir, t_vec const *pov,
+	t_sph const *sph)
 {
 	t_vec	efg;
 	t_vec	sol;
-	t_2x3	res;
+	t_vec	res;
 
 	efg.x = dir->z * pov->y - dir->y * pov->z;
 	efg.y = dir->y * pov->x - dir->x * pov->y;
@@ -49,21 +72,24 @@ static t_2x3	ft_syssphy(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 				* (sph->pos.z * efg.x - efg.y * sph->pos.x) + pow(efg.x, 2)
 				+ pow(efg.y, 2) - efg.z * pow(dir->y, 2)));
 	if (isnan(sol.x))
-		return (ft_set2x3(sol, sol));
-	res.top.y = sol.x;
-	res.top.x = (efg.y + dir->x * sol.x) / dir->y;
-	res.top.z = (dir->z * sol.x - efg.x) / dir->y;
-	res.bot.y = sol.y;
-	res.bot.x = (efg.y + dir->x * sol.y) / dir->y;
-	res.bot.z = (dir->z * sol.y - efg.x) / dir->y;
-	return (res);
+		return ;
+	res.y = sol.x;
+	res.x = (efg.y + dir->x * sol.x) / dir->y;
+	res.z = (dir->z * sol.x - efg.x) / dir->y;
+	if (ft_lstsph_itr(lst, &res, sph) || sol.x == sol.y)
+		return ;
+	res.y = sol.y;
+	res.x = (efg.y + dir->x * sol.y) / dir->y;
+	res.z = (dir->z * sol.y - efg.x) / dir->y;
+	(void)ft_lstsph_itr(lst, &res, sph);
 }
 
-static t_2x3	ft_syssphz(t_vec const *dir, t_vec const *pov, t_sph const *sph)
+static void	ft_syssphz(t_list **lst, t_vec const *dir, t_vec const *pov,
+	t_sph const *sph)
 {
 	t_vec	efg;
 	t_vec	sol;
-	t_2x3	res;
+	t_vec	res;
 
 	efg.x = dir->z * pov->y - dir->y * pov->z;
 	efg.y = dir->x * pov->z - dir->z * pov->x;
@@ -73,34 +99,38 @@ static t_2x3	ft_syssphz(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 				* (sph->pos.x * efg.y - efg.x * sph->pos.y) + pow(efg.x, 2)
 				+ pow(efg.y, 2) - efg.z * pow(dir->z, 2)));
 	if (isnan(sol.x))
-		return (ft_set2x3(sol, sol));
-	res.top.z = sol.x;
-	res.top.y = (efg.x + dir->y * sol.x) / dir->z;
-	res.top.x = (dir->x * sol.x - efg.y) / dir->z;
-	res.bot.z = sol.y;
-	res.bot.y = (efg.x + dir->y * sol.y) / dir->z;
-	res.bot.x = (dir->x * sol.y - efg.y) / dir->z;
-	return (res);
+		return ;
+	res.z = sol.x;
+	res.y = (efg.x + dir->y * sol.x) / dir->z;
+	res.x = (dir->x * sol.x - efg.y) / dir->z;
+	if (ft_lstsph_itr(lst, &res, sph) || sol.x == sol.y)
+		return ;
+	res.z = sol.y;
+	res.y = (efg.x + dir->y * sol.y) / dir->z;
+	res.x = (dir->x * sol.y - efg.y) / dir->z;
+	(void)ft_lstsph_itr(lst, &res, sph);
 }
 
-t_2x3	ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph)
+t_list	*ft_syssph(t_vec const *dir, t_vec const *pov, t_sph const *sph)
 {
 	double	a;
 	double	b;
 	double	c;
 	double	choice;
+	t_list	*lst;
 
+	lst = (void *)0;
 	a = fabs(dir->x);
 	b = fabs(dir->y);
 	c = fabs(dir->z);
 	choice = fmax(fmax(a, b), c);
 	if (choice < EPSILON)
-		return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
+		return ((void *)0);
 	if (choice == c)
-		return (ft_syssphz(dir, pov, sph));
-	if (choice == b)
-		return (ft_syssphy(dir, pov, sph));
-	if (choice == a)
-		return (ft_syssphx(dir, pov, sph));
-	return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
+		ft_syssphz(&lst, dir, pov, sph);
+	else if (choice == b)
+		ft_syssphy(&lst, dir, pov, sph);
+	else if (choice == a)
+		ft_syssphx(&lst, dir, pov, sph);
+	return (lst);
 }

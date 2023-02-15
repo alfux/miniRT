@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setrgb.c                                        :+:      :+:    :+:   */
+/*   ft_lstrem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:39:55 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/24 00:25:33 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/05 15:45:34 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/05 16:04:29 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-t_rgb	ft_setrgb(unsigned char r, unsigned char g, unsigned char b)
+void	ft_lstrem(t_list **lst, t_list *rem)
 {
-	t_rgb	set;
-
-	set.r = r;
-	set.g = g;
-	set.b = b;
-	return (set);
+	if (!lst || !*lst || !rem)
+		return ;
+	while (*lst)
+	{
+		if (*lst == rem)
+		{
+			*lst = rem->next;
+			ft_lstdelone(rem, &free);
+			return ;
+		}
+		lst = &(*lst)->next;
+	}
 }

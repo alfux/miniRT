@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_inter_sph.c                               :+:      :+:    :+:   */
+/*   ft_lstadd_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 10:00:42 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/08 10:02:38 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/30 17:22:34 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/30 17:22:53 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-void	ft_print_inter_sph(t_vec ray, t_sph *sph, t_2x3 inter)
+int	ft_lstadd_new(t_list **lst, void *content)
 {
-	printf("Intersection dir");
-	ft_print_vect(ray);
-	printf(" on sphere pos");
-	ft_print_vect(sph->pos);
-	printf(" radius %f are ", sph->dia / 2);
-	ft_print_vect(inter.top);
-	printf(" and ");
-	ft_print_vect(inter.bot);
-	printf("\n");
+	t_list	*tmp;
+
+	tmp = ft_lstnew(content);
+	if (!tmp)
+		return (1);
+	ft_lstadd_back(lst, tmp);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 14:29:58 by efunes           ###   ########.fr       */
+/*   Updated: 2023/01/11 15:47:12 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,25 @@ static void	ft_rota_z(t_cam *cam, double theta)
 
 static void	ft_movcam(int kid, t_cam *cam)
 {
-	if (kid == K_LEFT)
+	if (kid == K_Q)
 		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->hor));
-	else if (kid == K_RIGHT)
-		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->hor));
-	else if (kid == K_UP)
-		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->ver));
-	else if (kid == K_DOWN)
-		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->ver));
-	else if (kid == K_P)
-		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->dir));
-	else if (kid == K_M)
-		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->dir));
-	else if (kid == K_Z)
-		ft_rota_x(cam, -6 * M_PI / 360);
-	else if (kid == K_S)
-		ft_rota_x(cam, 6 * M_PI / 360);
-	else if (kid == K_Q)
-		ft_rota_y(cam, -6 * M_PI / 360);
 	else if (kid == K_D)
+		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->hor));
+	else if (kid == K_P)
+		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->ver));
+	else if (kid == K_M)
+		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->ver));
+	else if (kid == K_Z)
+		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->dir));
+	else if (kid == K_S)
+		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->dir));
+	else if (kid == K_UP)
+		ft_rota_x(cam, -6 * M_PI / 360);
+	else if (kid == K_DOWN)
+		ft_rota_x(cam, 6 * M_PI / 360);
+	else if (kid == K_LEFT)
+		ft_rota_y(cam, -6 * M_PI / 360);
+	else if (kid == K_RIGHT)
 		ft_rota_y(cam, 6 * M_PI / 360);
 	else if (kid == K_A)
 		ft_rota_z(cam, -6 * M_PI / 360);

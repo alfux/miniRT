@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setrgb.c                                        :+:      :+:    :+:   */
+/*   ft_cylhgt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:39:55 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/24 00:25:33 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/05 15:08:50 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/05 15:09:02 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-t_rgb	ft_setrgb(unsigned char r, unsigned char g, unsigned char b)
+double	ft_cylhgt(t_vec const *p, t_cyl const *c)
 {
-	t_rgb	set;
+	t_vec	q;
 
-	set.r = r;
-	set.g = g;
-	set.b = b;
-	return (set);
+	q = ft_dif_uv(*p, c->pos);
+	return (ft_norm(ft_multlv(ft_scalar(q, c->dir), c->dir)));
 }

@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setrgb.c                                        :+:      :+:    :+:   */
+/*   ft_provec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:39:55 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/24 00:25:33 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/01 15:55:31 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/06 15:24:17 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-t_rgb	ft_setrgb(unsigned char r, unsigned char g, unsigned char b)
+t_vec	ft_provec(t_vec u, t_vec v)
 {
-	t_rgb	set;
-
-	set.r = r;
-	set.g = g;
-	set.b = b;
-	return (set);
+	return (ft_setvec(u.y * v.z - u.z * v.y, u.z * v.x - u.x * v.z,
+			u.x * v.y - u.y * v.x));
 }

@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set2x3.c                                        :+:      :+:    :+:   */
+/*   ft_datatp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 10:19:28 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/07 10:20:20 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/01 12:49:34 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/01 12:51:07 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-t_2x3	ft_set2x3(t_vec top, t_vec bot)
+char	ft_datatp(char const *line)
 {
-	t_2x3	mat;
-
-	mat.top = top;
-	mat.bot = bot;
-	return (mat);
+	while (ft_isspace(*line))
+		line++;
+	if (*line == 'v')
+	{
+		if (ft_isspace(*(line + 1)))
+			return (' ');
+		return (*(line + 1));
+	}
+	return (*line);
 }

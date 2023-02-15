@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setrgb.c                                        :+:      :+:    :+:   */
+/*   ft_addrgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 12:39:55 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/24 00:25:33 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/11 14:32:52 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/24 00:25:55 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-t_rgb	ft_setrgb(unsigned char r, unsigned char g, unsigned char b)
+t_rgb	ft_addrgb(t_rgb c1, t_rgb c2)
 {
-	t_rgb	set;
+	t_rgb	sum;
 
-	set.r = r;
-	set.g = g;
-	set.b = b;
-	return (set);
+	sum.r = fmin(255, c1.r + c2.r);
+	sum.g = fmin(255, c1.g + c2.g);
+	sum.b = fmin(255, c1.b + c2.b);
+	return (sum);
 }

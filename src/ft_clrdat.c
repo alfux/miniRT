@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_sol.c                                        :+:      :+:    :+:   */
+/*   ft_clrdat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 14:54:58 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 09:28:14 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/31 19:40:23 by alfux             #+#    #+#             */
+/*   Updated: 2023/01/11 17:54:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <miniRT.h>
 
-int	ft_is_sol(t_2x3 const *itr)
+int	ft_clrdat(t_dat *dat)
 {
-	if (!ft_is_val(&itr->top) || !ft_is_val(&itr->bot))
-		return (0);
-	return (1);
+	ft_lstclear(&dat->v, &free);
+	ft_lstclear(&dat->vt, &free);
+	ft_lstclear(&dat->vn, &free);
+	ft_lstclear(&dat->f, &free);
+	return (0);
 }

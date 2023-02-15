@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/23 12:45:56 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/15 18:00:00 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 //Constants
 # define EPSILON 0.0000001
 # define DEADZONE 0.02
+# define GAMMA 2
 
 //Vetcor data structure
 struct					s_vec
@@ -70,23 +71,34 @@ struct					s_3x3
 };
 typedef struct s_3x3	t_3x3;
 
-//2x3 matrix structure
-struct					s_2x3
-{
-	t_vec	top;
-	t_vec	bot;
-};
-typedef struct s_2x3	t_2x3;
-
 //Color data structure
 struct					s_rgb
 {
+	unsigned char	a;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	unsigned char	a;
 };
 typedef struct s_rgb	t_rgb;
+
+//Specular parameters
+struct					s_spc
+{
+	double	siz;
+	double	har;
+};
+typedef struct s_spc	t_spc;
+
+//Intersection data structure
+struct					s_itr
+{
+	t_vec	vtx;
+	t_vec	nml;
+	t_vec	bmp;
+	t_rgb	col;
+	t_spc	spc;
+};
+typedef struct s_itr	t_itr;
 
 //Ambiant light data structure
 struct					s_amb
@@ -118,12 +130,29 @@ struct					s_lig
 };
 typedef struct s_lig	t_lig;
 
+//Image data structure
+struct					s_img
+{
+	void	*iid;
+	char	*iad;
+	int		bpp;
+	int		opl;
+	int		end;
+	int		w;
+	int		h;
+};
+typedef struct s_img	t_img;
+
 //Sphere data structure
 struct					s_sph
 {
 	double	dia;
 	t_vec	pos;
 	t_rgb	col;
+	t_spc	spc;
+	t_3x3	bas;
+	t_rgb	co2;
+	t_img	bmp;
 };
 typedef struct s_sph	t_sph;
 
@@ -176,6 +205,10 @@ struct					s_pla
 	t_vec	pos;
 	t_vec	dir;
 	t_rgb	col;
+	t_spc	spc;
+	t_3x3	bas;
+	t_rgb	co2;
+	t_img	bmp;
 };
 typedef struct s_pla	t_pla;
 
@@ -187,6 +220,10 @@ struct					s_cyl
 	double	dia;
 	double	hgt;
 	t_rgb	col;
+	t_spc	spc;
+	t_3x3	bas;
+	t_rgb	co2;
+	t_img	bmp;
 };
 typedef struct s_cyl	t_cyl;
 
@@ -217,17 +254,6 @@ struct					s_scn
 };
 typedef struct s_scn	t_scn;
 
-//Image data structure
-struct					s_img
-{
-	void	*iid;
-	char	*iad;
-	int		bpp;
-	int		opl;
-	int		end;
-};
-typedef struct s_img	t_img;
-
 //MLX miniRT session structure
 struct					s_win
 {
@@ -242,14 +268,32 @@ struct					s_win
 };
 typedef struct s_win	t_win;
 
-//Bonus part
+//---------OBJ files data extraction structures---------------------------------
+//Data extraction lists
+struct					s_dat
+{
+	t_list	*v;
+	t_list	*vt;
+	t_list	*vn;
+	t_list	*f;
+};
+typedef struct s_dat	t_dat;
+
+//Vertex Texture Normal triplet
+struct					s_vtn
+{
+	size_t	v;
+	size_t	t;
+	size_t	n;
+};
+typedef struct s_vtn	t_vtn;
 
 //Index data structure
 struct					s_idx
 {
-	uint32_t	a;
-	uint32_t	b;
-	uint32_t	c;
+	t_vtn	a;
+	t_vtn	b;
+	t_vtn	c;
 };
 typedef struct s_idx	t_idx;
 
@@ -257,10 +301,14 @@ typedef struct s_idx	t_idx;
 struct					s_imp
 {
 	t_vec	*vtx;
+	t_vec	*txt;
 	t_vec	*nml;
 	t_idx	*idx;
+	t_rgb	col;
+	t_spc	spc;
 };
-typedef struct s_vtx	t_imp;
+typedef struct s_imp	t_imp;
+//------------------------------------------------------------------------------
 
 //Easter eggs
 # define EEGGS 111

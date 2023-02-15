@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_shdcyl.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_return.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 09:51:29 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 00:10:56 by alfux            ###   ########.fr       */
+/*   Created: 2022/12/30 17:23:34 by alfux             #+#    #+#             */
+/*   Updated: 2022/12/30 17:24:14 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-double	ft_shdcyl(t_win const *win, t_cyl const *c, t_vec const *p)
+int	ft_lstclear_return(t_list **lst, int ret)
 {
-	t_vec	*lpos;
-	t_vec	n;
-	t_vec	ldir;
-	t_vec	q;
-
-	lpos = &((t_lig *)win->scn.lig->obj)->pos;
-	q = ft_dif_uv(*p, c->pos);
-	n = ft_nrmlze(ft_dif_uv(q, ft_multlv(ft_scalar(q, c->dir), c->dir)));
-	ldir = ft_nrmlze(ft_dif_uv(*lpos, *p));
-	if (ft_clside(p, &win->scn.cam->pov, &n, lpos))
-		return (fabs(ft_scalar(ldir, n)));
-	return (0);
+	ft_lstclear(lst, &free);
+	return (ret);
 }
