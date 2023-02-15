@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/14 19:42:40 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/15 17:50:51 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	pla->spc.har = 1;
 	pla->bas = ft_set3x3(ft_setvec(0, 0, 1), ft_setvec(1, 0, 0), ft_setvec(0, 1, 0));
 	pla->co2 = ft_setrgb(255, 255, 255);
-	pla->bmp.iid = mlx_xpm_file_to_image(window.cid, "bmpmap/cuir.xpm", &pla->bmp.w, &pla->bmp.h);
+	pla->bmp.iid = mlx_xpm_file_to_image(window.cid, "bmpmap/maface.xpm", &pla->bmp.w, &pla->bmp.h);
 	pla->bmp.iad = mlx_get_data_addr(pla->bmp.iid, &pla->bmp.bpp, &pla->bmp.opl, &pla->bmp.end);
 //---------------TMP-FOR-TESTS-------------------------------------------------
 //	imp = ft_getimp("models/tetrahedron.obj");
