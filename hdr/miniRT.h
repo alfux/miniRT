@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/15 18:06:15 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/15 20:43:29 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,11 @@ t_rgb		ft_shades(t_win const *win, t_vec const *ray, t_list *itr);
 t_rgb		ft_sphrgb(t_vec const *vtx, t_sph const *sph);
 t_rgb		ft_plargb(t_vec const *vtx, t_pla const *sph);
 t_rgb		ft_cylrgb(t_vec const *vtx, t_cyl const *cyl);
+t_rgb		ft_ellrgb(t_vec const *vtx, t_ell const *ell);
 t_vec		ft_sphbmp(t_vec const *vtx, t_vec const *nml, t_sph const *sph);
 t_vec		ft_plabmp(t_vec const *vtx, t_pla const *pla);
 t_vec		ft_cylbmp(t_vec const *vtx, t_vec const *nml, t_cyl const *cyl);
+t_vec		ft_ellbmp(t_vec const *vtx, t_vec const *nml, t_ell const *ell);
 t_vec		ft_bmpmap(t_img const *img, double x, double y);
 double		ft_bmpimg(t_img const *img, double x, double y);
 

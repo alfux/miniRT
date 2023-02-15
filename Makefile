@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2023/02/15 17:58:26 by alfux            ###   ########.fr        #
+#    Updated: 2023/02/15 20:43:02 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HDR			=	$(HHDR:%=$(HDIR)%)
 
 SDIR		=	src/
 
-SSRC		=	ft_clrbmp.c \
+SSRC		=	ft_ellbmp.c ft_ellrgb.c ft_clrbmp.c \
 				ft_bmpimg.c ft_cylbmp.c ft_plabmp.c ft_bmpmap.c ft_rotnml.c	\
 				ft_sphbmp.c ft_multmm.c ft_cylrgb.c ft_plargb.c ft_sphrgb.c	\
 				ft_cylhgt.c ft_provec.c ft_datatp.c ft_addelm.c ft_multmv.c	\
@@ -35,8 +35,8 @@ SSRC		=	ft_clrbmp.c \
 				ft_newsph.c ft_newpla.c ft_newcyl.c ft_scalar.c	ft_addrgb.c	\
 				ft_objdelone.c ft_objclear.c ft_objnew.c ft_objadd.c main.c	\
 				ft_pars_coord_rgb.c ft_pars.c ft_mousehook.c ft_sysell.c	\
-				ft_newell.c ft_newcone.c ft_newhbol.c ft_newpbol.c			\
-				ft_shdell.c	ft_syspbl.c ft_sysimp.c	\
+				ft_sysimp.c ft_newell.c	\
+				ft_newcone.c ft_newhbol.c ft_newpbol.c #ft_syspbl.c			\
 
 SRC			=	$(SSRC:%=$(SDIR)%)
 
