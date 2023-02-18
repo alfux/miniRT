@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:12:19 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/15 20:55:03 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/18 02:07:22 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_rgb	ft_ellrgb(t_vec const *vtx, t_ell const *ell)
 	if (ft_det3x3(ell->bas) == 0.f)
 		return (ell->col);
 	vec = ft_dif_uv(*vtx, ell->pos);
-	vec = ft_setvec(vec.x * pow(1 / ell->rat.x, 2),
-			vec.y * pow(1 / ell->rat.y, 2), vec.z * pow(1 / ell->rat.z, 2));
+	vec = ft_setvec(vec.x * ell->rat.x,
+			vec.y * ell->rat.y, vec.z * ell->rat.z);
 	vec = ft_nrmlze(ft_multmv(ft_invmat(ell->bas), vec));
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/15 20:43:40 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/18 02:08:25 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	ft_lstell_itr(t_list **lst, t_vec const *res, t_ell const *ell)
 	}
 	itr->vtx = *res;
 	itr->nml = ft_dif_uv(*res, ell->pos);
-	itr->nml = ft_nrmlze(ft_setvec(itr->nml.x * pow(1 / ell->rat.x, 2),
-				itr->nml.y * pow(1 / ell->rat.y, 2), itr->nml.z * pow(1 / ell->rat.z, 2)));
+	itr->nml = ft_nrmlze(ft_setvec(itr->nml.x * ell->rat.x,
+				itr->nml.y * ell->rat.y, itr->nml.z * ell->rat.z));
 	itr->bmp = ft_ellbmp(&itr->vtx, &itr->nml, ell);
 	itr->col = ft_ellrgb(&itr->vtx, ell);
 	itr->spc = ell->spc;
@@ -42,9 +42,9 @@ static void	ft_sysellx(t_list **lst, t_vec const *dir, t_vec const *pov,
 	double	d_d;
 	double	d_f;
 
-	rat.x = pow(1 / ell->rat.x, 2);
-	rat.y = pow(1 / ell->rat.y, 2);
-	rat.z = pow(1 / ell->rat.z, 2);
+	rat.x = ell->rat.x;
+	rat.y = ell->rat.y;
+	rat.z = ell->rat.z;
 	d_d = dir->x * (ell->pos.z - pov->z) - dir->z * (ell->pos.x - pov->x);
 	d_f = dir->y * (ell->pos.x - pov->x) - dir->x * (ell->pos.y - pov->y);
 	sol = ft_polyd2(ft_setvec(rat.x + (pow(dir->z, 2) * rat.z
@@ -72,9 +72,9 @@ static void	ft_syselly(t_list **lst, t_vec const *dir, t_vec const *pov,
 	double	d_f;
 	double	d_e;
 
-	rat.x = pow(1 / ell->rat.x, 2);
-	rat.y = pow(1 / ell->rat.y, 2);
-	rat.z = pow(1 / ell->rat.z, 2);
+	rat.x = ell->rat.x;
+	rat.y = ell->rat.y;
+	rat.z = ell->rat.z;
 	d_f = dir->y * (ell->pos.x - pov->x) - dir->x * (ell->pos.y - pov->y);
 	d_e = dir->z * (ell->pos.y - pov->y) - dir->y * (ell->pos.z - pov->z);
 	sol = ft_polyd2(ft_setvec(rat.y + (pow(dir->x, 2) * rat.x + pow(dir->z, 2)
@@ -102,11 +102,11 @@ static void	ft_sysellz(t_list **lst, t_vec const *dir, t_vec const *pov,
 	double	d_d;
 	double	d_e;
 
+	rat.x = ell->rat.x;
+	rat.y = ell->rat.y;
+	rat.z = ell->rat.z;
 	d_d = dir->x * (ell->pos.z - pov->z) - dir->z * (ell->pos.x - pov->x);
 	d_e = dir->z * (ell->pos.y - pov->y) - dir->y * (ell->pos.z - pov->z);
-	rat.x = pow(1 / ell->rat.x, 2);
-	rat.y = pow(1 / ell->rat.y, 2);
-	rat.z = pow(1 / ell->rat.z, 2);
 	sol = ft_polyd2(ft_setvec(rat.z + (pow(dir->x, 2) * rat.x  + pow(dir->y, 2)
 					* rat.y) / pow(dir->z, 2),
 				2 * pow(1 / dir->z, 2) * (dir->x * d_d * rat.x
