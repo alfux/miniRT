@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/18 02:08:25 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 12:14:39 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	ft_sysellx(t_list **lst, t_vec const *dir, t_vec const *pov,
 					+ pow(dir->y, 2) * rat.y) / pow(dir->x, 2),
 				2 * pow(1 / dir->x, 2) * (dir->y * d_f * rat.y
 					- dir->z * d_d * rat.z),
-				(d_d * d_d * rat.z + d_f * d_f * rat.y) / pow(dir->x, 2) - ell->dia));
+				(d_d * d_d * rat.z + d_f * d_f * rat.y) / pow(dir->x, 2) - pow(ell->dia, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec(sol.x, (sol.x * dir->y + d_f)
@@ -81,7 +81,7 @@ static void	ft_syselly(t_list **lst, t_vec const *dir, t_vec const *pov,
 					* rat.z) / pow(dir->y, 2),
 				2 * pow(1 / dir->y, 2) * (dir->z * d_e * rat.z
 					- dir->x * d_f * rat.x),
-				(d_e * d_e * rat.z + d_f * d_f * rat.x) / pow(dir->y, 2) - ell->dia));
+				(d_e * d_e * rat.z + d_f * d_f * rat.x) / pow(dir->y, 2) - pow(ell->dia, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec((sol.x * dir->x - d_f) / dir->y,
@@ -111,7 +111,7 @@ static void	ft_sysellz(t_list **lst, t_vec const *dir, t_vec const *pov,
 					* rat.y) / pow(dir->z, 2),
 				2 * pow(1 / dir->z, 2) * (dir->x * d_d * rat.x
 					- dir->y * d_e * rat.y),
-				(d_e * d_e * rat.y + d_d * d_d * rat.x) / pow(dir->z, 2) - ell->dia));
+				(d_e * d_e * rat.y + d_d * d_d * rat.x) / pow(dir->z, 2) - pow(ell->dia, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec((sol.x * dir->x + d_d) / dir->z,
@@ -125,24 +125,28 @@ static void	ft_sysellz(t_list **lst, t_vec const *dir, t_vec const *pov,
 
 t_list	*ft_sysell(t_vec const *dir, t_vec const *pov, t_ell const *ell)
 {
-	double	a;
-	double	b;
-	double	c;
 	double	choice;
 	t_list	*lst;
 
 	lst = (void *)0;
-	a = fabs(dir->x);
-	b = fabs(dir->y);
-	c = fabs(dir->z);
-	choice = fmax(fmax(a, b), c);
+	choice = fmax(fmax(fabs(dir->x), fabs(dir->y)), fabs(dir->z));
 	if (choice < EPSILON)
 		return ((void *)0);
-	else if (choice == c)
+	else if (choice == fabs(dir->z))
 		ft_sysellz(&lst, dir, pov, ell);
-	else if (choice == b)
+	else if (choice == fabs(dir->y))
 		ft_syselly(&lst, dir, pov, ell);
-	else if (choice == a)
+	else if (choice == fabs(dir->x))
 		ft_sysellx(&lst, dir, pov, ell);
+	if (lst == (void *)0 || lst == (void *)-1)
+		return (lst);
+	if (ft_hyphgt(&((t_itr *)lst->content)->vtx, ell) > ell->hgt / 2)
+	{
+		ft_lstrem(&lst, lst);
+		if (lst && ft_hyphgt(&((t_itr *)lst->content)->vtx, ell) > ell->hgt / 2)
+			ft_lstrem(&lst, lst);
+	}
+	else if (lst->next && ft_hyphgt(&((t_itr *)lst->next->content)->vtx, ell) > ell->hgt / 2)
+		ft_lstrem(&lst, lst->next);
 	return (lst);
 }

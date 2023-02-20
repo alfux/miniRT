@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bmpimg.c                                        :+:      :+:    :+:   */
+/*   ft_hyphgt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 18:13:47 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/18 08:36:33 by alfux            ###   ########.fr       */
+/*   Created: 2023/01/05 15:08:50 by alfux             #+#    #+#             */
+/*   Updated: 2023/02/20 09:30:49 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-double	ft_bmpimg(t_img const *img, double x, double y)
+double	ft_hyphgt(t_vec const *p, t_ell const *c)
 {
-	double	val;
+	t_vec	q;
 
-	if (!img)
-		return (0);
-	if (x > img->h || x < 0)
-		x = x - floor(x / img->h) * img->h;
-	if (y > img->w || y < 0)
-		y = y - floor(y / img->w) * img->w;
-	val = ((double)(*(uint32_t *)(img->iad + (int)round(x) * img->opl
-		+ (int)round(y) * img->bpp / 8)) / ((1 << 24) - 1));
-	return (val);
+	q = ft_dif_uv(*p, c->pos);
+	return (ft_norm(ft_multlv(ft_scalar(q, c->dir), c->dir)));
 }
