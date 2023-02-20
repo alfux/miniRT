@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:51:26 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 17:55:13 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 19:50:49 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cyl	*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col)
 	return (new);
 }
 
-static int	ft_pars2_cyl(char *str, t_obj *new)
+static int	ft_pars2_cyl(t_win *window, char *str, t_obj *new)
 {
 	if (ft_coord(&((t_cyl *)(new->obj))->dir, &str)
 		|| ((t_cyl *)(new->obj))->dir.x < -1 || ((t_cyl *)(new->obj))->dir.x > 1
@@ -43,11 +43,11 @@ static int	ft_pars2_cyl(char *str, t_obj *new)
 	if (ft_rgb(&((t_cyl *)(new->obj))->col, &str))
 		return (5);
 	if (*str)
-		return (ft_bonus_param(window, &((t_cyl *)(new->obj)->bns), str));
+		return (ft_bonus_param(window, &((t_cyl *)new->obj)->bns, str));
 	return (0);
 }
 
-int	ft_pars_cyl(t_obj **obj, char *str)
+int	ft_pars_cyl(t_win *window, t_obj **obj, char *str)
 {
 	t_obj	*new;
 
@@ -61,5 +61,5 @@ int	ft_pars_cyl(t_obj **obj, char *str)
 	ft_objadd(obj, new);
 	if (ft_coord(&((t_cyl *)(new->obj))->pos, &str))
 		return (4);
-	return (ft_pars2_cyl(str, new));
+	return (ft_pars2_cyl(window, str, new));
 }

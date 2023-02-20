@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/12 20:01:19 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 19:44:15 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <miniRT.h>
@@ -28,7 +28,7 @@ static t_list	*ft_sysplax(t_vec const *dir, t_vec const *pov,
 	itr->nml = pla->dir;
 	itr->bmp = ft_plabmp(&itr->vtx, pla);
 	itr->col = ft_plargb(&itr->vtx, pla);
-	itr->spc = pla->spc;
+	itr->spc = pla->bns.spc;
 	return (lst);
 }
 
@@ -49,7 +49,7 @@ static t_list	*ft_sysplay(t_vec const *dir, t_vec const *pov,
 	itr->nml = pla->dir;
 	itr->bmp = ft_plabmp(&itr->vtx, pla);
 	itr->col = ft_plargb(&itr->vtx, pla);
-	itr->spc = pla->spc;
+	itr->spc = pla->bns.spc;
 	return (lst);
 }
 
@@ -70,7 +70,7 @@ static t_list	*ft_sysplaz(t_vec const *dir, t_vec const *pov,
 	itr->nml = pla->dir;
 	itr->bmp = ft_plabmp(&itr->vtx, pla);
 	itr->col = ft_plargb(&itr->vtx, pla);
-	itr->spc = pla->spc;
+	itr->spc = pla->bns.spc;
 	return (lst);
 }
 

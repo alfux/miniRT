@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 14:02:28 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/01 10:35:29 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 19:52:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_pla	ft_idxpla(t_imp const *imp, size_t i)
 	pla.dir = ft_nrmlze(imp->nml[imp->idx[i].a.n]);
 	pla.pos = imp->vtx[imp->idx[i].a.v];
 	pla.col = imp->col;
-	pla.spc = imp->spc;
+	pla.bns.spc = imp->spc;
 	return (pla);
 }
 

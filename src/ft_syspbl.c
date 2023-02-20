@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:20:15 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 14:08:01 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 20:01:41 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_lstpbl_itr(t_list **lst, t_vec const *res, t_pbol const *pbl)
 				itr->nml.y * 2 * pbl->rat.y, -pbl->rat.z));
 	itr->bmp = itr->nml;
 	itr->col = pbl->col;
-	itr->spc = pbl->spc;
+	itr->spc = pbl->bns.spc;
 	return (0);
 }
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_newell.c                                        :+:      :+:    :+:   */
+/*   ft_newehc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:59:49 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 17:43:57 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 19:54:29 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static int	ft_pars_ehc2(t_window *window, t_obj *new, char *str, char type)
+static int	ft_pars_ehc2(t_win *window, t_obj *new, char *str, char type)
 {
 	((t_ehc *)(new->obj))->rat.x = pow(1 / ((t_ehc *)(new->obj))->rat.x, 2);
 	((t_ehc *)(new->obj))->rat.y = pow(1 / ((t_ehc *)(new->obj))->rat.y, 2);
@@ -28,11 +28,11 @@ static int	ft_pars_ehc2(t_window *window, t_obj *new, char *str, char type)
 	if (ft_rgb(&((t_ehc *)(new->obj))->col, &str))
 		return (5);
 	if (*str)
-		return (ft_bonus_param(window, &((t_ehc)(new->obj)->bns), str));
+		return (ft_bonus_param(window, &((t_ehc *)new->obj)->bns, str));
 	return (0);
 }
 
-int	ft_pars_ehc(t_window *window, t_obj **obj, char *str, char type)
+int	ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type)
 {
 	t_obj	*new;
 
@@ -46,7 +46,7 @@ int	ft_pars_ehc(t_window *window, t_obj **obj, char *str, char type)
 	ft_objadd(obj, new);
 	if (ft_coord(&((t_ehc*)(new->obj))->pos, &str))
 		return (4);
-	if (ft_orthonormal_basis(&((t_ehc *)(new->obj)->bas), &str))
+	if (ft_orthonormal_basis(&((t_ehc *)new->obj)->bas, &str))
 		return (20);
 	if (ft_coord(&((t_ehc *)(new->obj))->rat, &str)
 		|| ((t_ehc *)(new->obj))->rat.x <= 0

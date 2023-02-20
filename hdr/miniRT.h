@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 18:19:46 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 18:26:05 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char		ft_datatp(char const *line);
 int			ft_addelm(char const *line, t_dat *dat);
 t_imp		*ft_getimp(char const *file);
 int			ft_orthonormal_basis(t_3x3 *bas, char **str);
-int			ft_bonus_param(t_window *windo, t_sdb *bns, char *str);
+int			ft_bonus_param(t_win *window, t_sdb *bns, char *str);
 
 //Object list manipulation
 t_obj		*ft_objnew(char type, void *obj);
@@ -89,8 +89,8 @@ t_rgb		ft_ambrgb(t_rgb const *rgb, t_amb const *amb);
 t_rgb		ft_ligrgb(t_itr const *vtx, t_vec const *ray, t_lig const *lig,
 				double i);
 t_list		*ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl);
-t_list		*ft_sysell(t_vec const *dir, t_vec const *pov, t_ell const *ell);
-double		ft_hyphgt(t_vec const *p, t_ell const *c);
+t_list		*ft_sysehc(t_vec const *dir, t_vec const *pov, t_ehc const *ell);
+double		ft_hyphgt(t_vec const *p, t_ehc const *c);
 
 //Other tools
 int			ft_free(void *ptr);
@@ -125,11 +125,11 @@ t_rgb		ft_shades(t_win const *win, t_vec const *ray, t_list *itr);
 t_rgb		ft_sphrgb(t_vec const *vtx, t_sph const *sph);
 t_rgb		ft_plargb(t_vec const *vtx, t_pla const *sph);
 t_rgb		ft_cylrgb(t_vec const *vtx, t_cyl const *cyl);
-t_rgb		ft_ellrgb(t_vec const *vtx, t_ell const *ell);
+t_rgb		ft_ellrgb(t_vec const *vtx, t_ehc const *ell);
 t_vec		ft_sphbmp(t_vec const *vtx, t_vec const *nml, t_sph const *sph);
 t_vec		ft_plabmp(t_vec const *vtx, t_pla const *pla);
 t_vec		ft_cylbmp(t_vec const *vtx, t_vec const *nml, t_cyl const *cyl);
-t_vec		ft_ellbmp(t_vec const *vtx, t_vec const *nml, t_ell const *ell);
+t_vec		ft_ellbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ell);
 t_vec		ft_bmpmap(t_img const *img, double x, double y);
 double		ft_bmpimg(t_img const *img, double x, double y);
 

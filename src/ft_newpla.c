@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:48:19 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 17:54:43 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 19:49:30 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int	ft_pars_pla(t_win *window, t_obj **obj, char *str)
 	if (ft_rgb(&((t_pla *)(new->obj))->col, &str))
 		return (5);
 	if (*str)
-		return (ft_bonus_param(window, &((t_pla *)(new->obj)->bns), str));
+		return (ft_bonus_param(window, &((t_pla *)new->obj)->bns, str));
 	return (0);
 }

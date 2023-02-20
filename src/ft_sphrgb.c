@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:12:19 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/08 01:32:59 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 19:42:48 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ t_rgb	ft_sphrgb(t_vec const *vtx, t_sph const *sph)
 	double	theta;
 	double	phi;
 
-	if (ft_det3x3(sph->bas) == 0.f)
+	if (ft_det3x3(sph->bns.dam.bas) == 0.f)
 		return (sph->col);
-	vec = ft_nrmlze(ft_multmv(ft_invmat(sph->bas), ft_dif_uv(*vtx, sph->pos)));
+	vec = ft_nrmlze(ft_multmv(ft_invmat(sph->bns.dam.bas), ft_dif_uv(*vtx, sph->pos)));
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));
 	if (theta >= 0)
@@ -47,5 +47,5 @@ t_rgb	ft_sphrgb(t_vec const *vtx, t_sph const *sph)
 		theta = -acos(vec.x / sin(phi));
 	if (ft_zone(phi) * ft_zone(theta) == 1)
 		return (sph->col);
-	return (sph->co2);
+	return (sph->bns.dam.col);
 }

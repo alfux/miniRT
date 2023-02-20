@@ -6,13 +6,13 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:06:10 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 17:55:23 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 20:01:11 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static int	ft_pars_pbol2(t_obj *new, char *str)
+static int	ft_pars_pbol2(t_win *window, t_obj *new, char *str)
 {
 	if (ft_coord(&((t_pbol *)(new->obj))->rat, &str))
 		return (16);
@@ -21,11 +21,11 @@ static int	ft_pars_pbol2(t_obj *new, char *str)
 	if (ft_rgb(&((t_pbol *)(new->obj))->col, &str))
 		return (5);
 	if (*str)
-		return (ft_bonus_param(window, &((t_pbol *)(new->obj)->bns), str));
+		return (ft_bonus_param(window, &((t_pbol *)new->obj)->bns, str));
 	return (0);
 }
 
-int	ft_pars_pbol(t_obj **obj, char *str)
+int	ft_pars_pbol(t_win *window, t_obj **obj, char *str)
 {
 	t_obj	*new;
 
@@ -48,5 +48,5 @@ int	ft_pars_pbol(t_obj **obj, char *str)
 		|| ((t_pbol *)(new->obj))->dir.z > 1)
 		return (4);
 	((t_pbol *)(new->obj))->dir = ft_nrmlze(((t_pbol *)(new->obj))->dir);
-	return (ft_pars_pbol2(new, str));
+	return (ft_pars_pbol2(window, new, str));
 }

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 18:19:15 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 20:00:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ struct					s_bmp
 	double	relief;
 	t_img	map;
 };
-typedef struct s_bmp	tbmp;
+typedef struct s_bmp	t_bmp;
 
 struct					s_bonus
 {
@@ -166,7 +166,7 @@ struct					s_bonus
 	t_dam	dam;
 	t_bmp	bmp;
 };
-typedef struct s_bonus	t_sdb
+typedef struct s_bonus	t_sdb;
 
 //Sphere data structure
 struct					s_sph
@@ -197,8 +197,8 @@ struct					s_pbol
 {
 	double	dia;
 	t_vec	pos;
+	t_vec	dir;
 	t_vec	rat;
-	t_3x3	bas;
 	t_rgb	col;
 	t_sdb	bns;
 };
