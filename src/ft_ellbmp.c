@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:26:27 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 20:20:05 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 20:22:39 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec	ft_ellbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ell)
 	vec = ft_nrmlze(ft_dif_uv(*vtx, ell->pos));
 	vbc = ft_nrmlze(ft_setvec(vec.x * ell->rat.x, vec.y * ell->rat.y, vec.z * ell->rat.z));
 	cor = ft_norm(vec) / ell->dia;
-	vec = ft_nrmlze(ft_multmv(ft_invmat(ell->bas), vec));
+	vec = ft_nrmlze(ft_multmv(ft_invmat(ell->bns.bmp.bas), vec));
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));
 	if (theta >= 0)
@@ -36,7 +36,7 @@ t_vec	ft_ellbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ell)
 		cor = (M_PI - phi) * cor;
 	else
 		cor = phi * cor;
-	return (ft_multmv(ft_rotnml(&ell->bas, &vbc, -phi),
-			ft_multmv(ell->bas, ft_bmpmap(&ell->bmp, cor * cos(theta),
+	return (ft_multmv(ft_rotnml(&ell->bns.bmp.bas, &vbc, -phi),
+			ft_multmv(ell->bns.bmp.bas, ft_bmpmap(&ell->bns.bmp.map, cor * cos(theta),
 			cor * sin(theta)))));
 }
