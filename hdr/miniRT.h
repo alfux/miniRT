@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 09:32:12 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 18:19:46 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,20 @@ t_3x3		ft_set3x3(t_vec lft, t_vec mid, t_vec rgt);
 t_lig		*ft_newlig(t_vec pos, double rat, t_rgb col);
 int			ft_pars_light(t_obj **lig, char *str);
 t_sph		*ft_newsph(double dia, t_vec pos, t_rgb col);
-int			ft_pars_sph(t_obj **obj, char *str);
+int			ft_pars_sph(t_win *window, t_obj **obj, char *str);
 t_pla		*ft_newpla(t_vec pos, t_vec dir, t_rgb col);
-int			ft_pars_pla(t_obj **obj, char *str);
+int			ft_pars_pla(t_win *window, t_obj **obj, char *str);
 t_cyl		*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col);
-int			ft_pars_cyl(t_obj **lig, char *str);
-int			ft_pars_pbol(t_obj **obj, char *str);
-int			ft_pars_hbol(t_obj **obj, char *str);
-int			ft_pars_cone(t_obj **obj, char *str);
-int			ft_pars_ell(t_obj **obj, char *str);
+int			ft_pars_cyl(t_win *window, t_obj **lig, char *str);
+int			ft_pars_pbol(t_win *window, t_obj **obj, char *str);
+//int			ft_pars_hbol(t_win *window, t_obj **obj, char *str);
+//int			ft_pars_cone(t_win *window, t_obj **obj, char *str);
+int			ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type);
 char		ft_datatp(char const *line);
 int			ft_addelm(char const *line, t_dat *dat);
 t_imp		*ft_getimp(char const *file);
+int			ft_orthonormal_basis(t_3x3 *bas, char **str);
+int			ft_bonus_param(t_window *windo, t_sdb *bns, char *str);
 
 //Object list manipulation
 t_obj		*ft_objnew(char type, void *obj);

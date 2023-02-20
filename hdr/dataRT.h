@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 13:11:13 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 18:19:15 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,34 +143,54 @@ struct					s_img
 };
 typedef struct s_img	t_img;
 
+struct					s_dam
+{
+	t_3x3	bas;
+	double	size;
+	t_rgb	col;
+};
+typedef struct s_dam	t_dam;
+
+struct					s_bmp
+{
+	t_3x3	bas;
+	double	size;
+	double	relief;
+	t_img	map;
+};
+typedef struct s_bmp	tbmp;
+
+struct					s_bonus
+{
+	t_spc	spc;
+	t_dam	dam;
+	t_bmp	bmp;
+};
+typedef struct s_bonus	t_sdb
+
 //Sphere data structure
 struct					s_sph
 {
 	double	dia;
 	t_vec	pos;
 	t_rgb	col;
-	t_spc	spc;
-	t_3x3	bas;
-	t_rgb	co2;
-	t_img	bmp;
+	t_sdb	bns;
 };
 typedef struct s_sph	t_sph;
 
-//Ellipse data structure
-struct					s_ell
+//Ellipse + hyperbole + cone data structure
+struct					s_ehc
 {
 	double	dia;
 	double	hgt;
 	t_vec	dir;
 	t_vec	pos;
 	t_vec	rat;
-	t_rgb	col;
-	t_spc	spc;
 	t_3x3	bas;
-	t_rgb	co2;
-	t_img	bmp;
+	t_rgb	col;
+	t_sdb	bns;
 };
-typedef struct s_ell	t_ell;
+typedef struct s_ehc	t_ehc;
 
 //parabol
 struct					s_pbol
@@ -178,36 +198,11 @@ struct					s_pbol
 	double	dia;
 	t_vec	pos;
 	t_vec	rat;
-	t_vec	dir;
-	t_rgb	col;
-	t_spc	spc;
 	t_3x3	bas;
-	t_rgb	co2;
-	t_img	bmp;
+	t_rgb	col;
+	t_sdb	bns;
 };
 typedef struct s_pbol	t_pbol;
-
-//hyperbol
-struct					s_hbol
-{
-	double	dia;
-	t_vec	pos;
-	t_vec	rat;
-	t_vec	dir;
-	t_rgb	col;
-};
-typedef struct s_hbol	t_hbol;
-
-//hyperbol
-struct					s_cone
-{
-	double	dia;
-	double	hgt;
-	t_vec	pos;
-	t_vec	dir;
-	t_rgb	col;
-};
-typedef struct s_cone	t_co;
 
 //Plane data structre
 struct					s_pla
@@ -215,10 +210,7 @@ struct					s_pla
 	t_vec	pos;
 	t_vec	dir;
 	t_rgb	col;
-	t_spc	spc;
-	t_3x3	bas;
-	t_rgb	co2;
-	t_img	bmp;
+	t_sdb	bns;
 };
 typedef struct s_pla	t_pla;
 
@@ -230,10 +222,7 @@ struct					s_cyl
 	double	dia;
 	double	hgt;
 	t_rgb	col;
-	t_spc	spc;
-	t_3x3	bas;
-	t_rgb	co2;
-	t_img	bmp;
+	t_sdb	bns;
 };
 typedef struct s_cyl	t_cyl;
 
