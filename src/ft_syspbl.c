@@ -3,124 +3,142 @@
 /*                                                        :::      ::::::::   */
 /*   ft_syspbl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/22 13:49:35 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/23 11:44:16 by efunes           ###   ########.fr       */
+/*   Created: 2023/02/20 12:20:15 by efunes            #+#    #+#             */
+/*   Updated: 2023/02/20 13:00:35 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-static t_2x3	ft_syspblx(t_vec const *dir, t_vec const *pov, t_pbol const *pbl)
+static int	ft_lstpbl_itr(t_list **lst, t_vec const *res, t_pbol const *pbl)
 {
-	t_vec	ijk;
-	t_vec	sol;
+	t_itr	*itr;
 
-	ijk = ft_setvec(dir->x * pbl->dir.x, dir->x
-			* pbl->dir.y, dir->x * pbl->dir.z);
-	sol = ft_polyd2(ft_setvec(pow(pbl->rat.y, 2) + pow(pbl->rat.x * ijk.y
-					/ ijk.x, 2), pow(pbl->rat.x, 2) * (-1 * ijk.z / ijk.x
-					* pow(pbl->rat.y, 2) + 2 * ijk.y / ijk.x * (ijk.y
-						/ ijk.x * (pbl->pos.x - pov->x) + pov->y - pbl->pos.y)),
-				pow(pbl->rat.x, 2) * (pow(ijk.y / ijk.x * (pbl->pos.x - pov->x)
-						+ pov->y - pbl->pos.y, 2) - pow(pbl->rat.y, 2)
-					* pow(ijk.z / ijk.x * (pbl->pos.x - pov->x) + pov->z
-						- pbl->pos.z, 2))));
-	if (isnan(sol.x) || isnan(sol.y))
-		return (ft_set2x3(sol, sol));
-	return (ft_set2x3(ft_sum_uv(ft_setvec(sol.x / pbl->dir.x,
-					(ijk.y / ijk.x * (sol.x + pbl->pos.x - pov->x) + pov->y
-						- pbl->pos.y) / pbl->dir.y, (ijk.z / ijk.x * (sol.x
-							+ pbl->pos.x - pov->x) + pov->z
-						- pbl->pos.z) / pbl->dir.z), pbl->pos),
-			ft_sum_uv(ft_setvec(sol.y / pbl->dir.x,
-					(ijk.y / ijk.x * (sol.y + pbl->pos.x - pov->x) + pov->y
-						- pbl->pos.y) / pbl->dir.y, (ijk.z / ijk.x * (sol.y
-							+ pbl->pos.x - pov->x) + pov->z
-						- pbl->pos.z) / pbl->dir.z), pbl->pos)));
+	itr = ft_calloc(1, sizeof (t_itr));
+	if (!itr || (ft_lstadd_new(lst, itr) && !ft_free(itr)))
+	{
+		ft_lstclear(lst, &free);
+		*lst = (void *)-1;
+		return (1);
+	}
+	itr->vtx = *res;
+	itr->nml = ft_dif_uv(*res, pbl->pos);
+	itr->nml = ft_nrmlze(ft_setvec(itr->nml.x * pbl->rat.x,
+				itr->nml.y * pbl->rat.y, itr->nml.z * pbl->rat.z));
+	itr->bmp = ft_pblbmp(&itr->vtx, &itr->nml, pbl);
+	itr->col = ft_pblrgb(&itr->vtx, pbl);
+	itr->spc = pbl->spc;
+	return (0);
 }
 
-static t_2x3	ft_syspbly(t_vec const *dir, t_vec const *pov, t_pbol const *pbl)
+static void	ft_syspblx(t_list **lst, t_vec const *dir, t_vec const *pov,
+	t_pbol const *pbl)
 {
-	t_vec	ijk;
 	t_vec	sol;
+	t_vec	rat;
+	t_vec	res;
+	double	d_d;
+	double	d_f;
 
-	ijk = ft_setvec(dir->x * pbl->dir.x, dir->x
-			* pbl->dir.y, dir->x * pbl->dir.z);
-	sol = ft_polyd2(ft_setvec(pow(pbl->rat.x, 2) + pow(pbl->rat.y * ijk.x
-					/ ijk.y, 2), pow(pbl->rat.y, 2) * (-1 * ijk.z / ijk.y
-					* pow(pbl->rat.x, 2) + 2 * ijk.x / ijk.y * (ijk.x
-						/ ijk.y * (pbl->pos.y - pov->y) + pov->x - pbl->pos.x)),
-				pow(pbl->rat.y, 2) * (pow(ijk.x / ijk.y * (pbl->pos.y - pov->y)
-						+ pov->x - pbl->pos.x, 2) - pow(pbl->rat.x, 2)
-					* pow(ijk.z / ijk.y * (pbl->pos.y - pov->y) + pov->z
-						- pbl->pos.z, 2))));
-	if (isnan(sol.x) || isnan(sol.y))
-		return (ft_set2x3(sol, sol));
-	return (ft_set2x3(ft_sum_uv(ft_setvec((ijk.x / ijk.y * (sol.x + pbl->pos.y
-							- pov->y) + pov->x - pbl->pos.x) / pbl->dir.x,
-					sol.x / pbl->dir.y, (ijk.z / ijk.y * (sol.x
-							+ pbl->pos.y - pov->y) + pov->z
-						- pbl->pos.z) / pbl->dir.z), pbl->pos),
-			ft_sum_uv(ft_setvec((ijk.x / ijk.y * (sol.y + pbl->pos.y
-							- pov->y) + pov->x - pbl->pos.x) / pbl->dir.x,
-					sol.y / pbl->dir.y, (ijk.z / ijk.y * (sol.y
-							+ pbl->pos.y - pov->y) + pov->z
-						- pbl->pos.z) / pbl->dir.z), pbl->pos)));
+	rat.x = pbl->rat.x;
+	rat.y = pbl->rat.y;
+	rat.z = pbl->rat.z;
+	d_d = dir->x * (pbl->pos.z - pov->z) - dir->z * (pbl->pos.x - pov->x);
+	d_f = dir->y * (pbl->pos.x - pov->x) - dir->x * (pbl->pos.y - pov->y);
+	sol = ft_polyd2(ft_setvec(rat.x + pow(dir->y / dir->x, 2), 2 * rat.y
+				* dir->y * d_f / pow(dir->x, 2) - rat.z * dir->z / dir->x,
+				rat.z * d_d / dir->x + rat.y * d_f * d_f / pow(dir->x, 2)));
+	if (isnan(sol.x))
+		return ;
+	res = ft_sum_uv(ft_setvec(sol.x, (sol.x * dir->y + d_f)
+					/ dir->x, (sol.x * dir->z - d_d) / dir->x), pbl->pos);
+	if (ft_lstpbl_itr(lst, &res, pbl) || sol.x == sol.y)
+		return ;
+	res = ft_sum_uv(ft_setvec(sol.y, (sol.y * dir->y + d_f)
+					/ dir->x, (sol.y * dir->z - d_d) / dir->x), pbl->pos);
+	(void)ft_lstpbl_itr(lst, &res, pbl);
 }
 
-static t_2x3	ft_syspblz(t_vec const *dir, t_vec const *pov, t_pbol const *pbl)
+static void	ft_syspbly(t_list **lst, t_vec const *dir, t_vec const *pov,
+	t_pbol const *pbl)
 {
-	t_vec	ijk;
 	t_vec	sol;
+	t_vec	rat;
+	t_vec	res;
+	double	d_f;
+	double	d_e;
 
-	ijk = ft_setvec(dir->x * pbl->dir.x, dir->x
-			* pbl->dir.y, dir->x * pbl->dir.z);
-	sol = ft_polyd2(ft_setvec((pow(ijk.x * pbl->rat.y, 2) + pow(ijk.y
-						* pbl->rat.x, 2)) / pow(ijk.z, 2), 2 * ((pow(pbl->rat.y
-							* ijk.x, 2) + pow(pbl->rat.x * ijk.y, 2))
-					/ pow(ijk.z, 2) * (pbl->pos.z - pov->z) + ijk.x / ijk.z
-					* pow(pbl->rat.y, 2) * (pov->x - pbl->pos.x) + ijk.y
-					/ ijk.z * pow(pbl->rat.y, 2) * (pov->y - pbl->pos.y))
-				+ pow(pbl->rat.x * pbl->rat.y, 2), pow(pbl->rat.y, 2)
-				* pow(ijk.x / ijk.z * (pbl->pos.z - pov->z) + pov->x
-					- pbl->pos.x, 2) + pow(pbl->rat.x, 2)
-				* pow(ijk.y / ijk.z * (pbl->pos.z - pov->z) + pov->y
-					- pbl->pos.y, 2)));
-	if (isnan(sol.x) || isnan(sol.y))
-		return (ft_set2x3(sol, sol));
-	return (ft_set2x3(ft_sum_uv(ft_setvec((ijk.x / ijk.z * (sol.x + pbl->pos.z
-							- pov->z) + pov->x - pbl->pos.x) / pbl->dir.x,
-					(ijk.y / ijk.z * (sol.z + pbl->pos.z - pov->x) + pov->y
-						- pbl->pos.y) / pbl->dir.y, sol.x / pbl->dir.z),
-				pbl->pos),
-			ft_sum_uv(ft_setvec((ijk.x / ijk.z * (sol.x + pbl->pos.z
-							- pov->z) + pov->x - pbl->pos.x) / pbl->dir.x,
-					(ijk.y / ijk.z * (sol.z + pbl->pos.z - pov->x) + pov->y
-						- pbl->pos.y) / pbl->dir.y, sol.x / pbl->dir.z),
-				pbl->pos)));
+	rat.x = pbl->rat.x;
+	rat.y = pbl->rat.y;
+	rat.z = pbl->rat.z;
+	d_f = dir->y * (pbl->pos.x - pov->x) - dir->x * (pbl->pos.y - pov->y);
+	d_e = dir->z * (pbl->pos.y - pov->y) - dir->y * (pbl->pos.z - pov->z);
+	sol = ft_polyd2(ft_setvec(rat.y + rat.x * pow(dir->x / dir->y, 2),
+				-1 * (2 * rat.x * dir->x * d_f / pow(dir->y, 2)
+					+ rat.z * dir->z / dir->y), rat.x * pow(d_f / dir_y, 2)
+				- rsst.z * d_e / dir->y));
+	if (isnan(sol.x))
+		return ;
+	res = ft_sum_uv(ft_setvec((sol.x * dir->x - d_f) / dir->y,
+					sol.x, (sol.x * dir->z + d_e) / dir->y), pbl->pos);
+	if (ft_lstpbl_itr(lst, &res, pbl) || sol.x == sol.y)
+		return ;
+	res = ft_sum_uv(ft_setvec((sol.y * dir->x - d_f) / dir->y,
+					sol.y, (sol.y * dir->z + d_e) / dir->y), pbl->pos);
+	(void)ft_lstpbl_itr(lst, &res, pbl);
 }
 
+static void	ft_syspblz(t_list **lst, t_vec const *dir, t_vec const *pov,
+	t_pbol const *pbl)
+{
+	t_vec	sol;
+	t_vec	rat;
+	t_vec	res;
+	double	d_d;
+	double	d_e;
 
-t_2x3	ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl)
+	rat.x = pbl->rat.x;
+	rat.y = pbl->rat.y;
+	rat.z = pbl->rat.z;
+	d_d = dir->x * (pbl->pos.z - pov->z) - dir->z * (pbl->pos.x - pov->x);
+	d_e = dir->z * (pbl->pos.y - pov->y) - dir->y * (pbl->pos.z - pov->z);
+	sol = ft_polyd2(ft_setvec((rat.x * pow(dir->x, 2) + rat.y * pow(dir->y, 2))
+					/ pow(dir->z, 2), 2 / pow(dir->z, 2)
+					* (dir->x * d_d - dir->y * d_e) - rat.z,
+					(d_d * d_d + d_e * d_e) / pow(dir->z, 2));
+	if (isnan(sol.x))
+		return ;
+	res = ft_sum_uv(ft_setvec((sol.x * dir->x + d_d) / dir->z,
+					(sol.x * dir->y - d_e) / dir->z, sol.x), pbl->pos);
+	if (ft_lstpbl_itr(lst, &res, pbl) || sol.x == sol.y)
+		return ;
+	res = ft_sum_uv(ft_setvec((sol.y * dir->x + d_d) / dir->z,
+					(sol.y * dir->y - d_e) / dir->z, sol.y), pbl->pos);
+	(void)ft_lstpbl_itr(lst, &res, pbl);
+}
+
+t_list	*ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl)
 {
 	double	a;
 	double	b;
 	double	c;
 	double	choice;
+	t_list	*lst;
 
+	lst = (void *)0;
 	a = fabs(dir->x);
 	b = fabs(dir->y);
 	c = fabs(dir->z);
 	choice = fmax(fmax(a, b), c);
 	if (choice < EPSILON)
-		return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
+		return ((void *)0);
 	else if (choice == c)
-		return (ft_syspblz(dir, pov, pbl));
+		ft_syspblz(&lst, dir, pov, pbl);
 	else if (choice == b)
-		return (ft_syspbly(dir, pov, pbl));
+		ft_syspbly(&lst, dir, pov, pbl);
 	else if (choice == a)
-		return (ft_syspblx(dir, pov, pbl));
-	return (ft_set2x3(ft_setvec(NAN, NAN, NAN), ft_setvec(NAN, NAN, NAN)));
+		ft_syspblx(&lst, dir, pov, pbl);
+	return (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/15 18:24:33 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 13:01:44 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,10 @@ struct					s_pbol
 	t_vec	rat;
 	t_vec	dir;
 	t_rgb	col;
+	t_spc	spc;
+	t_3x3	bas;
+	t_rgb	co2;
+	t_img	bmp;
 };
 typedef struct s_pbol	t_pbol;
 
