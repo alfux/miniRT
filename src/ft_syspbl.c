@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:20:15 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 13:00:35 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 14:08:01 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static int	ft_lstpbl_itr(t_list **lst, t_vec const *res, t_pbol const *pbl)
 	}
 	itr->vtx = *res;
 	itr->nml = ft_dif_uv(*res, pbl->pos);
-	itr->nml = ft_nrmlze(ft_setvec(itr->nml.x * pbl->rat.x,
-				itr->nml.y * pbl->rat.y, itr->nml.z * pbl->rat.z));
-	itr->bmp = ft_pblbmp(&itr->vtx, &itr->nml, pbl);
-	itr->col = ft_pblrgb(&itr->vtx, pbl);
+	itr->nml = ft_nrmlze(ft_setvec(itr->nml.x * 2 * pbl->rat.x,
+				itr->nml.y * 2 * pbl->rat.y, -pbl->rat.z));
+	itr->bmp = itr->nml;
+	itr->col = pbl->col;
 	itr->spc = pbl->spc;
 	return (0);
 }
@@ -77,8 +77,8 @@ static void	ft_syspbly(t_list **lst, t_vec const *dir, t_vec const *pov,
 	d_e = dir->z * (pbl->pos.y - pov->y) - dir->y * (pbl->pos.z - pov->z);
 	sol = ft_polyd2(ft_setvec(rat.y + rat.x * pow(dir->x / dir->y, 2),
 				-1 * (2 * rat.x * dir->x * d_f / pow(dir->y, 2)
-					+ rat.z * dir->z / dir->y), rat.x * pow(d_f / dir_y, 2)
-				- rsst.z * d_e / dir->y));
+					+ rat.z * dir->z / dir->y), rat.x * pow(d_f / dir->y, 2)
+				- rat.z * d_e / dir->y));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec((sol.x * dir->x - d_f) / dir->y,
@@ -107,7 +107,7 @@ static void	ft_syspblz(t_list **lst, t_vec const *dir, t_vec const *pov,
 	sol = ft_polyd2(ft_setvec((rat.x * pow(dir->x, 2) + rat.y * pow(dir->y, 2))
 					/ pow(dir->z, 2), 2 / pow(dir->z, 2)
 					* (dir->x * d_d - dir->y * d_e) - rat.z,
-					(d_d * d_d + d_e * d_e) / pow(dir->z, 2));
+					(d_d * d_d + d_e * d_e) / pow(dir->z, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec((sol.x * dir->x + d_d) / dir->z,

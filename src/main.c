@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 13:06:41 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 14:05:14 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_win	window;
-	t_ell	*pla;
+	t_pbol	*pla;
 //	t_imp	*imp;
 //	t_obj	*tmp;
 
@@ -27,12 +27,10 @@ int	main(int argc, char **argv)
 	pla = window.scn.obj->obj;
 	pla->spc.siz = 0.1;
 	pla->spc.har = 1;
-	pla->bas = ft_set3x3(ft_setvec(0, 0, 1), ft_setvec(1, 0, 0), ft_setvec(0, 1, 0));
+	pla->bas = ft_set3x3(ft_setvec(1, 0, 0), ft_setvec(0, 1, 0), ft_setvec(0, 0, 1));
 	pla->co2 = ft_setrgb(255, 255, 255);
-	pla->bmp.iid = mlx_xpm_file_to_image(window.cid, "bmpmap/cuir.xpm", &pla->bmp.w, &pla->bmp.h);
-	pla->bmp.iad = mlx_get_data_addr(pla->bmp.iid, &pla->bmp.bpp, &pla->bmp.opl, &pla->bmp.end);
-	pla->dir = ft_setvec(1, 0, 0);
-	pla->hgt = 1;
+//	pla->bmp.iid = mlx_xpm_file_to_image(window.cid, "bmpmap/cuir.xpm", &pla->bmp.w, &pla->bmp.h);
+//	pla->bmp.iad = mlx_get_data_addr(pla->bmp.iid, &pla->bmp.bpp, &pla->bmp.opl, &pla->bmp.end);
 //---------------TMP-FOR-TESTS-------------------------------------------------
 //	imp = ft_getimp("models/tetrahedron.obj");
 //	if (!imp)
