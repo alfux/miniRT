@@ -6,12 +6,12 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:36:01 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/14 21:24:59 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/18 08:37:28 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
-#define RAT 100
+#define RAT 200
 
 t_vec	ft_bmpmap(t_img const *img, double x, double y)
 {

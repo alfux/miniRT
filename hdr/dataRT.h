@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 13:01:44 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 13:11:13 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ typedef struct s_sph	t_sph;
 struct					s_ell
 {
 	double	dia;
+	double	hgt;
+	t_vec	dir;
 	t_vec	pos;
 	t_vec	rat;
 	t_rgb	col;

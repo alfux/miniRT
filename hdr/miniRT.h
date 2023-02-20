@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/15 20:43:29 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/20 09:32:12 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_rgb		ft_ligrgb(t_itr const *vtx, t_vec const *ray, t_lig const *lig,
 				double i);
 t_list		*ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl);
 t_list		*ft_sysell(t_vec const *dir, t_vec const *pov, t_ell const *ell);
+double		ft_hyphgt(t_vec const *p, t_ell const *c);
 
 //Other tools
 int			ft_free(void *ptr);
