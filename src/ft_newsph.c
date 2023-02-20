@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:46:58 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 15:48:03 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 17:54:57 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int	ft_pars_sph(t_obj **obj, char *str)
 	if (ft_rgb(&((t_sph *)(new->obj))->col, &str))
 		return (5);
 	if (*str)
-		return (16);
+		return (ft_bonus_param(window, &((t_sph *)(new->obj)->bns), str));
 	return (0);
 }

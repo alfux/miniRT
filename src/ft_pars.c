@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2023/01/16 14:06:11 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/20 18:09:49 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,22 @@ static int	ft_error_manager(int err, char *line, int fd)
 		ft_putstr_fd("invalid sphere argument\n", 2);
 	else if (err == 16)
 		ft_putstr_fd("invalid hyperbol or parabol or ellipse ratio\n", 2);
+	else if (err == 17)
+		ft_putstr_fd("invalid color perturbation argument\n", 2);
+	else if (err == 18)
+		ft_putstr_fd("invalid bumpmap argument\n", 2);
+	else if (err == 19)
+		ft_putstr_fd("invalid bumpmap file\n", 2);
+	else if (err == 20)
+		ft_putstr_fd("vectors of the reference basis are collinear\n", 2);
+	else if (err == 21)
+		ft_putstr_fd("invalid specular-perturbation-bumpmap selector\n", 2);
+	else if (err == 22)
+		ft_putstr_fd("invalid specular-perturbation-bumpmap's argument's line\n", 2);
 	return (1);
 }
 
-static int	ft_new_elem(t_scn *scn, char *str)
+static int	ft_new_elem(t_win *win, t_scn *scn, char *str)
 {
 	if (*str == 'A' && str[1] && ft_isspace(str[1]))
 		return (ft_pars_amb(&(scn->amb), str + 1));
@@ -73,19 +85,19 @@ static int	ft_new_elem(t_scn *scn, char *str)
 	else if (*str && str[1] && str[2] && ft_isspace(str[2]))
 	{
 		if (*str == 'c' && str[1] && str[1] == 'o')
-			return (ft_pars_cone(&(scn->obj), str + 2));
+			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'c'));
 		else if (*str == 'c' && str[1] && str[1] == 'y')
-			return (ft_pars_cyl(&(scn->obj), str + 2));
+			return (ft_pars_cyl(win, &(scn->obj), str + 2));
 		else if (*str == 'h' && str[1] && str[1] == 'y')
-			return (ft_pars_hbol(&(scn->obj), str + 2));
+			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'h'));
 		else if (*str == 'p' && str[1] && str[1] == 'a')
-			return (ft_pars_pbol(&(scn->obj), str + 2));
+			return (ft_pars_pbol(win, &(scn->obj), str + 2));
 		else if (*str == 'p' && str[1] && str[1] == 'l')
-			return (ft_pars_pla(&(scn->obj), str + 2));
+			return (ft_pars_pla(win, &(scn->obj), str + 2));
 		else if (*str == 's' && str[1] && str[1] == 'p')
-			return (ft_pars_sph(&(scn->obj), str + 2));
+			return (ft_pars_sph(win, &(scn->obj), str + 2));
 		else if (*str == 'e' && str[1] && str[1] == 'l')
-			return (ft_pars_ell(&(scn->obj), str + 2));
+			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'e'));
 	}
 	return (2);
 }
@@ -122,7 +134,7 @@ int	ft_pars(t_win *win, char *arg)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		if (line[i])
-			err = ft_new_elem(&win->scn, line + i);
+			err = ft_new_elem(win, &win->scn, line + i);
 		if (err)
 			return (ft_error_manager(err, line, fd));
 		free(line);
