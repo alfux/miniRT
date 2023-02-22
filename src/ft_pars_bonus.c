@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:31:16 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/22 01:02:07 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/22 02:53:14 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_orthonormal_basis(t_3x3 *bas, char **str)
 	bas->top = ft_nrmlze(bas->top);
 	bas->mid = ft_nrmlze(bas->mid);
 	bas->bot = ft_provec(bas->top, bas->mid);
-	*bas = ft_set3x3(bas->top, bas->mid, bas->bot);
+	*bas = ft_set3x3(bas->mid, bas->bot, bas->top);
 	return (0);
 }
 
