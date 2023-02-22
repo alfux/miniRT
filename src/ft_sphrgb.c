@@ -6,26 +6,16 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:12:19 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 19:42:48 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/21 23:23:19 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-//Pokeball
-//static int	ft_zone(double rad)
-//{
-//	if (rad < M_PI / 20)
-//		return (-1);
-//	return (1);
-//}
-static int	ft_zone(double rad)
+static int	ft_zone(double rad, t_sph const *sph)
 {
-	double	size;
-
-	size = M_PI / 10;
-	rad = rad - floor(rad / size) * size;
-	if (rad < size / 2)
+	rad = rad - floor(rad / sph->bns.dam.size) * sph->bns.dam.size;
+	if (rad < sph->bns.dam.size / 2)
 		return (1);
 	return (-1);
 }
@@ -45,7 +35,7 @@ t_rgb	ft_sphrgb(t_vec const *vtx, t_sph const *sph)
 		theta = acos(vec.x / sin(phi));
 	else
 		theta = -acos(vec.x / sin(phi));
-	if (ft_zone(phi) * ft_zone(theta) == 1)
+	if (ft_zone(phi, sph) * ft_zone(theta, sph) == 1)
 		return (sph->col);
 	return (sph->bns.dam.col);
 }

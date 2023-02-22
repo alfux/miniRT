@@ -6,14 +6,13 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:36:01 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 17:07:10 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/22 00:01:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
-#define RAT 100
 
-t_vec	ft_bmpmap(t_img const *img, double x, double y)
+t_vec	ft_bmpmap(t_img const *img, t_bmp const *bmp, double x, double y)
 {
 	t_vec	dx;
 	t_vec	dy;
@@ -21,8 +20,8 @@ t_vec	ft_bmpmap(t_img const *img, double x, double y)
 
 	a = 1;
 	dx = ft_setvec(1, 0,
-			(ft_bmpimg(img, RAT * x + a, RAT * y) - ft_bmpimg(img, RAT * x - a, RAT * y)) / (2 * a));
+			bmp->relief * (ft_bmpimg(img, bmp->size * x + a, bmp->size * y) - ft_bmpimg(img, bmp->size * x - a, bmp->size * y)) / (2 * a));
 	dy = ft_setvec(0, 1,
-			(ft_bmpimg(img, RAT * x, RAT * y + a) - ft_bmpimg(img, RAT * x, RAT * y - a)) / (2 * a));
+			bmp->relief * (ft_bmpimg(img, bmp->size * x, bmp->size * y + a) - ft_bmpimg(img, bmp->size * x, bmp->size * y - a)) / (2 * a));
 	return (ft_nrmlze(ft_provec(dx, dy)));
 }

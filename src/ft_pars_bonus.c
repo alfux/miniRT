@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:31:16 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 20:17:31 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/22 01:02:07 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int	ft_orthonormal_basis(t_3x3 *bas, char **str)
 		return (1);
 	if (ft_coord(&bas->mid, str))
 		return (1);
-	bas->mid = ft_multlv(ft_scalar(bas->top, bas->mid)
-			/ ft_norm(bas->top), ft_nrmlze(bas->top));
+	bas->mid = ft_dif_uv(bas->mid, ft_multlv(ft_scalar(bas->top, bas->mid)
+			/ ft_norm(bas->top), ft_nrmlze(bas->top)));
 	bas->top = ft_nrmlze(bas->top);
 	bas->mid = ft_nrmlze(bas->mid);
 	bas->bot = ft_provec(bas->top, bas->mid);
+	*bas = ft_set3x3(bas->top, bas->mid, bas->bot);
 	return (0);
 }
 
@@ -60,6 +61,7 @@ int	ft_pars_bumpmap(t_win *window, t_bmp *bmp, char **str)
 			|| (*str)[i - 2] != 'p' || (*str)[i - 1] != 'm')
 		return (19);
 	name = ft_substr(*str, 0, i);
+	*str += ft_strlen(name);
 	if (!name)
 		return (19);
 	bmp->map.iid = mlx_xpm_file_to_image(window->cid, name, &bmp->map.w, &bmp->map.h);
@@ -89,7 +91,7 @@ int	ft_bonus_param(t_win *window, t_sdb *bns, char *str)
 		err = ft_pars_bumpmap(window, &bns->bmp, &str);
 	if (!err && sdb.z)
 		err = ft_pars_color_disturb(&bns->dam, &str);
-	if (!err && *str)
+	if (err)
 		return (22);
 	return (err);
 }
