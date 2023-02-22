@@ -21,6 +21,7 @@
 <br />☛ Tuesday January 24th 01:19: Added Specular reflections
 <br />☛ Thursday February 9th 09:18: Added basic object checkboard colors
 <br />☛ Thursday February 9th 09:18: Added sphere bumpmapping
+<br />☛ Monday February 20th 18:00:	Added bonus objects and every bumpmap/color chessboard
 ## Bonus ideas
 ☛ Anti-aliasing ?
 <br />☛ Use of GPU to have a moving camera ?
