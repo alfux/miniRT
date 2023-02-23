@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:59:49 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 19:54:29 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 15:32:11 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type)
 	new = (t_obj *)ft_calloc(1, sizeof (t_obj));
 	if (!new)
 		return (6);
-	new->type = 'e';
+	new->type = type;
 	new->obj = (t_ehc *)ft_calloc(1, sizeof (t_ehc));
 	if (!new->obj)
 		return (6 + ft_free(new));

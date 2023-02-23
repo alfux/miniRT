@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 15:47:12 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:51:29 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,8 @@ int	ft_keyhook(int kid, t_win *win)
 	}
 	else if (kid == K_ESCAPE)
 		return (ft_exit(win, 0));
-	else if (win->mod && kid == K_O)
-		win->scn.cam->fov += (2 * M_PI) / 360;
-	else if (win->mod && kid == K_L)
-		win->scn.cam->fov -= (2 * M_PI) / 360;
+	else if (win->mod && (kid == K_O || kid == K_L))
+		win->scn.cam->fov += (-(kid == K_L) + (kid == K_O)) * (2 * M_PI) / 360;
 	else if (win->mod && kid == EEGGS)
 		ft_eeggs(win->scn.cam);
 	else if (win->mod && !win->cur)

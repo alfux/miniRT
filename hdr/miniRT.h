@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/23 13:32:22 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 17:05:22 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int			ft_coord(t_vec *vec, char **str);
 int			ft_skipdigit(char const **str);
 int			ft_skipspace(char const **str);
 int			ft_skipnodigit(char const **str);
+int			ft_error_manager(int err, int fd);
 
 //Memory free exits
 int			ft_exit_success(t_win *win);
@@ -130,7 +131,7 @@ t_rgb		ft_ehcrgb(t_vec const *vtx, t_ehc const *ell);
 t_vec		ft_sphbmp(t_vec const *vtx, t_vec const *nml, t_sph const *sph);
 t_vec		ft_plabmp(t_vec const *vtx, t_pla const *pla);
 t_vec		ft_cylbmp(t_vec const *vtx, t_vec const *nml, t_cyl const *cyl);
-t_vec		ft_ehcbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ell);
+t_vec		ft_ehcbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ell, double cor);
 t_vec		ft_bmpmap(t_img const *img, t_bmp const *bmp, double x, double y);
 double		ft_bmpimg(t_img const *img, double x, double y);
 

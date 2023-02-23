@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 15:31:57 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:59:39 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_lstehc_itr(t_list **lst, t_vec const *res, t_ehc const *ehc)
 	itr->nml = ft_dif_uv(*res, ehc->pos);
 	itr->nml = ft_nrmlze(ft_setvec(itr->nml.x * ehc->rat.x,
 				itr->nml.y * ehc->rat.y, itr->nml.z * ehc->rat.z));
-	itr->bmp = ft_ehcbmp(&itr->vtx, &itr->nml, ehc);
+	itr->bmp = ft_ehcbmp(&itr->vtx, &itr->nml, ehc, 0);
 	itr->col = ft_ehcrgb(&itr->vtx, ehc);
 	itr->spc = ehc->bns.spc;
 	return (0);
