@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:06:10 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 13:26:27 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 15:19:28 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	ft_pars_pbol2(t_win *window, t_obj *new, char *str)
 {
 	if (ft_coord(&((t_pbol *)(new->obj))->rat, &str))
 		return (16);
-	if (ft_pars_double(&((t_pbol *)(new->obj))->dia, &str))
-		return (12);
 	if (ft_pars_double(&((t_pbol *)(new->obj))->hgt, &str))
 		return (12);
 	if (ft_rgb(&((t_pbol *)(new->obj))->col, &str))

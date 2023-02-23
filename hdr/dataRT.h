@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/23 13:17:47 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 15:19:06 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,6 @@ typedef struct s_ehc	t_ehc;
 //parabol
 struct					s_pbol
 {
-	double	dia;
 	double	hgt;
 	t_vec	pos;
 	t_vec	rat;

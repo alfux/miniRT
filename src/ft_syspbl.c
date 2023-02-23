@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:20:15 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 13:56:49 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 15:15:31 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ft_syspblx(t_list **lst, t_vec const dir, t_vec const pov,
 	rat.z = pbl->rat.z;
 	d_d = dir.x * (pbl->pos.z - pov.z) - dir.z * (pbl->pos.x - pov.x);
 	d_f = dir.y * (pbl->pos.x - pov.x) - dir.x * (pbl->pos.y - pov.y);
-	sol = ft_polyd2(ft_setvec(rat.x + pow(dir.y / dir.x, 2), 2 * rat.y
+	sol = ft_polyd2(ft_setvec(rat.x + rat.y * pow(dir.y / dir.x, 2), 2 * rat.y
 				* dir.y * d_f / pow(dir.x, 2) - rat.z * dir.z / dir.x,
 				rat.z * d_d / dir.x + rat.y * d_f * d_f / pow(dir.x, 2)));
 	if (isnan(sol.x))
@@ -107,8 +107,8 @@ static void	ft_syspblz(t_list **lst, t_vec const dir, t_vec const pov,
 	d_e = dir.z * (pbl->pos.y - pov.y) - dir.y * (pbl->pos.z - pov.z);
 	sol = ft_polyd2(ft_setvec((rat.x * pow(dir.x, 2) + rat.y * pow(dir.y, 2))
 					/ pow(dir.z, 2), 2 / pow(dir.z, 2)
-					* (dir.x * d_d - dir.y * d_e) - rat.z,
-					(d_d * d_d + d_e * d_e) / pow(dir.z, 2)));
+					* (dir.x * d_d * rat.x - dir.y * d_e * rat.y) - rat.z,
+					(d_d * d_d * rat.x + d_e * d_e * rat.y) / pow(dir.z, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec((sol.x * dir.x + d_d) / dir.z,

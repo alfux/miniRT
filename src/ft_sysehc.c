@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/21 23:28:40 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 15:31:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,20 +133,20 @@ t_list	*ft_sysehc(t_vec const *dir, t_vec const *pov, t_ehc const *ehc)
 	if (choice < EPSILON)
 		return ((void *)0);
 	else if (choice == fabs(dir->z))
-		ft_sysehcz(&lst, dir, pov, ehc);
+		ft_sysehcz(&lst, ft_multmv(ft_invmat(ehc->bas), dir, pov, ehc);
 	else if (choice == fabs(dir->y))
 		ft_sysehcy(&lst, dir, pov, ehc);
 	else if (choice == fabs(dir->x))
 		ft_sysehcx(&lst, dir, pov, ehc);
 	if (lst == (void *)0 || lst == (void *)-1)
 		return (lst);
-	if (ft_hyphgt(&((t_itr *)lst->content)->vtx, ehc) > ehc->hgt / 2)
-	{
-		ft_lstrem(&lst, lst);
-		if (lst && ft_hyphgt(&((t_itr *)lst->content)->vtx, ehc) > ehc->hgt / 2)
-			ft_lstrem(&lst, lst);
-	}
-	else if (lst->next && ft_hyphgt(&((t_itr *)lst->next->content)->vtx, ehc) > ehc->hgt / 2)
-		ft_lstrem(&lst, lst->next);
+//	if (ft_hyphgt(&((t_itr *)lst->content)->vtx, ehc) > ehc->hgt / 2)
+//	{
+//		ft_lstrem(&lst, lst);
+//		if (lst && ft_hyphgt(&((t_itr *)lst->content)->vtx, ehc) > ehc->hgt / 2)
+//			ft_lstrem(&lst, lst);
+//	}
+//	else if (lst->next && ft_hyphgt(&((t_itr *)lst->next->content)->vtx, ehc) > ehc->hgt / 2)
+//		ft_lstrem(&lst, lst->next);
 	return (lst);
 }
