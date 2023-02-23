@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/21 23:57:53 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 13:32:22 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_rgb		ft_ambrgb(t_rgb const *rgb, t_amb const *amb);
 t_rgb		ft_ligrgb(t_itr const *vtx, t_vec const *ray, t_lig const *lig,
 				double i);
 t_list		*ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl);
+double		ft_pblhgt(t_vec const *p, t_pbol const *pa);
 t_list		*ft_sysehc(t_vec const *dir, t_vec const *pov, t_ehc const *ell);
 double		ft_hyphgt(t_vec const *p, t_ehc const *c);
 

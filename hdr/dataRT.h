@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 20:00:31 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 13:17:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,6 @@ struct					s_ehc
 {
 	double	dia;
 	double	hgt;
-	t_vec	dir;
 	t_vec	pos;
 	t_vec	rat;
 	t_3x3	bas;
@@ -196,9 +195,10 @@ typedef struct s_ehc	t_ehc;
 struct					s_pbol
 {
 	double	dia;
+	double	hgt;
 	t_vec	pos;
-	t_vec	dir;
 	t_vec	rat;
+	t_3x3	bas;
 	t_rgb	col;
 	t_sdb	bns;
 };
