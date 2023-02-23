@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:31:16 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 16:10:39 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/23 18:40:37 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,14 @@ int	ft_bonus_param(t_win *window, t_sdb *bns, char *str)
 			|| ft_pars_double(&(bns->spc.har), &str))
 			return (22);
 	if (!err && sdb.y)
-		err = ft_pars_bumpmap(window, &bns->bmp, &str);
-	if (!err && sdb.z)
 		err = ft_pars_color_disturb(&bns->dam, &str);
+	if (!err && sdb.z)
+		err = ft_pars_bumpmap(window, &bns->bmp, &str);
 	if (err)
 		return (22);
+	while (*str && ft_isspace(*str))
+		str++;
+	if (!err && *str)
+		return (25);
 	return (err);
 }

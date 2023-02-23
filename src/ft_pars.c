@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 17:06:53 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/23 18:41:07 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ static int	ft_new_elem(t_win *win, t_scn *scn, char *str)
 		return (ft_pars_light(&(scn->lig), str + 1));
 	else if (*str && str[1] && str[2] && ft_isspace(str[2]))
 	{
-		if (*str == 'c' && str[1] && str[1] == 'o')
-			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'c'));
+		if ((*str == 'c' && str[1] && str[1] == 'o')
+				|| (*str == 'e' && str[1] && str[1] == 'l')
+				||  (*str == 'h' && str[1] && str[1] == 'y'))
+			return (ft_pars_ehc(win, &(scn->obj), str + 2, *str));
 		else if (*str == 'c' && str[1] && str[1] == 'y')
 			return (ft_pars_cyl(win, &(scn->obj), str + 2));
-		else if (*str == 'h' && str[1] && str[1] == 'y')
-			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'h'));
 		else if (*str == 'p' && str[1] && str[1] == 'a')
 			return (ft_pars_pbol(win, &(scn->obj), str + 2));
 		else if (*str == 'p' && str[1] && str[1] == 'l')
 			return (ft_pars_pla(win, &(scn->obj), str + 2));
 		else if (*str == 's' && str[1] && str[1] == 'p')
 			return (ft_pars_sph(win, &(scn->obj), str + 2));
-		else if (*str == 'e' && str[1] && str[1] == 'l')
-			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'e'));
+		else if (*str == 'o' && str[1] && str[1] == 'b')
+			return (ft_pars_obj(win, &(scn->obj), str + 2));
 	}
 	return (2);
 }
@@ -74,7 +74,7 @@ int	ft_pars(t_win *win, char *arg)
 		return (ft_error_manager(1, 0));
 	fd = open(arg, O_RDONLY);
 	if (fd < 2)
-		return (ft_error_manager(0, 0));
+		return (ft_error_manager(100, 0));
 	line = get_next_line(fd);
 	while (line)
 	{
