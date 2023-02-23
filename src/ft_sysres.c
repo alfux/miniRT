@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/20 19:45:57 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:22:37 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ t_list	*ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj)
 		return (ft_syscyl(dir, pov, (t_cyl *)obj->obj));
 	else if (obj->type == 'p')
 		return (ft_syspbl(dir, pov, (t_pbol *)obj->obj));
-	else if (obj->type == 'e')
+	else if (obj->type == 'e' || obj->type == 'h' || obj->type == 'c')
 		return (ft_sysehc(dir, pov, (t_ehc *)obj->obj));
-	else if (obj->type == 'h' || obj->type == 'c')
-		return ((void *)0);
 	else if (obj->type == 'I')
 		return (ft_sysimp(dir, pov, (t_imp *)obj->obj));
 	else

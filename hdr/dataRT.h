@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/23 15:19:06 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:24:14 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ typedef struct s_sph	t_sph;
 //Ellipse + hyperbole + cone data structure
 struct					s_ehc
 {
+	char	typ;
 	double	dia;
 	double	hgt;
 	t_vec	pos;

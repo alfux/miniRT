@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:59:49 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 19:54:29 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:32:33 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,17 @@ static int	ft_pars_ehc2(t_win *window, t_obj *new, char *str, char type)
 	if (type == 'h' || type == 'c')
 		((t_ehc *)(new->obj))->rat.z = -1 * ((t_ehc *)(new->obj))->rat.z;
 	if ((type == 'e' || type == 'h')
-			&& (ft_pars_double(&((t_ehc *)(new->obj))->dia, &str)
+			&& (ft_pars_double(&((t_ehc *)new->obj)->dia, &str)
 				|| ((t_ehc *)(new->obj))->dia < 0))
 		return (12);
-	else
+	else if (type == 'c')
 		((t_ehc *)(new->obj))->dia = 0;
+	if ((type == 'h' || type == 'c') && ft_pars_double(&((t_ehc *)(new->obj))->hgt, &str))
+		return (13);
 	if (ft_rgb(&((t_ehc *)(new->obj))->col, &str))
 		return (5);
+	printf("HEIGHT = %f, DIAMETER = %f\n", ((t_ehc *)new->obj)->hgt, ((t_ehc *)new->obj)->dia);
+	printf("TYPE = %c\n", type);
 	if (*str)
 		return (ft_bonus_param(window, &((t_ehc *)new->obj)->bns, str));
 	return (0);
@@ -39,10 +43,11 @@ int	ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type)
 	new = (t_obj *)ft_calloc(1, sizeof (t_obj));
 	if (!new)
 		return (6);
-	new->type = 'e';
+	new->type = type;
 	new->obj = (t_ehc *)ft_calloc(1, sizeof (t_ehc));
 	if (!new->obj)
 		return (6 + ft_free(new));
+	((t_ehc *)new->obj)->typ = type;
 	ft_objadd(obj, new);
 	if (ft_coord(&((t_ehc*)(new->obj))->pos, &str))
 		return (4);

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/20 18:09:49 by efunes           ###   ########.fr       */
+/*   Updated: 2023/02/23 15:52:30 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ft_error_manager(int err, char *line, int fd)
 	else if (err == 12)
 		ft_putstr_fd("invalid diameter\n", 2);
 	else if (err == 13)
-		ft_putstr_fd("invalid hight\n", 2);
+		ft_putstr_fd("invalid height\n", 2);
 	else if (err == 14)
 		ft_putstr_fd("invalid cylinder argument\n", 2);
 	else if (err == 15)
