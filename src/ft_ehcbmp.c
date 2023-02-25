@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:26:27 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/21 23:58:14 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/25 03:59:34 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,23 @@
 
 t_vec	ft_ehcbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ehc)
 {
-	t_vec	vbc;
 	t_vec	vec;
+	t_vec	nmb;
 	double	theta;
 	double	phi;
 	double	cor;
 
 	if (ft_det3x3(ehc->bns.bmp.bas) == 0.f || !ehc->bns.bmp.map.iid)
 		return (*nml);
-	vec = ft_nrmlze(ft_dif_uv(*vtx, ehc->pos));
-	vbc = ft_nrmlze(ft_setvec(vec.x * ehc->rat.x, vec.y * ehc->rat.y, vec.z * ehc->rat.z));
-	cor = ft_norm(vec) / ehc->dia;
+	vec = ft_dif_uv(*vtx, ft_multmv(ehc->bas, ehc->pos));
+	cor = ft_norm(vec);
 	vec = ft_nrmlze(ft_multmv(ft_invmat(ehc->bns.bmp.bas), vec));
+	nmb = ft_nrmlze(ft_multmv(ft_invmat(ehc->bns.bmp.bas), *nml));
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));
-	if (theta >= 0)
-		theta = acos(vec.x / sin(phi));
-	else
-		theta = -acos(vec.x / sin(phi));
-	if (phi > M_PI / 2)
-		cor = (M_PI - phi) * cor;
-	else
-		cor = phi * cor;
-	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, &vbc, -phi),
-			ft_multmv(ehc->bns.bmp.bas, ft_bmpmap(&ehc->bns.bmp.map, &ehc->bns.bmp, cor * cos(theta),
-			cor * sin(theta)))));
+	theta = ((theta >= 0) - (theta < 0)) * acos(vec.x / sin(phi));
+	cor *= pow((phi > M_PI / 2) * (M_PI - phi) + (phi <= M_PI / 2) * phi, 1);
+	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml, -acos(nmb.z)),
+			ft_multmv(ehc->bns.bmp.bas, ft_bmpmap(&ehc->bns.bmp.map,
+					&ehc->bns.bmp, cor * cos(theta), cor * sin(theta)))));
 }

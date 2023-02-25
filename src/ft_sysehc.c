@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 18:04:03 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/24 20:21:24 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	ft_sysehcx(t_list **lst, t_vec const dir, t_vec const pov,
 					+ pow(dir.y, 2) * rat.y) / pow(dir.x, 2),
 				2 * pow(1 / dir.x, 2) * (dir.y * d_f * rat.y
 					- dir.z * d_d * rat.z),
-				(d_d * d_d * rat.z + d_f * d_f * rat.y) / pow(dir.x, 2) - pow(ehc->dia, 2)));
+				(d_d * d_d * rat.z + d_f * d_f * rat.y) / pow(dir.x, 2) - pow(ehc->dia / 2, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec(sol.x, (sol.x * dir.y + d_f)
@@ -82,7 +82,7 @@ static void	ft_sysehcy(t_list **lst, t_vec const dir, t_vec const pov,
 					* rat.z) / pow(dir.y, 2),
 				2 * pow(1 / dir.y, 2) * (dir.z * d_e * rat.z
 					- dir.x * d_f * rat.x),
-				(d_e * d_e * rat.z + d_f * d_f * rat.x) / pow(dir.y, 2) - pow(ehc->dia, 2)));
+				(d_e * d_e * rat.z + d_f * d_f * rat.x) / pow(dir.y, 2) - pow(ehc->dia / 2, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec((sol.x * dir.x - d_f) / dir.y,
@@ -112,7 +112,7 @@ static void	ft_sysehcz(t_list **lst, t_vec const dir, t_vec const pov,
 					* rat.y) / pow(dir.z, 2),
 				2 * pow(1 / dir.z, 2) * (dir.x * d_d * rat.x
 					- dir.y * d_e * rat.y),
-				(d_e * d_e * rat.y + d_d * d_d * rat.x) / pow(dir.z, 2) - pow(ehc->dia, 2)));
+				(d_e * d_e * rat.y + d_d * d_d * rat.x) / pow(dir.z, 2) - pow(ehc->dia / 2, 2)));
 	if (isnan(sol.x))
 		return ;
 	res = ft_sum_uv(ft_setvec((sol.x * dir.x + d_d) / dir.z,
@@ -134,11 +134,11 @@ t_list	*ft_sysehc(t_vec const *dir, t_vec const *pov, t_ehc const *ehc)
 	if (choice < EPSILON)
 		return ((void *)0);
 	else if (choice == fabs(dir->z))
-		ft_sysehcz(&lst, ft_multmv(ft_invmat(ehc->bas), *dir), ft_multmv(ft_invmat(ehc->bas), *pov), ehc);
+		ft_sysehcz(&lst, *dir, *pov, ehc);
 	else if (choice == fabs(dir->y))
-		ft_sysehcy(&lst, ft_multmv(ft_invmat(ehc->bas), *dir), ft_multmv(ft_invmat(ehc->bas), *pov), ehc);
+		ft_sysehcy(&lst, *dir, *pov, ehc);
 	else if (choice == fabs(dir->x))
-		ft_sysehcx(&lst, ft_multmv(ft_invmat(ehc->bas), *dir), ft_multmv(ft_invmat(ehc->bas), *pov), ehc);
+		ft_sysehcx(&lst, *dir, *pov, ehc);
 	if (ehc->typ == 'e' || lst == (void *)0 || lst == (void *)-1)
 		return (lst);
 	if (ft_hyphgt(&((t_itr *)lst->content)->vtx, ehc) > ehc->hgt / 2)

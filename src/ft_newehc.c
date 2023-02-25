@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:59:49 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 18:15:37 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/24 20:30:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type)
 		return (4);
 	if (ft_orthonormal_basis(&((t_ehc *)new->obj)->bas, &str))
 		return (20);
-	((t_ehc *)new->obj)->pos = ft_multmv(ft_invmat(((t_ehc *)new->obj)->bas), ((t_ehc *)new->obj)->pos);
 	if (ft_coord(&((t_ehc *)(new->obj))->rat, &str)
 		|| ((t_ehc *)(new->obj))->rat.x <= 0
 		|| ((t_ehc *)(new->obj))->rat.y <= 0

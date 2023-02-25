@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/23 16:24:14 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 18:34:53 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 //Constants
 # define EPSILON 0.0000001
 # define DEADZONE 0.02
-# define GAMMA 2
+# define GAMMA 3
 
 //Vetcor data structure
 struct					s_vec
