@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ellrgb.c                                        :+:      :+:    :+:   */
+/*   ft_ehcrgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:12:19 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/21 23:25:11 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:11:36 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_zone(double rad, t_ehc const *ehc)
 	return (-1);
 }
 
-t_rgb	ft_ehcrgb(t_vec const *vtx, t_ehc const *ehc)
+t_rgb	ft_ehcrgb(t_vec const *nml, t_ehc const *ehc)
 {
 	t_vec	vec;
 	double	theta;
@@ -28,10 +28,7 @@ t_rgb	ft_ehcrgb(t_vec const *vtx, t_ehc const *ehc)
 
 	if (ft_det3x3(ehc->bns.dam.bas) == 0.f)
 		return (ehc->col);
-	vec = ft_dif_uv(*vtx, ehc->pos);
-	vec = ft_setvec(vec.x * ehc->rat.x,
-			vec.y * ehc->rat.y, vec.z * ehc->rat.z);
-	vec = ft_nrmlze(ft_multmv(ft_invmat(ehc->bns.dam.bas), vec));
+	vec = ft_nrmlze(ft_multmv(ft_invmat(ehc->bns.dam.bas), *nml));
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));
 	if (theta >= 0)
