@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/13 15:29:18 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:41:42 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,28 @@ static void	ft_keep_face_cam(t_list **itr, t_vec const *pov, t_vec const *ray)
 	}
 }
 
+static void	ft_obj_save(t_win const *win, t_list *itr,
+		double *dist, t_obj **sav)
+{
+	double	tdst;
+
+	tdst = ft_distce(((t_itr *)ft_closer_to_pov(itr,
+					&win->scn.cam->pov)->content)->vtx,
+			win->scn.cam->pov);
+	if (tdst < *dist || *dist == 0)
+	{
+		*sav = obj + ft_lstclear_return(&itr, 0);
+		*dist = tdst;
+	}
+	else
+		ft_lstclear(&itr, &free);
+}
+
 static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 				t_obj *obj)
 {
 	t_list	*itr;
 	t_obj	*sav;
-	double	tdst;
 	double	dist;
 
 	sav = (t_obj *)0;
@@ -73,18 +89,7 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 		if (itr)
 			ft_keep_face_cam(&itr, &win->scn.cam->pov, ray);
 		if (itr)
-		{
-			tdst = ft_distce(((t_itr *)ft_closer_to_pov(itr,
-							&win->scn.cam->pov)->content)->vtx,
-					win->scn.cam->pov);
-			if (tdst < dist || dist == 0)
-			{
-				sav = obj + ft_lstclear_return(&itr, 0);
-				dist = tdst;
-			}
-			else
-				ft_lstclear(&itr, &free);
-		}
+			ft_obj_save(win, itr, &dist, &sav);
 		obj = obj->next;
 	}
 	return (sav);

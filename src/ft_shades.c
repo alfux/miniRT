@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:21:09 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/15 18:09:49 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:00:51 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ t_rgb	ft_shades(t_win const *win, t_vec const *ray, t_list *itr)
 		if (ft_scalar(vtx->nml, ft_dif_uv(win->scn.cam->pov, vtx->vtx)) * i < 0)
 			i = 0;
 		else
-			i = fabs(ft_scalar(vtx->bmp, ft_nrmlze(ft_dif_uv(lig->pos, vtx->vtx))));
+			i = fabs(ft_scalar(vtx->bmp,
+						ft_nrmlze(ft_dif_uv(lig->pos, vtx->vtx))));
 		if (ft_shadow(win, &vtx->vtx, &lig->pos))
 			i = 0;
 		rgb = ft_addrgb(rgb, ft_ligrgb(vtx, ray, lig, pow(i, GAMMA)));

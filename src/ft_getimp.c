@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:11:47 by alfux             #+#    #+#             */
-/*   Updated: 2023/01/11 17:55:41 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/23 18:38:27 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,16 @@ static t_imp	*ft_new_struct(t_dat *dat)
 	return (new);
 }
 
-t_imp	*ft_getimp(char const *file)
+t_imp	*ft_getimp(/*char const *file*/int fd)
 {
-	int		fd;
+//	int		fd;
 	t_dat	dat;
 	char	*line;
 	t_imp	*new;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return ((t_imp *)0);
+//	fd = open(file, O_RDONLY);
+//	if (fd == -1)
+//		return ((t_imp *)0);
 	ft_bzero(&dat, sizeof (t_dat));
 	line = get_next_line(fd);
 	while (line)
@@ -97,7 +97,7 @@ t_imp	*ft_getimp(char const *file)
 		(void)ft_free(line);
 		line = get_next_line(fd);
 	}
-	if (close(fd))
+//	if (close(fd))
 		return ((t_imp *)(size_t)ft_clrdat(&dat));
 	new = ft_new_struct(&dat);
 	(void)ft_clrdat(&dat);

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 15:52:30 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/28 17:31:59 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,20 @@ static int	ft_new_elem(t_win *win, t_scn *scn, char *str)
 		return (ft_pars_light(&(scn->lig), str + 1));
 	else if (*str && str[1] && str[2] && ft_isspace(str[2]))
 	{
-		if (*str == 'c' && str[1] && str[1] == 'o')
-			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'c'));
+		if ((*str == 'c' && str[1] && str[1] == 'o')
+				|| (*str == 'e' && str[1] && str[1] == 'l')
+				||  (*str == 'h' && str[1] && str[1] == 'y'))
+			return (ft_pars_ehc(win, &(scn->obj), str + 2, *str));
 		else if (*str == 'c' && str[1] && str[1] == 'y')
 			return (ft_pars_cyl(win, &(scn->obj), str + 2));
-		else if (*str == 'h' && str[1] && str[1] == 'y')
-			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'h'));
 		else if (*str == 'p' && str[1] && str[1] == 'a')
 			return (ft_pars_pbol(win, &(scn->obj), str + 2));
 		else if (*str == 'p' && str[1] && str[1] == 'l')
 			return (ft_pars_pla(win, &(scn->obj), str + 2));
 		else if (*str == 's' && str[1] && str[1] == 'p')
 			return (ft_pars_sph(win, &(scn->obj), str + 2));
-		else if (*str == 'e' && str[1] && str[1] == 'l')
-			return (ft_pars_ehc(win, &(scn->obj), str + 2, 'e'));
+		else if (*str == 'o' && str[1] && str[1] == 'b')
+			return (ft_pars_obj(win, &(scn->obj), str + 2));
 	}
 	return (2);
 }
@@ -114,34 +114,40 @@ static int	ft_valid_extension_name(char *str)
 	return (1);
 }
 
+int	ft_line_pars(t_win *win, char *line)
+{
+	size_t	i;
+
+	i = 0;
+	while (line[i] && ft_isspace(line[i]))
+		i++;
+	if (line[i])
+		return (ft_new_elem(win, &win->scn, line + i));
+	return (0);
+}
+
 int	ft_pars(t_win *win, char *arg)
 {
 	int		fd;
 	int		err;
 	char	*line;
-	size_t	i;
 
 	if (ft_valid_extension_name(arg))
-		return (ft_error_manager(1, NULL, 0));
+		return (ft_error_manager(1, 0));
 	fd = open(arg, O_RDONLY);
 	if (fd < 2)
-		return (ft_error_manager(0, NULL, 0));
+		return (ft_error_manager(100, 0));
 	line = get_next_line(fd);
 	while (line)
 	{
-		i = 0;
-		err = 0;
-		while (line[i] && ft_isspace(line[i]))
-			i++;
-		if (line[i])
-			err = ft_new_elem(win, &win->scn, line + i);
-		if (err)
-			return (ft_error_manager(err, line, fd));
+		err = ft_line_pars(win, line);
 		free(line);
+		if (err)
+			return (ft_error_manager(err, fd));
 		line = get_next_line(fd);
 	}
 	if (!win->scn.cam)
-		return (ft_error_manager(3, NULL, fd));
+		return (ft_error_manager(3, fd));
 	close (fd);
 	return (0);
 }

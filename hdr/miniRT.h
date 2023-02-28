@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 16:39:05 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/28 17:27:28 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int			ft_coord(t_vec *vec, char **str);
 int			ft_skipdigit(char const **str);
 int			ft_skipspace(char const **str);
 int			ft_skipnodigit(char const **str);
+int			ft_error_manager(int err, int fd);
 
 //Memory free exits
 int			ft_exit_success(t_win *win);
