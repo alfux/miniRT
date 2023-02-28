@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:19:55 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/27 18:06:46 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:49:26 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_lstehc_itr(t_list **lst, t_vec const *res, t_ehc const *ehc)
 				itr->nml.y * ehc->rat.y, itr->nml.z * ehc->rat.z)));
 	itr->vtx = ft_multmv(ehc->bas, itr->vtx);
 	itr->bmp = ft_ehcbmp(&itr->vtx, &itr->nml, ehc);
-	itr->col = ft_ehcrgb(&itr->nml, ehc);
+	itr->col = ft_ehcrgb(&itr->vtx, &itr->nml, ehc);
 	itr->spc = ehc->bns.spc;
 	return (0);
 }

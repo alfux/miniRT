@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:20:15 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 15:15:31 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/27 20:02:18 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static int	ft_lstpbl_itr(t_list **lst, t_vec const *res, t_pbol const *pbl)
 		return (1);
 	}
 	itr->vtx = *res;
-	itr->nml = ft_dif_uv(*res, ft_multmv(ft_invmat(pbl->bas), pbl->pos));
+	itr->nml = ft_dif_uv(*res, pbl->pos);
 	itr->nml = ft_nrmlze(ft_multmv(pbl->bas, ft_setvec(itr->nml.x * 2 * pbl->rat.x,
 				itr->nml.y * 2 * pbl->rat.y, -pbl->rat.z)));
 	itr->vtx = ft_multmv(pbl->bas, itr->vtx);
-	itr->bmp = itr->nml;
+	itr->bmp = ft_pblbmp(&itr->vtx, &itr->nml, pbl);
 	itr->col = pbl->col;
 	itr->spc = pbl->bns.spc;
 	return (0);
@@ -136,11 +136,11 @@ t_list	*ft_syspbl(t_vec const *dir, t_vec const *pov, t_pbol const *pbl)
 	if (choice < EPSILON)
 		return ((void *)0);
 	else if (choice == c)
-		ft_syspblz(&lst, ft_multmv(ft_invmat(pbl->bas), *dir), ft_multmv(ft_invmat(pbl->bas), *pov), pbl);
+		ft_syspblz(&lst, *dir, *pov, pbl);
 	else if (choice == b) 
-		ft_syspbly(&lst, ft_multmv(ft_invmat(pbl->bas), *dir), ft_multmv(ft_invmat(pbl->bas), *pov), pbl);
+		ft_syspbly(&lst, *dir, *pov, pbl);
 	else if (choice == a) 
-		ft_syspblx(&lst, ft_multmv(ft_invmat(pbl->bas), *dir), ft_multmv(ft_invmat(pbl->bas), *pov), pbl);
+		ft_syspblx(&lst, *dir, *pov, pbl);
 	if (lst == (void *)0 || lst == (void *)-1)
 		return (lst);
 	if (ft_pblhgt(&((t_itr *)lst->content)->vtx, pbl) > pbl->hgt)
