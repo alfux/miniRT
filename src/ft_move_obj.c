@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/15 18:07:53 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/28 05:00:30 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,21 @@ static void	ft_rota_obj(t_vec *vec, t_cam *cam, double theta, char id)
 	tmp = ft_multmv(ft_invmat(m), *vec);
 	if (id == 'H')
 	{
-		vec->x = tmp.x * cos(theta - tmp.y * sin(theta));
-		vec->y = tmp.y * cos(theta) + tmp.x * sin(theta);
+		vec->x = tmp.x;
+		vec->y = tmp.y * cos(theta) - tmp.z * sin(theta);
+		vec->z = tmp.z * cos(theta) + tmp.y * sin(theta);
 	}
 	else if (id == 'V')
 	{
 		vec->x = tmp.x * cos(theta) + tmp.z * sin(theta);
+		vec->y = tmp.y;
 		vec->z = tmp.z * cos(theta) - tmp.x * sin(theta);
 	}
 	else if (id == 'D')
 	{
-		vec->x = vec->x * cos(theta) - vec->y * sin(theta);
-		vec->y = vec->y * cos(theta) + vec->x * sin(theta);
+		vec->x = tmp.x * cos(theta) - tmp.y * sin(theta);
+		vec->y = tmp.y * cos(theta) + tmp.x * sin(theta);
+		vec->z = tmp.z;
 	}
 	*vec = ft_nrmlze(ft_multmv(m, *vec));
 }
@@ -58,7 +61,7 @@ static void	ft_movcoord(int kid, t_vec *vec, t_cam *cam)
 	else if (kid == K_UP)
 		ft_rota_obj(vec, cam, M_PI / 60, 'H');
 	else if (kid == K_DOWN)
-		ft_rota_obj(vec, cam, -1 * M_PI / 60, 'H');
+		ft_rota_obj(vec, cam, -M_PI / 60, 'H');
 	else if (kid == K_P)
 		ft_rota_obj(vec, cam, -M_PI / 60, 'D');
 	else if (kid == K_M)
@@ -115,17 +118,17 @@ void	ft_movobj(int kid, t_obj *cur, t_cam *cam)
 		if (cur->type == 'S')
 			ft_movcoord(kid, &((t_sph *)(cur->obj))->pos, cam);
 		else if (cur->type == 'P')
-			ft_movcoord(kid, &((t_pla *)(cur->obj))->dir, cam);
+			ft_movcoord(kid, &((t_pla *)(cur->obj))->pos, cam);
 		else if (cur->type == 'C')
-			ft_movcoord(kid, &((t_cyl *)(cur->obj))->dir, cam);
+			ft_movcoord(kid, &((t_cyl *)(cur->obj))->pos, cam);
 	}
 	else if (kid == K_LEFT || kid == K_RIGHT
 		|| kid == K_UP || kid == K_DOWN || kid == K_P || kid == K_M)
 	{
 		if (cur->type == 'P')
-			ft_movcoord(kid, &((t_pla *)(cur->obj))->dir, cam);
+			ft_movcoord(kid, &((t_pla *)cur->obj)->dir, cam);
 		else if (cur->type == 'C')
-			ft_movcoord(kid, &((t_cyl *)(cur->obj))->dir, cam);
+			ft_movcoord(kid, &((t_cyl *)cur->obj)->dir, cam);
 	}
 	else if (kid == K_I && cur->type == 'S')
 		((t_sph *)(cur->obj))->dia *= 1.2;
