@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 03:20:16 by alfux            ###   ########.fr       */
+/*   Updated: 2023/02/28 16:39:05 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,15 @@ int			ft_exit(t_win *win, int status);
 //Key hooks
 int			ft_keyhook(int kid, t_win *win);
 int			ft_mousehook(int mid, int x, int y, t_win *win);
+void		ft_trnslt(t_obj const *obj, t_vec const dir);
 void		ft_movobj(int mid, t_obj *cur, t_cam *cam);
+void		ft_rotobj(t_obj const *obj, double tta, char axi, t_cam const *cam);
+void		ft_rotsph(t_sph *sph, t_3x3 rot);
+void		ft_rotpla(t_pla *sph, t_3x3 rot);
+void		ft_rotcyl(t_cyl *sph, t_3x3 rot);
+void		ft_rotpbl(t_pbol *sph, t_3x3 rot);
+void		ft_rotehc(t_ehc *sph, t_3x3 rot);
+void		ft_rscale(int kid, t_obj const *obj);
 
 //Rendering
 void		ft_render(t_win const *win);

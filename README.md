@@ -22,10 +22,7 @@
 <br />☛ Thursday February 9th 09:18: Added basic object checkboard colors
 <br />☛ Thursday February 9th 09:18: Added sphere bumpmapping
 <br />☛ Monday February 20th 18:00:	Added bonus objects and every bumpmap/color chessboard
-## Bonus ideas
-☛ Anti-aliasing ?
-<br />☛ Use of GPU to have a moving camera ?
-<br />☛ Light diffraction for "glass" effect with transparency ?
-<br />☛ Multiple camera ?
+<br />☛	Tuesday February 28th 17:16: Fixed object live modifications
+## Tuesday February 28th 17:18: Testing phase before commit to evaluation
 ## State of render
 ![Alt text](render.png?raw=true "Render")

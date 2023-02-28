@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pblhgt.c                                        :+:      :+:    :+:   */
+/*   ft_rotpla.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 15:08:50 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 15:44:18 by alfux            ###   ########.fr       */
+/*   Created: 2023/02/28 15:02:39 by alfux             #+#    #+#             */
+/*   Updated: 2023/02/28 15:05:03 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-double	ft_pblhgt(t_vec const *p, t_pbol const *pa)
+void	ft_rotpla(t_pla *pla, t_3x3 rot)
 {
-	t_vec	q;
-	t_vec	dir;
-
-	q = ft_dif_uv(*p, ft_multmv(pa->bas, pa->pos));
-	dir = ft_setvec(pa->bas.top.z, pa->bas.mid.z, pa->bas.bot.z);
-	return (ft_norm(ft_multlv(ft_scalar(q, dir), dir)));
+	pla->dir = ft_multmv(rot, pla->dir);
+	pla->bns.dam.bas = ft_multmm(rot, pla->bns.dam.bas);
+	pla->bns.bmp.bas = ft_multmm(rot, pla->bns.bmp.bas);
 }
