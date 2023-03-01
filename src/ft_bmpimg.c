@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 18:13:47 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/25 03:12:46 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 16:12:21 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ double	ft_bmpimg(t_img const *img, double x, double y)
 	if (y >= img->w - 1 || y < 0)
 		y = y - floor(y / (img->w - 1)) * (img->w - 1);
 	val = ((double)(*(uint32_t *)(img->iad + (int)floor(x) * img->opl
-		+ (int)floor(y) * img->bpp / 8)) / ((1 << 24) - 1));
+					+ (int)floor(y) * img->bpp / 8)) / ((1 << 24) - 1));
 	return (val);
 }

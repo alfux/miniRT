@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 16:56:34 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 15:00:11 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static void	ft_movcam(int kid, t_cam *cam)
 
 int	ft_keyhook(int kid, t_win *win)
 {
-	printf("Keycode: %i\n", kid);
 	if (kid == K_SPACE)
 		ft_print_scene(win->scn);
 	if (kid == K_COMA)
@@ -84,10 +83,8 @@ int	ft_keyhook(int kid, t_win *win)
 	}
 	else if (kid == K_ESCAPE)
 		return (ft_exit(win, 0));
-	else if (win->mod && !win->cur && kid == K_O)
-		win->scn.cam->fov += (2 * M_PI) / 360;
-	else if (win->mod && !win->cur && kid == K_L)
-		win->scn.cam->fov -= (2 * M_PI) / 360;
+	else if (win->mod && !win->cur && (kid == K_O || kid == K_L))
+		win->scn.cam->fov += ((kid == K_O) - (kid == K_L)) * (2 * M_PI) / 360;
 	else if (win->mod && kid == EEGGS)
 		ft_eeggs(win->scn.cam);
 	else if (win->mod && !win->cur)

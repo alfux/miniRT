@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:23:23 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/22 00:02:03 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 15:15:56 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ t_vec	ft_cylbmp(t_vec const *vtx, t_vec const *nml, t_cyl const *cyl)
 	else
 		theta = -acos(vec.x / sin(phi));
 	return (ft_multmv(ft_rotnml(&cyl->bns.bmp.bas, nml, -M_PI / 2),
-			ft_multmv(cyl->bns.bmp.bas, ft_bmpmap(&cyl->bns.bmp.map, &cyl->bns.bmp, norm * vec.z, theta))));
+			ft_multmv(cyl->bns.bmp.bas, ft_bmpmap(&cyl->bns.bmp.map,
+					&cyl->bns.bmp, norm * vec.z, theta))));
 }

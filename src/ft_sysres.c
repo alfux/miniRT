@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/27 19:40:12 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 15:48:46 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static t_list	*ft_ehcbas(t_vec const *dir, t_vec const *pov, t_ehc const *ehc)
 	return (ft_sysehc(&dir_bas, &pov_bas, &ehc_bas));
 }
 
-static t_list	*ft_pblbas(t_vec const *dir, t_vec const *pov, t_pbol const *pbl)
+static t_list	*ft_pblbas(t_vec const *dir, t_vec const *pov,
+	t_pbol const *pbl)
 {
 	t_vec	dir_bas;
 	t_vec	pov_bas;

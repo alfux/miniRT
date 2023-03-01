@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:12:19 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/27 20:14:52 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 15:18:16 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ static t_rgb	ft_hyprgb(t_vec const *vtx, t_vec const *nml, t_ehc const *ehc)
 		theta = acos(vec.x / sin(phi));
 	else
 		theta = -acos(vec.x / sin(phi));
-	phi = ft_scalar(ft_setvec(ehc->bns.dam.bas.top.z, ehc->bns.dam.bas.mid.z, ehc->bns.dam.bas.bot.z), ft_dif_uv(*vtx, ft_multmv(ehc->bas, ehc->pos)));
+	phi = ft_scalar(ft_setvec(ehc->bns.dam.bas.top.z, ehc->bns.dam.bas.mid.z,
+				ehc->bns.dam.bas.bot.z), ft_dif_uv(*vtx, ft_multmv(ehc->bas,
+					ehc->pos)));
 	if (ft_zone(phi, ehc) * ft_zone(theta, ehc) == 1)
 		return (ehc->col);
 	return (ehc->bns.dam.col);
