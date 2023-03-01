@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:11:47 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/23 18:38:27 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/01 17:55:50 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_imp	*ft_getimp(/*char const *file*/int fd)
 		line = get_next_line(fd);
 	}
 //	if (close(fd))
-		return ((t_imp *)(size_t)ft_clrdat(&dat));
+//		return ((t_imp *)(size_t)ft_clrdat(&dat));
 	new = ft_new_struct(&dat);
 	(void)ft_clrdat(&dat);
 	return (new);

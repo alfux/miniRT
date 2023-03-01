@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 17:27:28 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 17:57:33 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			ft_pars_pbol(t_win *window, t_obj **obj, char *str);
 int			ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type);
 char		ft_datatp(char const *line);
 int			ft_addelm(char const *line, t_dat *dat);
-t_imp		*ft_getimp(char const *file);
+t_imp		*ft_getimp(int fd);
 int			ft_orthonormal_basis(t_3x3 *bas, char **str);
 int			ft_bonus_param(t_win *window, t_sdb *bns, char *str);
 
