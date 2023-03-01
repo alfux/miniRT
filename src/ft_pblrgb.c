@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:26:27 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 03:27:53 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 16:11:46 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_rgb	ft_pblrgb(t_vec const *vtx, t_pbol const *pbl)
 		theta = acos(vec.x / sin(phi));
 	else
 		theta = -acos(vec.x / sin(phi));
-	phi = ft_pbllgt(pow(cos(theta), 2) / sqrt(pbl->rat.x) + pow(sin(theta), 2) / sqrt(pbl->rat.y), nrm * sin(phi));
-	return (ft_zone(phi * cos(theta) / sqrt(pbl->rat.x), phi * sin(theta) / sqrt(pbl->rat.y), pbl));
+	phi = ft_pbllgt(pow(cos(theta), 2) / sqrt(pbl->rat.x) + pow(sin(theta), 2)
+			/ sqrt(pbl->rat.y), nrm * sin(phi));
+	return (ft_zone(phi * cos(theta) / sqrt(pbl->rat.x), phi * sin(theta)
+			/ sqrt(pbl->rat.y), pbl));
 }

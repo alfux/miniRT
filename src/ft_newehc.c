@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:59:49 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:54 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 17:44:11 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ static int	ft_pars_ehc2(t_win *window, t_obj *new, char *str, char type)
 	if (type == 'h' || type == 'c')
 		((t_ehc *)(new->obj))->rat.z = -1 * ((t_ehc *)(new->obj))->rat.z;
 	if ((type == 'e' || type == 'h')
-			&& (ft_pars_double(&((t_ehc *)new->obj)->dia, &str)
-				|| ((t_ehc *)(new->obj))->dia < 0))
+		&& (ft_pars_double(&((t_ehc *)new->obj)->dia, &str)
+			|| ((t_ehc *)(new->obj))->dia < 0))
 		return (12);
 	else if (type == 'c')
 		((t_ehc *)(new->obj))->dia = 0;
-	if ((type == 'h' || type == 'c') && ft_pars_double(&((t_ehc *)(new->obj))->hgt, &str))
+	if ((type == 'h' || type == 'c')
+		&& ft_pars_double(&((t_ehc *)(new->obj))->hgt, &str))
 		return (13);
 	if (ft_rgb(&((t_ehc *)(new->obj))->col, &str))
 		return (5);
@@ -47,7 +48,7 @@ int	ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type)
 		return (6 + ft_free(new));
 	((t_ehc *)new->obj)->typ = type;
 	ft_objadd(obj, new);
-	if (ft_coord(&((t_ehc*)new->obj)->pos, &str))
+	if (ft_coord(&((t_ehc *)new->obj)->pos, &str))
 		return (4);
 	if (ft_orthonormal_basis(&((t_ehc *)new->obj)->bas, &str))
 		return (20);

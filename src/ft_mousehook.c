@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 16:41:42 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/01 17:43:57 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,20 @@ static void	ft_keep_face_cam(t_list **itr, t_vec const *pov, t_vec const *ray)
 	}
 }
 
-static void	ft_obj_save(t_win const *win, t_list *itr,
-		double *dist, t_obj **sav)
+static int	ft_dstcmp(double *dist, t_win const *win, t_list **itr)
 {
 	double	tdst;
 
-	tdst = ft_distce(((t_itr *)ft_closer_to_pov(itr,
+	tdst = ft_distce(((t_itr *)ft_closer_to_pov(*itr,
 					&win->scn.cam->pov)->content)->vtx,
 			win->scn.cam->pov);
 	if (tdst < *dist || *dist == 0)
 	{
-		*sav = obj + ft_lstclear_return(&itr, 0);
 		*dist = tdst;
+		return (ft_lstclear_return(itr, 1));
 	}
 	else
-		ft_lstclear(&itr, &free);
+		return (ft_lstclear_return(itr, 0));
 }
 
 static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
@@ -88,8 +87,8 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 			ft_exit_failure((t_win *)win, "malloc error: ");
 		if (itr)
 			ft_keep_face_cam(&itr, &win->scn.cam->pov, ray);
-		if (itr)
-			ft_obj_save(win, itr, &dist, &sav);
+		if (itr && ft_dstcmp(&dist, win, &itr))
+			sav = obj;
 		obj = obj->next;
 	}
 	return (sav);

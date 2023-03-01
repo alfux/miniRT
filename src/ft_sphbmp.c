@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:26:27 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 17:32:22 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 17:48:43 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ t_vec	ft_sphbmp(t_vec const *vtx, t_vec const *nml, t_sph const *sph)
 		hem = phi * sph->dia / 2;
 	return (ft_multmv(ft_rotnml(&sph->bns.bmp.bas, &vbc, -phi),
 			ft_multmv(sph->bns.bmp.bas, ft_bmpmap(&sph->bns.bmp.map,
-					&sph->bns.bmp, hem * cos(theta), hem * sin(theta)))));
+					&sph->bns.bmp, hem * cos(theta),
+					hem * sin(theta)))));
 }

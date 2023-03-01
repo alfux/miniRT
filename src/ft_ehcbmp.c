@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:26:27 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 17:29:31 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 17:42:01 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ static t_vec	ft_hypbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ehc)
 	vec = ft_multmv(ft_invmat(ehc->bns.bmp.bas), vec);
 	nrm = ft_norm(vec);
 	vec = ft_setvec(vec.x / nrm, vec.y / nrm, vec.z / nrm);
-	basz = ft_setvec(ehc->bns.bmp.bas.top.z, ehc->bns.bmp.bas.mid.z, ehc->bns.bmp.bas.bot.z);;
+	basz = ft_setvec(ehc->bns.bmp.bas.top.z, ehc->bns.bmp.bas.mid.z,
+			ehc->bns.bmp.bas.bot.z);
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));
 	theta = ((theta >= 0) - (theta < 0)) * acos(vec.x / sin(phi));
 	phi = nrm * fabs(vec.z);
-	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml, -acos(ft_scalar(basz, *nml))),
+	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml,
+				-acos(ft_scalar(basz, *nml))),
 			ft_multmv(ehc->bns.bmp.bas, ft_bmpmap(&ehc->bns.bmp.map,
 					&ehc->bns.bmp, phi, theta))));
 }
@@ -50,12 +52,14 @@ static t_vec	ft_conbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ehc)
 	vec = ft_multmv(ft_invmat(ehc->bns.bmp.bas), vec);
 	nrm = ft_norm(vec);
 	vec = ft_setvec(vec.x / nrm, vec.y / nrm, vec.z / nrm);
-	basz = ft_setvec(ehc->bns.bmp.bas.top.z, ehc->bns.bmp.bas.mid.z, ehc->bns.bmp.bas.bot.z);;
+	basz = ft_setvec(ehc->bns.bmp.bas.top.z, ehc->bns.bmp.bas.mid.z,
+			ehc->bns.bmp.bas.bot.z);
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));
 	theta = ((theta >= 0) - (theta < 0)) * acos(vec.x / sin(phi));
 	phi = nrm * fabs(vec.z);
-	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml, -acos(ft_scalar(basz, *nml))),
+	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml,
+				-acos(ft_scalar(basz, *nml))),
 			ft_multmv(ehc->bns.bmp.bas, ft_bmpmap(&ehc->bns.bmp.map,
 					&ehc->bns.bmp, phi * cos(theta), phi * sin(theta)))));
 }
@@ -71,14 +75,17 @@ static t_vec	ft_ellbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ehc)
 		return (*nml);
 	vec = ft_dif_uv(*vtx, ft_multmv(ehc->bas, ehc->pos));
 	vec = ft_nrmlze(ft_multmv(ft_invmat(ehc->bns.bmp.bas), vec));
-	basz = ft_setvec(ehc->bns.bmp.bas.top.z, ehc->bns.bmp.bas.mid.z, ehc->bns.bmp.bas.bot.z);;
+	basz = ft_setvec(ehc->bns.bmp.bas.top.z, ehc->bns.bmp.bas.mid.z,
+			ehc->bns.bmp.bas.bot.z);
 	phi = acos(vec.z);
 	theta = asin(vec.y / sin(phi));
 	theta = ((theta >= 0) - (theta < 0)) * acos(vec.x / sin(phi));
 	if (phi > M_PI / 2)
-		phi = (M_PI - phi); 
-	phi = acos(cos(phi) * sqrt(ehc->rat.z)) * ehc->dia / 2;
-	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml, -acos(ft_scalar(basz, *nml))),
+		phi = (M_PI - phi);
+	phi /= sqrt(ehc->rat.z);
+	phi *= ehc->dia / 2;
+	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml,
+				-acos(ft_scalar(basz, *nml))),
 			ft_multmv(ehc->bns.bmp.bas, ft_bmpmap(&ehc->bns.bmp.map,
 					&ehc->bns.bmp, phi * cos(theta), phi * sin(theta)))));
 }

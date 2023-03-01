@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:31:16 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 18:40:37 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/01 17:45:43 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,16 @@ int	ft_pars_color_disturb(t_dam *dam, char **str)
 	return (0);
 }
 
-static int	ft_pars_bmp(t_bmp *bmp)
-{
-	if (bmp->map.iid == NULL)
-		return (19);
-	bmp->map.iad = mlx_get_data_addr(bmp->map.iid, &bmp->map.bpp,
-			&bmp->map.opl, &bmp->map.end);
-	if (!bmp->map.iad)
-		return (19);
-	return (0);
-}
-
-int	ft_pars_bumpmap(t_win *window, t_bmp *bmp, char **str)
+int	ft_pars_bumpmap(t_win *window, t_bmp *b, char **str)
 {
 	size_t	i;
 	char	*name;
 
-	if (ft_orthonormal_basis(&bmp->bas, str))
+	if (ft_orthonormal_basis(&b->bas, str))
 		return (18);
-	if (bmp->bas.bot.x == 0 && bmp->bas.bot.y == 0 && bmp->bas.bot.z == 0)
+	if (b->bas.bot.x == 0 && b->bas.bot.y == 0 && b->bas.bot.z == 0)
 		return (20);
-	if (ft_pars_double(&bmp->size, str) || ft_pars_double(&bmp->relief, str))
+	if (ft_pars_double(&b->size, str) || ft_pars_double(&b->relief, str))
 		return (18);
 	i = 0;
 	while ((*str)[i] && !ft_isspace((*str)[i]))
@@ -75,10 +64,12 @@ int	ft_pars_bumpmap(t_win *window, t_bmp *bmp, char **str)
 	*str += ft_strlen(name);
 	if (!name)
 		return (19);
-	bmp->map.iid = mlx_xpm_file_to_image(window->cid,
-			name, &bmp->map.w, &bmp->map.h);
-	free(name);
-	return (ft_pars_bmp(bmp));
+	b->map.iid = mlx_xpm_file_to_image(window->cid, name, &b->map.w, &b->map.h);
+	if (!ft_free(name) && b->map.iid == NULL)
+		return (19);
+	b->map.iad = mlx_get_data_addr(b->map.iid, &b->map.bpp, &b->map.opl,
+			&b->map.end);
+	return (0);
 }
 
 int	ft_bonus_param(t_win *window, t_sdb *bns, char *str)
