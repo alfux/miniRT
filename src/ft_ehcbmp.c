@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:26:27 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/27 19:33:13 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/01 14:51:30 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ static t_vec	ft_ellbmp(t_vec const *vtx, t_vec const *nml, t_ehc const *ehc)
 	theta = ((theta >= 0) - (theta < 0)) * acos(vec.x / sin(phi));
 	if (phi > M_PI / 2)
 		phi = (M_PI - phi); 
-	phi = acos(cos(phi) * sqrt(ehc->rat.z)) * ehc->dia / 2;
+	phi /= sqrt(ehc->rat.z);
+	phi *= ehc->dia / 2;
 	return (ft_multmv(ft_rotnml(&ehc->bns.bmp.bas, nml, -acos(ft_scalar(basz, *nml))),
 			ft_multmv(ehc->bns.bmp.bas, ft_bmpmap(&ehc->bns.bmp.map,
 					&ehc->bns.bmp, phi * cos(theta), phi * sin(theta)))));
