@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:33:45 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 16:53:06 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/02 16:07:16 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	ft_diascl(t_obj const *obj, double rat)
 		((t_ehc *)obj->obj)->dia *= rat;
 	else if (obj->type == 'h')
 		((t_ehc *)obj->obj)->dia *= rat;
+	else if (obj->type == 'L')
+		((t_lig *)obj->obj)->rat = fmin(1, ((t_lig *)obj->obj)->rat * rat);
 }
 
 void	ft_rscale(int kid, t_obj const *obj)

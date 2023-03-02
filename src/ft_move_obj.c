@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/28 17:14:17 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/02 16:01:34 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ static void	ft_change_color(int kid, t_obj *cur)
 		ft_movrgb(kid, &((t_pla *)(cur->obj))->col);
 	else if (cur->type == 'C')
 		ft_movrgb(kid, &((t_cyl *)(cur->obj))->col);
+	else if (cur->type == 'L')
+		ft_movrgb(kid, &((t_lig *)(cur->obj))->col);
 	else if (cur->type == 'p')
 		ft_movrgb(kid, &((t_pbol *)(cur->obj))->col);
 	else if (cur->type == 'e' || cur->type == 'h' || cur->type == 'c')
