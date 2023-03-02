@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/02/28 17:26:38 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/02 16:34:41 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define K_K 40
 # define K_SPACE 49
 # define K_COMA 43
+# define K_TAB 48
 # define M_LEFT 1
 # define M_RIGHT 2
 

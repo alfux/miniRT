@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/01 17:42:24 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/02 16:35:13 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static void	ft_movcam(int kid, t_cam *cam)
 
 int	ft_keyhook(int kid, t_win *win)
 {
-	if (kid == K_SPACE)
-		ft_print_scene(win->scn);
+	if (kid == K_TAB)
+		win->cur = ft_sellig(win->cur, win->scn.lig);
 	if (kid == K_COMA)
 	{
 		if (!win->mod)
