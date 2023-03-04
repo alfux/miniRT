@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 10:46:34 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 15:00:57 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define K_K 40
 # define K_SPACE 49
 # define K_PT 47
+# define K_TI 50
+# define K_ONE 18
 # define K_COMA 43
 # define K_TAB 48
 # define M_LEFT 1
@@ -54,6 +56,10 @@
 # define EPSILON 0.0000001
 # define DEADZONE 0.02
 # define GAMMA 3
+
+//Help box
+# define HGT 335
+# define COL 270
 
 //Vetcor data structure
 struct					s_vec
