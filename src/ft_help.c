@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 10:12:47 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 12:09:45 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 12:35:43 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_help_messages(t_win const *win, char save, char i)
 	mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
 		0x00ffffff, "`ESC'   exit");
 	mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
-		0x00ffffff, "`left mouse'   select object");
+		0x00ffffff, "`left mouse'    select object");
 	mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
 		0x00ffffff, "`right mouse'   camera mode");
 	mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,

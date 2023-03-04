@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 12:05:56 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 12:25:50 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	ft_movcam(int kid, t_cam *cam)
 		ft_rota(cam, 6 * M_PI / 360, 'z');
 }
 
-static void	ft_keyh2(int kid, t_win *win)
+static int	ft_keyh2(int kid, t_win *win)
 {
 	if (kid == K_ESCAPE)
 		return (ft_exit(win, 0));
@@ -82,6 +82,7 @@ static void	ft_keyh2(int kid, t_win *win)
 		mlx_put_image_to_window(win->cid, win->wid, win->scr.iid, 0, 0);
 		ft_help(win);
 	}
+	return (0);
 }
 
 int	ft_keyhook(int kid, t_win *win)
