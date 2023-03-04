@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:20:20 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/01 15:48:46 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 16:23:47 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ static t_list	*ft_pblbas(t_vec const *dir, t_vec const *pov,
 	return (ft_syspbl(&dir_bas, &pov_bas, &pbl_bas));
 }
 
+static t_list	*ft_impbas(t_vec const *dir, t_vec const *pov,
+	t_imp const *imp)
+{
+	t_vec	dir_bas;
+	t_vec	pov_bas;
+	t_imp	imp_bas;
+
+	dir_bas = ft_multmv(ft_invmat(imp->bas), *dir);
+	pov_bas = ft_multmv(ft_invmat(imp->bas), *pov);
+	imp_bas = *imp;
+	imp_bas.pos = ft_multmv(ft_invmat(imp->bas), imp->pos);
+	return (ft_sysimp(&dir_bas, &pov_bas, &imp_bas));
+}
+
 t_list	*ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj)
 {
 	if (obj->type == 'S')
@@ -52,7 +66,7 @@ t_list	*ft_sysres(t_vec const *dir, t_vec const *pov, t_obj const *obj)
 	else if (obj->type == 'e' || obj->type == 'h' || obj->type == 'c')
 		return (ft_ehcbas(dir, pov, (t_ehc *)obj->obj));
 	else if (obj->type == 'I')
-		return (ft_sysimp(dir, pov, (t_imp *)obj->obj));
+		return (ft_impbas(dir, pov, (t_imp *)obj->obj));
 	else
 		return ((void *)0);
 }

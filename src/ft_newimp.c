@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:45:35 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 13:39:38 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 14:14:53 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,22 @@ static size_t	ft_valid_obj_extension(char *str)
 	return (0);
 }
 
-static int	ft_obj_fd(char *str)
+static int	ft_obj_fd(char **str)
 {
 	size_t	i;
 	char	*name;
 	int		fd;
 
-	i = ft_valid_obj_extention(str);
+	while (ft_isspace(**str))
+		(*str)++;
+	i = ft_valid_obj_extension(*str);
 	if (!i)
 		return (0);
-	name = ft_substr(str, 0, i);
+	name = ft_substr(*str, 0, i);
 	if (!name)
 		return (-1);
-	fd = open(str, O_RDONLY);
-	free(str);
+	fd = open(name, O_RDONLY);
+	free(name);
 	return (fd);
 }
 
@@ -55,8 +57,8 @@ int	ft_newimp(t_win *window, t_obj **obj, char *str)
 {
 	t_obj	*new;
 	int		fd;
-
-	fd = ft_obj_fd(str);
+	
+	fd = ft_obj_fd(&str);
 	if (!fd)
 		return (23);
 	if (fd < 0)

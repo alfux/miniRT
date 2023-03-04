@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:29:22 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/01 13:37:13 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 15:33:59 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,6 @@ void	ft_rotobj(t_obj const *obj, double tta, char axi, t_cam const *cam)
 		ft_rotpbl(obj->obj, ft_getmat(tta, axi, cam));
 	else if (obj->type == 'e' || obj->type == 'h' || obj->type == 'c')
 		ft_rotehc(obj->obj, ft_getmat(tta, axi, cam));
+	else if (obj->type == 'I')
+		ft_rotimp(obj->obj, ft_getmat(tta, axi, cam));
 }

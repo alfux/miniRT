@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 13:54:42 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 15:33:30 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void		ft_rotpla(t_pla *sph, t_3x3 rot);
 void		ft_rotcyl(t_cyl *sph, t_3x3 rot);
 void		ft_rotpbl(t_pbol *sph, t_3x3 rot);
 void		ft_rotehc(t_ehc *sph, t_3x3 rot);
+void		ft_rotimp(t_imp *imp, t_3x3 rot);
 void		ft_rscale(int kid, t_obj const *obj);
 t_obj		*ft_sellig(t_obj const *cur, t_obj const *lig);
 

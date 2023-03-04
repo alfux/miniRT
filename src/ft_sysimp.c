@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 14:02:28 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 10:40:05 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 16:56:42 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,23 @@
 static t_pla	ft_idxpla(t_imp const *imp, size_t i)
 {
 	t_pla	pla;
+	t_vec	z;
 
+	ft_bzero(&pla, sizeof (t_pla));
 	pla.dir = ft_nrmlze(imp->nml[imp->idx[i].a.n]);
-	pla.pos = imp->vtx[imp->idx[i].a.v];
+	pla.pos = ft_sum_uv(imp->vtx[imp->idx[i].a.v], imp->pos);
 	pla.col = imp->col;
-	pla.bns.spc = imp->bns.spc;
+	pla.bns = imp->bns;
+	z = ft_nrmlze(ft_setvec(pla.bns.dam.bas.top.z, pla.bns.dam.bas.mid.z,
+			pla.bns.dam.bas.bot.z));
+	if (ft_scalar(pla.dir, z) != 1)
+		pla.bns.dam.bas = ft_multmm(ft_rotnml(&pla.bns.dam.bas, &pla.dir,
+			-acos(ft_scalar(z, pla.dir))), pla.bns.dam.bas);
+	z = ft_nrmlze(ft_setvec(pla.bns.bmp.bas.top.z, pla.bns.bmp.bas.mid.z,
+			pla.bns.bmp.bas.bot.z));
+	if (ft_scalar(pla.dir, z) != 1)
+		pla.bns.bmp.bas = ft_multmm(ft_rotnml(&pla.bns.bmp.bas, &pla.dir,
+			-acos(ft_scalar(z, pla.dir))), pla.bns.bmp.bas);
 	return (pla);
 }
 
@@ -55,12 +67,20 @@ static int	ft_isface(t_vec const *itr, t_imp const *imp, size_t i)
 	a = &imp->vtx[imp->idx[i].a.v];
 	b = &imp->vtx[imp->idx[i].b.v];
 	c = &imp->vtx[imp->idx[i].c.v];
-	m = ft_set3x3(*a, *b, *c);
+	m = ft_set3x3(ft_sum_uv(*a, imp->pos), ft_sum_uv(*b, imp->pos),
+			ft_sum_uv(*c, imp->pos));
 	bar = ft_chkmat(&m, itr);
 	bar = ft_multmv(ft_invmat(m), bar);
 	if (!ft_is_val(&bar) || bar.x < 0 || bar.y < 0 || bar.z < 0)
 		return (0);
 	return (1);
+}
+
+void	ft_canon(t_itr *itr, t_imp const *imp)
+{
+	itr->vtx = ft_multmv(imp->bas, itr->vtx);
+	itr->nml = ft_multmv(imp->bas, itr->nml);
+	itr->bmp = ft_multmv(imp->bas, itr->bmp);
 }
 
 t_list	*ft_sysimp(t_vec const *dir, t_vec const *pov, t_imp const *imp)
@@ -79,7 +99,10 @@ t_list	*ft_sysimp(t_vec const *dir, t_vec const *pov, t_imp const *imp)
 		if (itr == (void *)-1)
 			return ((void *)(size_t)ft_lstclear_return(&lst, -1));
 		if (itr && ft_isface(&((t_itr *)itr->content)->vtx, imp, i))
+		{
+			ft_canon(itr->content, imp);
 			ft_lstadd_back(&lst, itr);
+		}
 		else
 			ft_lstclear(&itr, &free);
 		++i;

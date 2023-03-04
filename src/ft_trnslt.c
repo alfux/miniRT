@@ -6,7 +6,7 @@
 /*   By: alfux <alexis.t.fuchs@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:17:24 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/02 16:02:25 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 15:30:32 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	ft_trnslt(t_obj const *obj, t_vec dir)
 		((t_pbol *)obj->obj)->pos = ft_sum_uv(((t_pbol *)obj->obj)->pos, dir);
 	else if (obj->type == 'e' || obj->type == 'h' || obj->type == 'c')
 		((t_ehc *)obj->obj)->pos = ft_sum_uv(((t_ehc *)obj->obj)->pos, dir);
+	else if (obj->type == 'I')
+		((t_imp *)obj->obj)->pos = ft_sum_uv(((t_imp *)obj->obj)->pos, dir);
 }
