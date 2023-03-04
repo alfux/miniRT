@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 12:25:50 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 13:55:08 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	ft_keyh2(int kid, t_win *win)
 
 int	ft_keyhook(int kid, t_win *win)
 {
-		printf("Keyboard - Keycode: %i\n", kid);
+	printf("Keyboard - Keycode: %i\n", kid);
 	if (kid == K_TAB)
 	{
 		win->hlp = win->hlp % 2 + 4;

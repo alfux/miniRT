@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 10:52:55 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 13:54:42 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,13 @@ int			ft_pars_pla(t_win *window, t_obj **obj, char *str);
 t_cyl		*ft_newcyl(t_vec pos, t_vec dir, t_vec dh, t_rgb col);
 int			ft_pars_cyl(t_win *window, t_obj **lig, char *str);
 int			ft_pars_pbol(t_win *window, t_obj **obj, char *str);
-//int			ft_pars_hbol(t_win *window, t_obj **obj, char *str);
-//int			ft_pars_cone(t_win *window, t_obj **obj, char *str);
 int			ft_pars_ehc(t_win *window, t_obj **obj, char *str, char type);
 char		ft_datatp(char const *line);
 int			ft_addelm(char const *line, t_dat *dat);
 t_imp		*ft_getimp(int fd);
 int			ft_orthonormal_basis(t_3x3 *bas, char **str);
 int			ft_bonus_param(t_win *window, t_sdb *bns, char *str);
+int			ft_newimp(t_win *window, t_obj **obj, char *str);
 
 //Object list manipulation
 t_obj		*ft_objnew(char type, void *obj);

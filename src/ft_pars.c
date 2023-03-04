@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 10:43:14 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 13:54:51 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static int	ft_new_elem(t_win *win, t_scn *scn, char *str)
 			return (ft_pars_pla(win, &(scn->obj), str + 2));
 		else if (*str == 's' && str[1] && str[1] == 'p')
 			return (ft_pars_sph(win, &(scn->obj), str + 2));
-//		else if (*str == 'o' && str[1] && str[1] == 'b')
-//			return (ft_pars_obj(win, &(scn->obj), str + 2));
+		else if (*str == 'o' && str[1] && str[1] == 'b')
+			return (ft_newimp(win, &(scn->obj), str + 2));
 	}
 	return (2);
 }
