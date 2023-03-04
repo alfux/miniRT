@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/02 16:34:56 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 10:52:55 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			ft_coord(t_vec *vec, char **str);
 int			ft_skipdigit(char const **str);
 int			ft_skipspace(char const **str);
 int			ft_skipnodigit(char const **str);
-int			ft_error_manager(int err, int fd);
+int			ft_error_manager(t_win *win, int err, int fd);
 
 //Memory free exits
 int			ft_exit_success(t_win *win);
@@ -128,7 +128,8 @@ void		ft_rscale(int kid, t_obj const *obj);
 t_obj		*ft_sellig(t_obj const *cur, t_obj const *lig);
 
 //Rendering
-void		ft_render(t_win const *win);
+void		ft_render(t_win *win);
+void		ft_help(t_win *win);
 t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 int			ft_deadzn(t_vec const *vec, t_vec const *ctr, double rad);

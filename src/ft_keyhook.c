@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/02 16:35:13 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 10:49:28 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,20 @@ static void	ft_movcam(int kid, t_cam *cam)
 
 int	ft_keyhook(int kid, t_win *win)
 {
+		printf("Keyboard - Keycode: %i\n", kid);
+
 	if (kid == K_TAB)
+	{
+		win->hlp = win->hlp % 2 + 4;
 		win->cur = ft_sellig(win->cur, win->scn.lig);
+	}
+	if (kid == K_PT)
+	{
+		if (win->hlp % 2)
+			win->hlp--;
+		else
+			win->hlp++;
+	}
 	if (kid == K_COMA)
 	{
 		if (!win->mod)

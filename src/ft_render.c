@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:34:54 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/30 16:32:35 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 10:52:56 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	ft_big_pixel(t_win const *win, uint32_t i, uint32_t j, uint32_t rgb)
 	}
 }
 
-static void	ft_low_render(t_win const *win)
+static void	ft_low_render(t_win *win)
 {
 	uint32_t	i;
 	uint32_t	j;
@@ -63,9 +63,10 @@ static void	ft_low_render(t_win const *win)
 	}
 	mlx_clear_window(win->cid, win->wid);
 	mlx_put_image_to_window(win->cid, win->wid, win->scr.iid, 0, 0);
+	ft_help(win);
 }
 
-void	ft_render(t_win const *win)
+void	ft_render(t_win *win)
 {
 	uint32_t	i;
 	uint32_t	j;
@@ -86,4 +87,5 @@ void	ft_render(t_win const *win)
 	}
 	mlx_clear_window(win->cid, win->wid);
 	mlx_put_image_to_window(win->cid, win->wid, win->scr.iid, 0, 0);
+	ft_help(win);
 }

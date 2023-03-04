@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error_manager.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efunes <efunes@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:04:11 by efunes            #+#    #+#             */
-/*   Updated: 2023/02/23 18:40:28 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 10:42:57 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
 
-int	ft_error_manager(int err, int fd)
+int	ft_error_manager(t_win *win, int err, int fd)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (fd)
@@ -70,6 +70,6 @@ int	ft_error_manager(int err, int fd)
 	else if (err == 24)
 		ft_putstr_fd("error on memory allocation or on `.obj' file.\n", 2);
 	else if (err == 25)
-		ft_putstr_fd("invalid objet `ob' argument.\n", 2);
-	return (1);
+		ft_putstr_fd("invalid objet argument.\n", 2);
+	return (ft_exit(win, 1));
 }

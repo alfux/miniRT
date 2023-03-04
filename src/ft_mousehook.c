@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/01 17:43:57 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 10:50:21 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	ft_dstcmp(double *dist, t_win const *win, t_list **itr)
 		return (ft_lstclear_return(itr, 0));
 }
 
-static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
+static t_obj	*ft_obj_select(t_win *win, t_vec const *ray,
 				t_obj *obj)
 {
 	t_list	*itr;
@@ -91,6 +91,8 @@ static t_obj	*ft_obj_select(t_win const *win, t_vec const *ray,
 			sav = obj;
 		obj = obj->next;
 	}
+	if (sav)
+		win->hlp = win->hlp % 2 + 2;
 	return (sav);
 }
 
@@ -107,6 +109,9 @@ int	ft_mousehook(int mid, int x, int y, t_win *win)
 		win->cur = ft_obj_select(win, &ray, win->scn.obj);
 	}
 	else if (mid == M_RIGHT)
+	{
 		win->cur = NULL;
+		win->hlp = win->hlp % 2;
+	}
 	return (0);
 }

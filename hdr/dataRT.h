@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/02 16:34:41 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 10:46:34 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define K_I 34
 # define K_K 40
 # define K_SPACE 49
+# define K_PT 47
 # define K_COMA 43
 # define K_TAB 48
 # define M_LEFT 1
@@ -265,6 +266,8 @@ struct					s_win
 	t_scn			scn;
 	char			mod;
 	t_obj			*cur;
+	t_img			help;
+	char			hlp;
 };
 typedef struct s_win	t_win;
 
