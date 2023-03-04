@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 10:12:47 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 12:35:43 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 13:51:43 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	ft_ini_help(t_win *win, t_img *help)
 	int	i;
 
 	i = 0;
-	help->iid = mlx_new_image(win->wid, COL, HGT);
+	help->iid = mlx_new_image(win->cid, COL, HGT);
 	if (!help->iid)
 		ft_error_manager(win, 18, 0);
 	help->iad = mlx_get_data_addr(help->iid, &(help->bpp), &(help->opl),
