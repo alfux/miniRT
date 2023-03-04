@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 10:50:21 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 11:38:14 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,8 @@ int	ft_mousehook(int mid, int x, int y, t_win *win)
 		win->cur = NULL;
 		win->hlp = win->hlp % 2;
 	}
+	mlx_clear_window(win->cid, win->wid);
+	mlx_put_image_to_window(win->cid, win->wid, win->scr.iid, 0, 0);
+	ft_help(win);
 	return (0);
 }
