@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:45:35 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 17:18:29 by afuchs           ###   ########.fr       */
+/*   Updated: 2023/03/04 17:19:45 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_newimp(t_win *window, t_obj **obj, char *str)
 {
 	t_obj	*new;
 	int		fd;
-	
+
 	fd = ft_obj_fd(&str);
 	if (!fd)
 		return (23);

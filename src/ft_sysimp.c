@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 14:02:28 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 16:56:42 by afuchs           ###   ########.fr       */
+/*   Updated: 2023/03/04 17:20:49 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static t_pla	ft_idxpla(t_imp const *imp, size_t i)
 	pla.col = imp->col;
 	pla.bns = imp->bns;
 	z = ft_nrmlze(ft_setvec(pla.bns.dam.bas.top.z, pla.bns.dam.bas.mid.z,
-			pla.bns.dam.bas.bot.z));
+				pla.bns.dam.bas.bot.z));
 	if (ft_scalar(pla.dir, z) != 1)
 		pla.bns.dam.bas = ft_multmm(ft_rotnml(&pla.bns.dam.bas, &pla.dir,
-			-acos(ft_scalar(z, pla.dir))), pla.bns.dam.bas);
+					-acos(ft_scalar(z, pla.dir))), pla.bns.dam.bas);
 	z = ft_nrmlze(ft_setvec(pla.bns.bmp.bas.top.z, pla.bns.bmp.bas.mid.z,
-			pla.bns.bmp.bas.bot.z));
+				pla.bns.bmp.bas.bot.z));
 	if (ft_scalar(pla.dir, z) != 1)
 		pla.bns.bmp.bas = ft_multmm(ft_rotnml(&pla.bns.bmp.bas, &pla.dir,
-			-acos(ft_scalar(z, pla.dir))), pla.bns.bmp.bas);
+					-acos(ft_scalar(z, pla.dir))), pla.bns.bmp.bas);
 	return (pla);
 }
 
