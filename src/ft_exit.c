@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:34:18 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 10:44:06 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 15:35:46 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_exit_failure(t_win *win, char const *msg)
 {
+	ft_putstr_fd("Error\n", 2);
 	perror(msg);
 	return (ft_exit(win, 1));
 }
