@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 10:12:47 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 15:07:06 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 15:20:38 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_help_messages(t_win const *win, char save, char i)
 	if (win->mod)
 	{
 		mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
-			0x00ffffff, "`,'        Edition mode");
+			0x00ffffff, "`,'        Render mode");
 		mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
 			0x00ffffff, "``'`1'     prev/next camera");
 		mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
@@ -63,7 +63,7 @@ static void	ft_help_messages(t_win const *win, char save, char i)
 	}
 	else
 		mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
-			0x00ffffff, "`,'     Render mode");
+			0x00ffffff, "`,'     Edition mode");
 }
 
 static void	ft_static_help(t_win *win, t_img *help, char *save, int i)

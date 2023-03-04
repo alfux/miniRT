@@ -6,39 +6,11 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:01:18 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/02 16:01:34 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/04 15:17:03 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <miniRT.h>
-
-//static void	ft_rota_obj(t_vec *vec, t_cam *cam, double theta, char id)
-//{
-//	t_3x3	m;
-//	t_vec	tmp;
-//
-//	m = ft_set3x3(cam->hor, cam->ver, cam->dir);
-//	tmp = ft_multmv(ft_invmat(m), *vec);
-//	if (id == 'H')
-//	{
-//		vec->x = tmp.x;
-//		vec->y = tmp.y * cos(theta) - tmp.z * sin(theta);
-//		vec->z = tmp.z * cos(theta) + tmp.y * sin(theta);
-//	}
-//	else if (id == 'V')
-//	{
-//		vec->x = tmp.x * cos(theta) + tmp.z * sin(theta);
-//		vec->y = tmp.y;
-//		vec->z = tmp.z * cos(theta) - tmp.x * sin(theta);
-//	}
-//	else if (id == 'D')
-//	{
-//		vec->x = tmp.x * cos(theta) - tmp.y * sin(theta);
-//		vec->y = tmp.y * cos(theta) + tmp.x * sin(theta);
-//		vec->z = tmp.z;
-//	}
-//	*vec = ft_nrmlze(ft_multmv(m, *vec));
-//}
 
 static void	ft_movcoord(int kid, t_obj const *obj, t_cam const *cam)
 {
