@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:17:07 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 13:55:08 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 14:57:23 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	ft_movcam(int kid, t_cam *cam)
 		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->hor));
 	else if (kid == K_D)
 		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->hor));
-	else if (kid == K_P)
+	else if (kid == K_A)
 		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->ver));
-	else if (kid == K_M)
+	else if (kid == K_E)
 		cam->pov = ft_sum_uv(cam->pov, ft_multlv(-0.2, cam->ver));
 	else if (kid == K_Z)
 		cam->pov = ft_sum_uv(cam->pov, ft_multlv(0.2, cam->dir));
@@ -56,9 +56,9 @@ static void	ft_movcam(int kid, t_cam *cam)
 		ft_rota(cam, -6 * M_PI / 360, 'y');
 	else if (kid == K_RIGHT)
 		ft_rota(cam, 6 * M_PI / 360, 'y');
-	else if (kid == K_A)
+	else if (kid == K_P)
 		ft_rota(cam, -6 * M_PI / 360, 'z');
-	else if (kid == K_E)
+	else if (kid == K_M)
 		ft_rota(cam, 6 * M_PI / 360, 'z');
 }
 
@@ -66,6 +66,10 @@ static int	ft_keyh2(int kid, t_win *win)
 {
 	if (kid == K_ESCAPE)
 		return (ft_exit(win, 0));
+	else if (win->mod && kid == K_TI)
+		win->scn.cam = win->scn.cam->prev;
+	else if (win->mod && kid == K_ONE)
+		win->scn.cam = win->scn.cam->next;
 	else if (win->mod && !win->cur && (kid == K_O || kid == K_L))
 		win->scn.cam->fov += ((kid == K_O) - (kid == K_L)) * (2 * M_PI) / 360;
 	else if (win->mod && kid == EEGGS)

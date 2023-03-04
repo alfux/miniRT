@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:45:35 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 13:39:38 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/04 14:32:15 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_obj_fd(char *str)
 	char	*name;
 	int		fd;
 
-	i = ft_valid_obj_extention(str);
+	i = ft_valid_obj_extension(str);
 	if (!i)
 		return (0);
 	name = ft_substr(str, 0, i);

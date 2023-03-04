@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2023/03/04 10:47:37 by efunes           ###   ########.fr        #
+#    Updated: 2023/03/04 14:31:34 by efunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SSRC		=	ft_pblhgt.c ft_hyphgt.c ft_ehcbmp.c ft_ehcrgb.c ft_clrbmp.c \
 				ft_rotsph.c ft_rotpla.c ft_pblrgb.c ft_pbllgt.c ft_pblbmp.c \
 				ft_trnslt.c ft_rotcyl.c ft_rotpbl.c ft_rotehc.c ft_rscale.c	\
 				ft_sellig.c ft_pars_bonus.c	ft_error_manager.c ft_help.c	\
+				ft_newimp.c \
 
 SRC			=	$(SSRC:%=$(SDIR)%)
 
