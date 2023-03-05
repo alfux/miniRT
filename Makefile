@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2023/03/04 17:17:53 by afuchs           ###   ########.fr        #
+#    Updated: 2023/03/05 13:47:57 by alfux            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SSRC		=	ft_pblhgt.c ft_hyphgt.c ft_ehcbmp.c ft_ehcrgb.c ft_clrbmp.c \
 				ft_invmat.c ft_det3x3.c ft_nrmlze.c ft_dif_uv.c ft_rgbtoi.c	\
 				ft_shades.c ft_distce.c ft_sysres.c ft_move_obj.c			\
 				ft_set3x3.c ft_polyd2.c ft_sum_uv.c ft_multlv.c ft_ligrgb.c	\
-				ft_print_vect.c ft_norm.c ft_raytra.c ft_print_scene.c		\
+				ft_norm.c ft_raytra.c ft_error_manager.c ft_pars_bonus.c	\
 				ft_render.c ft_exit.c ft_free.c ft_setwin.c ft_keyhook.c	\
 				ft_setvec.c ft_setrgb.c ft_setamb.c ft_setcam.c ft_newlig.c	\
 				ft_newsph.c ft_newpla.c ft_newcyl.c ft_scalar.c	ft_addrgb.c	\
@@ -38,8 +38,7 @@ SSRC		=	ft_pblhgt.c ft_hyphgt.c ft_ehcbmp.c ft_ehcrgb.c ft_clrbmp.c \
 				ft_sysimp.c ft_newehc.c ft_newpbol.c ft_syspbl.c ft_rotobj.c\
 				ft_rotsph.c ft_rotpla.c ft_pblrgb.c ft_pbllgt.c ft_pblbmp.c \
 				ft_trnslt.c ft_rotcyl.c ft_rotpbl.c ft_rotehc.c ft_rscale.c	\
-				ft_sellig.c ft_pars_bonus.c	ft_error_manager.c ft_help.c	\
-				ft_newimp.c	ft_rotimp.c										\
+				ft_sellig.c ft_help.c ft_newimp.c ft_rotimp.c				\
 
 SRC			=	$(SSRC:%=$(SDIR)%)
 

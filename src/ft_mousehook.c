@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:40:00 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 11:38:14 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/05 13:45:52 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	ft_mousehook(int mid, int x, int y, t_win *win)
 {
 	t_vec	ray;
 
-	printf("Mouse - Keycode: %i - x %d, y %d\n", mid, x, y);
 	if (x < 0 || y < 0 || x > RESOLUTION || y > RESOLUTION * 9 / 16)
 		return (0);
 	if (mid == M_LEFT)

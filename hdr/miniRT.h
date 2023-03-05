@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 15:33:30 by afuchs           ###   ########.fr       */
+/*   Updated: 2023/03/05 13:46:44 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ int			ft_free(void *ptr);
 int			ft_clrdat(t_dat *dat);
 int			ft_delimp(t_imp *imp);
 uint32_t	ft_rgbtoi(t_rgb rgb);
-void		ft_print_scene(t_scn scn);
-void		ft_print_vect(t_vec v);
 int			ft_pars_double(double *shr, char **str);
 int			ft_rgb(t_rgb *rgb, char **str);
 int			ft_coord(t_vec *vec, char **str);

@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:42:47 by alfux             #+#    #+#             */
-/*   Updated: 2022/12/29 00:05:53 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/05 13:22:47 by alfux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_pars_cam(t_cam **cam, char *str)
 	t_cam	*tmp;
 	int		err;
 
-	new = malloc(sizeof(t_cam));
+	new = ft_calloc(1, sizeof(t_cam));
 	if (!new)
 		return (6);
 	err = ft_valid_cam(new, &str);
@@ -84,16 +84,16 @@ int	ft_pars_cam(t_cam **cam, char *str)
 		free(new);
 		return (err);
 	}
-	new->next = NULL;
-	new->prev = NULL;
+	new->next = new;
+	new->prev = new;
 	if (!(*cam))
 		*cam = new;
-	if ((*cam)->next)
-		tmp = (*cam)->next;
-	else
-		tmp = *cam;
+	tmp = (*cam)->next;
 	(*cam)->next = new;
 	new->next = tmp;
 	new->prev = *cam;
+	if ((*cam)->prev == (*cam))
+		(*cam)->prev = new;
+	ft_setcam(new);
 	return (0);
 }
