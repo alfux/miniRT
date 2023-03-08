@@ -6,7 +6,7 @@
 #    By: efunes <efunes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 23:55:05 by alfux             #+#    #+#              #
-#    Updated: 2023/03/08 16:29:03 by efunes           ###   ########.fr        #
+#    Updated: 2023/03/08 17:56:08 by efunes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,6 +105,6 @@ fclean		:	clean
 
 re			:	fclean all
 
-bonus		:
+bonus		:	re
 
 .PHONY		:	all clean fclean re bonus

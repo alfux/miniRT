@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:59:49 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/01 17:44:11 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/08 17:33:26 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	ft_pars_ehc2(t_win *window, t_obj *new, char *str, char type)
 	else if (type == 'c')
 		((t_ehc *)(new->obj))->dia = 0;
 	if ((type == 'h' || type == 'c')
-		&& ft_pars_double(&((t_ehc *)(new->obj))->hgt, &str))
+		&& (ft_pars_double(&((t_ehc *)(new->obj))->hgt, &str)
+		|| ((t_ehc *)(new->obj))->hgt < 0))
 		return (13);
 	if (ft_rgb(&((t_ehc *)(new->obj))->col, &str))
 		return (5);

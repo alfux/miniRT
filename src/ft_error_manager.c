@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:04:11 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/08 16:10:53 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/08 17:24:45 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_em3(int err)
 	if (err == 17)
 		ft_putstr_fd("invalid color perturbation argument.\n", 2);
 	else if (err == 18)
-		ft_putstr_fd("invalid bumpmap argument.\n", 2);
+		ft_putstr_fd("invalid orthonormal basis.\n", 2);
 	else if (err == 19)
 		ft_putstr_fd("invalid bumpmap file.\n", 2);
 	else if (err == 20)
