@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:04:11 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 12:14:57 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/08 16:10:53 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_error_manager(t_win *win, int err, int fd)
 	if (fd)
 		close(fd);
 	if (err > 99 && errno)
-		ft_putstr_fd(strerror(errno), 2);
+		perror("");
 	else if (err == 1)
 		ft_putstr_fd("Invalid extension format.\n MiniRT works only with `.rt' \
 		extension files.\n", 2);

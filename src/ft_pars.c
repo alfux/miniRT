@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:51:27 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 13:54:51 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/08 15:53:09 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	ft_pars(t_win *win, char *arg)
 	}
 	if (!win->scn.cam)
 		return (ft_error_manager(win, 3, fd));
+	else if (win->scn.amb.rat == -1)
+		return (ft_error_manager(win, 10, fd));
 	close (fd);
 	win->hlp = 0;
 	return (0);

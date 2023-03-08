@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:12:34 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/05 13:48:14 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:02:41 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	window = ft_setwin(RESOLUTION, (RESOLUTION * 9) / 16, "miniRT");
+	window.scn.amb.rat = -1;
 	if (ft_pars(&window, argv[1]))
 		return (ft_exit(&window, 1));
 	(void)mlx_hook(window.wid, 17, 0L, &ft_exit_success, &window);

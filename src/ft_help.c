@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 10:12:47 by efunes            #+#    #+#             */
-/*   Updated: 2023/03/04 15:20:38 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/08 16:32:32 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static void	ft_hlp_msg(t_win const *win, char save, char i)
 			0x00ffffff, "`p'`;'          rotate z");
 	}
 	if (save < 2)
-		mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
-			0x00ffffff, "`o'`l'     decrease/increase FOV");
+		ft_cam_msg(win, i);
 	else
 	{
 		mlx_string_put(win->cid, win->wid, RESOLUTION - COL - 15, 20 * i++,
@@ -73,10 +72,10 @@ static void	ft_static_help(t_win *win, t_img *help, char *save, int i)
 	max = 0;
 	if (!win->mod && win->hlp % 2)
 		max = 75;
-	else if (win->hlp == 1)
+	else if (win->hlp == 3)
 		max = HGT - 2 * 20;
 	else if (win->hlp == 5)
-		max = HGT - 3 * 20;
+		max = HGT - 5 * 20;
 	else if (win->hlp % 2)
 		max = HGT;
 	while (help->bpp * i / 8 < help->opl * max)

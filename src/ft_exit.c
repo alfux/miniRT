@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:34:18 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/05 13:41:15 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:09:57 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_exit(t_win *win, int status)
 	if (!win)
 	{
 		errno = EINVAL;
-		perror("error: ");
+		perror("Error\n");
 		return (1);
 	}
 	if (win->scr.iid)

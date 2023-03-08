@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/05 13:46:44 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:33:05 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ t_obj		*ft_sellig(t_obj const *cur, t_obj const *lig);
 //Rendering
 void		ft_render(t_win *win);
 void		ft_help(t_win *win);
+void		ft_cam_msg(t_win const *win, char i);
 t_vec		ft_getdir(t_win const *win, uint32_t i, uint32_t j);
 uint32_t	ft_raytra(t_win const *win, t_vec const *ray, t_obj const *obj);
 int			ft_deadzn(t_vec const *vec, t_vec const *ctr, double rad);

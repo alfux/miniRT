@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:52:57 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/05 13:43:46 by alfux            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:33:29 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	ft_camclr(t_cam **cam, void (*del)(void *))
 
 void	ft_camclear(t_cam **cam, void (*del)(void *))
 {
-	(*cam)->prev->next = (void *)0;
+	if (*cam)
+		(*cam)->prev->next = (void *)0;
 	ft_camclr(cam, del);
 }

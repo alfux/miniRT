@@ -6,7 +6,7 @@
 /*   By: efunes <efunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:15:04 by alfux             #+#    #+#             */
-/*   Updated: 2023/03/04 15:00:57 by efunes           ###   ########.fr       */
+/*   Updated: 2023/03/08 16:31:15 by efunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@
 # define GAMMA 3
 
 //Help box
-# define HGT 335
-# define COL 270
+# define HGT 375
+# define COL 330
 
 //Vetcor data structure
 struct					s_vec
