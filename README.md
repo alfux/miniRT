@@ -24,5 +24,6 @@
 <br />☛ Monday February 20th 18:00:	Added bonus objects and every bumpmap/color chessboard
 <br />☛	Tuesday February 28th 17:16: Fixed object live modifications
 ## Tuesday February 28th 17:18: Testing phase before commit to evaluation
+## Thursday March 9th 17:30: End of evalutation (Grade 125)
 ## State of render
 ![Alt text](render.png?raw=true "Render")
